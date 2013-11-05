@@ -5,6 +5,7 @@
 // @version     1
 // @grant       none
 // @require     http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js
+// @downloadURL https://github.com/xuebaofeng/userscript/raw/master/src/bug_list.user.js
 // @run-at      document-end
 // ==/UserScript==
 
