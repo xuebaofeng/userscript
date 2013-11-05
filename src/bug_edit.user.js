@@ -6,7 +6,7 @@
 // @grant       none
 // @require     http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js
 // @run-at      document-end
-// downloadUrl  https://github.com/xuebaofeng/userscript/raw/master/src/bug_edit.user.js
+// @downloadURL https://github.com/xuebaofeng/userscript/raw/master/src/bug_edit.user.js
 // ==/UserScript==
 
 
