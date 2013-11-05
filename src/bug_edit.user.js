@@ -2,7 +2,7 @@
 // @name        bug edit
 // @namespace   bugdb
 // @include     https://bug.oraclecorp.com/pls/bug/webbug_edit*
-// @version     1
+// @version     1.1
 // @grant       none
 // @require     http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js
 // @run-at      document-end
