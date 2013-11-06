@@ -2,7 +2,7 @@
 // @name        bug list
 // @namespace   bugdb
 // @include     https://bug.oraclecorp.com/pls/bug/webbug_reports.my_open_bugs
-// @version     1
+// @version     1.1
 // @grant       none
 // @require     http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js
 // @downloadURL https://github.com/xuebaofeng/userscript/raw/master/src/bug_list.user.js
