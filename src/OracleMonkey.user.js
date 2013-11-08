@@ -135,14 +135,14 @@ table{border-collapse: collapse;}\
             oneRow$.css('color','red');
         }
             
-    });    
+            });    
 }
 //bugdb list end
 
 //weblogic console login begin
-if(window.location.href.indexOf('/console/login/LoginForm.jsp')>)){
-$('#j_username').val('system');
-$('#j_password').val('11111111');
-$('#loginData div.button-row span.ctrl input.formButton').click();	
+if(window.location.href.indexOf('/console/login/LoginForm.jsp')>0){
+    $('#j_username').val('system');
+    $('#j_password').val('11111111');
+    $('#loginData div.button-row span.ctrl input.formButton').click();	
 }
 //weblogic console login end
