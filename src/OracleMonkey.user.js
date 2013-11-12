@@ -22,31 +22,32 @@
 
 GM_log(GM_listValues());
 
-GM_registerMenuCommand('clear passwords', function(){
+GM_registerMenuCommand('clear id and password', function(){
     GM_deleteValue('ssoPass');
     GM_deleteValue('peoplesoftPass');
-    alert('passwords cleared');
+    GM_deleteValue('ssoId');
+    GM_deleteValue('peoplesoftId');
+    alert('cleared');
 });
-
-var ssoName='baofeng.xue@oracle.com';
-var peoplesoftId='baxue';
-
-var ssoPass=GM_getValue('ssoPass');
-if(!ssoPass || ssoPass===''){
-    ssoPass=window.prompt('plese enter sso password');
-    GM_setValue('ssoPass',ssoPass);
-}
-
-var peoplesoftPass=GM_getValue('peoplesoftPass');
-if(!peoplesoftPass || peoplesoftPass===''){
-    peoplesoftPass=window.prompt('plese enter peoplesoft password');
-    GM_setValue('peoplesoftPass',peoplesoftPass);
-}
 
 //oracle sso begin
 if(window.location.href === "https://login.oracle.com/mysso/signon.jsp"){
-    $('#sso_username').val(ssoName);
+    
+    var ssoId=GM_getValue('ssoId');
+    if(!ssoId || ssoId===''){
+        ssoId=window.prompt('plese enter sso password');
+        GM_setValue('ssoId',ssoId);
+    } 
+    
+    var ssoPass=GM_getValue('ssoPass');
+    if(!ssoPass || ssoPass===''){
+        ssoPass=window.prompt('plese enter sso password');
+        GM_setValue('ssoPass',ssoPass);
+    }
+    
+    $('#sso_username').val(ssoId);
     $('#ssopassword').val(ssoPass);
+    
     doLogin(document.LoginForm);
     return;
 }
@@ -180,6 +181,19 @@ if(window.location.href.indexOf('/console/login/LoginForm.jsp')>0){
 //em-central begin
 if(window.location.href.indexOf('http://em-central.oraclecorp.com/psp/EM-CENTRAL')>=0){
     console.log('em-central login');
+    
+    var peoplesoftId=GM_getValue('peoplesoftId');
+    if(!peoplesoftId || peoplesoftId===''){
+        peoplesoftId=window.prompt('plese enter peoplesoft password');
+        GM_setValue('peoplesoftId',peoplesoftId);
+    }
+    
+    var peoplesoftPass=GM_getValue('peoplesoftPass');
+    if(!peoplesoftPass || peoplesoftPass===''){
+        peoplesoftPass=window.prompt('plese enter peoplesoft password');
+        GM_setValue('peoplesoftPass',peoplesoftPass);
+    }
+    
     $('#userid').val(peoplesoftId);
     $('#pwd').val(peoplesoftPass);
     $('#login input.PSLOGINPUSHBUTTON').click();	
