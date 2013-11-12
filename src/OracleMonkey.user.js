@@ -18,7 +18,7 @@
 var ssoName='@oracle.com';
 var ssoPass='';
 var peoplesoftId='baxue';
-var peoplesoftPassword='64309aA#';
+var peoplesoftPassword='';
 
 //oracle sso begin
 if(window.location.href === "https://login.oracle.com/mysso/signon.jsp"){
