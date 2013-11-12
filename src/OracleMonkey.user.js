@@ -9,6 +9,7 @@
 // @include     http://*.us.oracle.com*/console/login/LoginForm.jsp
 // @include     http://em-central.oraclecorp.com/psp/EM-CENTRAL/*
 // @version     1.1
+// @grant       GM_log
 // @grant       GM_setValue
 // @grant       GM_getValue
 // @grant       GM_listValues
@@ -17,7 +18,7 @@
 // @run-at      document-end
 // ==/UserScript==
 
-GM_listValues();
+GM_log(GM_listValues());
 
 var ssoName='baofeng.xue@oracle.com';
 var peoplesoftId='baxue';
