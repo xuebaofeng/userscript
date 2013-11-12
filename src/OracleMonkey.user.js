@@ -8,7 +8,7 @@
 // @include     https://bug.oraclecorp.com/pls/bug/webbug_reports.my_open_bugs
 // @include     http://*.us.oracle.com*/console/login/LoginForm.jsp
 // @include     http://em-central.oraclecorp.com/psp/EM-CENTRAL/*
-// @version     1.2
+// @version     1.3
 // @grant       GM_log
 // @grant       GM_setValue
 // @grant       GM_getValue
@@ -33,20 +33,8 @@ GM_registerMenuCommand('clear id and password', function(){
 //oracle sso begin
 if(window.location.href === "https://login.oracle.com/mysso/signon.jsp"){
     
-    var ssoId=GM_getValue('ssoId');
-    if(!ssoId || ssoId===''){
-        ssoId=window.prompt('plese enter sso password');
-        GM_setValue('ssoId',ssoId);
-    } 
-    
-    var ssoPass=GM_getValue('ssoPass');
-    if(!ssoPass || ssoPass===''){
-        ssoPass=window.prompt('plese enter sso password');
-        GM_setValue('ssoPass',ssoPass);
-    }
-    
-    $('#sso_username').val(ssoId);
-    $('#ssopassword').val(ssoPass);
+    $('#sso_username').val(getValue('ssoId'));
+    $('#ssopassword').val(getValue('ssoPass'));
     
     doLogin(document.LoginForm);
     return;
@@ -182,21 +170,19 @@ if(window.location.href.indexOf('/console/login/LoginForm.jsp')>0){
 if(window.location.href.indexOf('http://em-central.oraclecorp.com/psp/EM-CENTRAL')>=0){
     console.log('em-central login');
     
-    var peoplesoftId=GM_getValue('peoplesoftId');
-    if(!peoplesoftId || peoplesoftId===''){
-        peoplesoftId=window.prompt('plese enter peoplesoft password');
-        GM_setValue('peoplesoftId',peoplesoftId);
-    }
-    
-    var peoplesoftPass=GM_getValue('peoplesoftPass');
-    if(!peoplesoftPass || peoplesoftPass===''){
-        peoplesoftPass=window.prompt('plese enter peoplesoft password');
-        GM_setValue('peoplesoftPass',peoplesoftPass);
-    }
-    
-    $('#userid').val(peoplesoftId);
-    $('#pwd').val(peoplesoftPass);
+    $('#userid').val(getValue('peoplesoftId'));
+    $('#pwd').val(getValue('peoplesoftPass'));
     $('#login input.PSLOGINPUSHBUTTON').click();	
     return;
+}
+
+function getValue(key){
+    console.log('getValue');
+    var value=GM_getValue(key);
+    if(!value || value===''){
+        value=window.prompt('plese enter '+key);
+        GM_setValue(key,value);
+    } 
+    return value;
 }
 //em-central end
