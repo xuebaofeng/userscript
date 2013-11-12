@@ -1,12 +1,13 @@
 // ==UserScript==
 // @name        OracleMonkey
 // @namespace   oracle
-// @description sso,bugdb
+// @description sso,bugdb,em-entral
 // @include     https://login.oracle.com/mysso/signon.jsp
 // @include     http://*.us.oracle.com*
 // @include     https://bug.oraclecorp.com/pls/bug/webbug_edit*
 // @include     https://bug.oraclecorp.com/pls/bug/webbug_reports.my_open_bugs
 // @include     http://*.us.oracle.com*/console/login/LoginForm.jsp
+// @include     http://em-central.oraclecorp.com/psp/EM-CENTRAL/?cmd=login*
 // @version     1.0
 // @grant       none
 // @require     http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js
@@ -16,6 +17,9 @@
 
 var ssoName='@oracle.com';
 var ssoPass='';
+var peoplesoftId='baxue';
+var peoplesoftPassword='64309aA#';
+
 //oracle sso begin
 if(window.location.href === "https://login.oracle.com/mysso/signon.jsp"){
     $('#sso_username').val(ssoName);
@@ -146,3 +150,13 @@ if(window.location.href.indexOf('/console/login/LoginForm.jsp')>0){
     $('#loginData div.button-row span.ctrl input.formButton').click();	
 }
 //weblogic console login end
+
+//em-central begin
+if(window.location.href.indexOf('http://em-central.oraclecorp.com/psp/EM-CENTRAL')>=0){
+    console.log('em-central login');
+    $('#userid').val(peoplesoftId);
+    $('#pwd').val(peoplesoftPassword);
+    $('#login input.PSLOGINPUSHBUTTON').click();	
+}
+
+//em-central end
