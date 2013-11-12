@@ -7,31 +7,46 @@
 // @include     https://bug.oraclecorp.com/pls/bug/webbug_edit*
 // @include     https://bug.oraclecorp.com/pls/bug/webbug_reports.my_open_bugs
 // @include     http://*.us.oracle.com*/console/login/LoginForm.jsp
-// @include     http://em-central.oraclecorp.com/psp/EM-CENTRAL/?cmd=login*
-// @version     1.0
-// @grant       none
+// @include     http://em-central.oraclecorp.com/psp/EM-CENTRAL/*
+// @version     1.1
+// @grant       GM_setValue
+// @grant       GM_getValue
+// @grant       GM_listValues
 // @require     http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js
 // @downloadURL https://github.com/xuebaofeng/userscript/raw/master/src/OracleMonkey.user.js
 // @run-at      document-end
 // ==/UserScript==
 
+GM_listValues();
+
 var ssoName='baofeng.xue@oracle.com';
-var ssoPass='';
 var peoplesoftId='baxue';
-var peoplesoftPassword='';
+
+var ssoPass=GM_getValue('ssoPass');
+if(!ssoPass || ssoPass===''){
+    ssoPass=window.prompt('plese enter sso password');
+    GM_setValue('ssoPass',ssoPass);
+}
+
+var peoplesoftPass=GM_getValue('peoplesoftPass');
+if(!peoplesoftPass || peoplesoftPass===''){
+    peoplesoftPass=window.prompt('plese enter peoplesoft password');
+    GM_setValue('peoplesoftPass',peoplesoftPass);
+}
 
 //oracle sso begin
 if(window.location.href === "https://login.oracle.com/mysso/signon.jsp"){
     $('#sso_username').val(ssoName);
     $('#ssopassword').val(ssoPass);
     doLogin(document.LoginForm);
+    return;
 }
 //oracle sso end
 
 //peopletools login page begin
 var ids$=$('#userid,#pwd');
 
-if(ids$.length>0){
+if(ids$.length>0 && window.location.href.indexOf('us.oracle.com')>0){
     ids$.bind('keyup',function(){
         ids$.val($(this).val().toUpperCase());
     });
@@ -45,6 +60,7 @@ if(ids$.length>0){
     }
     var pwd$=$('#pwd');
     pwd$.val(ids$.val());
+    return;
 }
 //peopletools login page end
 
@@ -104,6 +120,7 @@ if(window.location.href.indexOf('https://bug.oraclecorp.com/pls/bug/webbug_edit'
     
     
     $("html, body").animate({ scrollTop:$(document).height() }, 0);
+    return;
 }
 //bugdb edit end
 
@@ -140,6 +157,7 @@ table{border-collapse: collapse;}\
         }
             
             });    
+    return;
 }
 //bugdb list end
 
@@ -150,13 +168,12 @@ if(window.location.href.indexOf('/console/login/LoginForm.jsp')>0){
     $('#loginData div.button-row span.ctrl input.formButton').click();	
 }
 //weblogic console login end
-
 //em-central begin
 if(window.location.href.indexOf('http://em-central.oraclecorp.com/psp/EM-CENTRAL')>=0){
     console.log('em-central login');
     $('#userid').val(peoplesoftId);
-    $('#pwd').val(peoplesoftPassword);
+    $('#pwd').val(peoplesoftPass);
     $('#login input.PSLOGINPUSHBUTTON').click();	
+    return;
 }
-
 //em-central end
