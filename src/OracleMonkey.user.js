@@ -15,7 +15,7 @@
 // @run-at      document-end
 // ==/UserScript==
 
-var ssoName='@oracle.com';
+var ssoName='baofeng.xue@oracle.com';
 var ssoPass='';
 var peoplesoftId='baxue';
 var peoplesoftPassword='';
