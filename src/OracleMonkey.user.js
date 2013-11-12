@@ -8,17 +8,25 @@
 // @include     https://bug.oraclecorp.com/pls/bug/webbug_reports.my_open_bugs
 // @include     http://*.us.oracle.com*/console/login/LoginForm.jsp
 // @include     http://em-central.oraclecorp.com/psp/EM-CENTRAL/*
-// @version     1.1
+// @version     1.2
 // @grant       GM_log
 // @grant       GM_setValue
 // @grant       GM_getValue
 // @grant       GM_listValues
+// @grant       GM_deleteValue
+// @grant       GM_registerMenuCommand
 // @require     http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js
 // @downloadURL https://github.com/xuebaofeng/userscript/raw/master/src/OracleMonkey.user.js
 // @run-at      document-end
 // ==/UserScript==
 
 GM_log(GM_listValues());
+
+GM_registerMenuCommand('clear passwords', function(){
+    GM_deleteValue('ssoPass');
+    GM_deleteValue('peoplesoftPass');
+    alert('passwords cleared');
+});
 
 var ssoName='baofeng.xue@oracle.com';
 var peoplesoftId='baxue';
