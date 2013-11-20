@@ -1,14 +1,15 @@
 // ==UserScript==
 // @name        OracleMonkey
 // @namespace   oracle
-// @description sso,bugdb,em-entral,dep, bugsmart
+// @description sso,bugdb,em-entral,dep, bugsmart, ice
 // @include     https://login.oracle.com/mysso/signon.jsp
 // @include     http://*.us.oracle.com*
 // @include     https://bug.oraclecorp.com/pls/bug/webbug_edit*
 // @include     https://bug.oraclecorp.com/pls/bug/webbug_reports.my_open_bugs
 // @include     http://em-central.oraclecorp.com/psp/EM-CENTRAL/*
 // @include     https://bugsmart.oraclecorp.com/cgi-bin/techpm/bug_smart.pl*
-// @version     1.5
+// @include     https://iceportal.oraclecorp.com/psp/ICE/*log*
+// @version     1.6
 // @grant       GM_log
 // @grant       GM_setValue
 // @grant       GM_getValue
@@ -20,8 +21,6 @@
 // @run-at      document-end
 // ==/UserScript==
 
-GM_log(GM_listValues());
-
 GM_registerMenuCommand('clear id and password', function(){
     GM_deleteValue('ssoPass');
     GM_deleteValue('peoplesoftPass');
@@ -29,6 +28,32 @@ GM_registerMenuCommand('clear id and password', function(){
     GM_deleteValue('peoplesoftId');
     alert('cleared');
 });
+
+//ice begin
+if(window.location.href.indexOf('https://iceportal.oraclecorp.com/psp/ICE/')>=0
+   && window.location.href.indexOf('log')>=0
+  ){
+    console.log('ice begin');
+    
+    $('#userid').val(getValue('peoplesoftId'));
+    $('#pwd').val(getValue('peoplesoftPass'));
+    $('input[type="submit"]').click();
+    
+    console.log('ice end');
+    return;
+}
+//ice end
+
+//em-central begin
+if(window.location.href.indexOf('http://em-central.oraclecorp.com/psp/EM-CENTRAL')>=0){
+    console.log('em-central login');
+    
+    $('#userid').val(getValue('peoplesoftId'));
+    $('#pwd').val(getValue('peoplesoftPass'));
+    $('#login input.PSLOGINPUSHBUTTON').click();	
+    return;
+}
+//em-central end
 
 //bugsmart begin
 if(window.location.href.indexOf('https://bugsmart.oraclecorp.com/cgi-bin/techpm/bug_smart.pl?')>=0){  
@@ -196,15 +221,7 @@ if(window.location.href.indexOf('/console/login/LoginForm.jsp')>0){
     $('#loginData div.button-row span.ctrl input.formButton').click();	
 }
 //weblogic console login end
-//em-central begin
-if(window.location.href.indexOf('http://em-central.oraclecorp.com/psp/EM-CENTRAL')>=0){
-    console.log('em-central login');
-    
-    $('#userid').val(getValue('peoplesoftId'));
-    $('#pwd').val(getValue('peoplesoftPass'));
-    $('#login input.PSLOGINPUSHBUTTON').click();	
-    return;
-}
+
 
 function getValue(key){
     console.log('getValue');
@@ -215,4 +232,4 @@ function getValue(key){
     } 
     return value;
 }
-//em-central end
+
