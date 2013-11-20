@@ -1,14 +1,14 @@
 // ==UserScript==
 // @name        OracleMonkey
 // @namespace   oracle
-// @description sso,bugdb,em-entral
+// @description sso,bugdb,em-entral,dep
 // @include     https://login.oracle.com/mysso/signon.jsp
 // @include     http://*.us.oracle.com*
 // @include     https://bug.oraclecorp.com/pls/bug/webbug_edit*
 // @include     https://bug.oraclecorp.com/pls/bug/webbug_reports.my_open_bugs
 // @include     http://*.us.oracle.com*/console/login/LoginForm.jsp
 // @include     http://em-central.oraclecorp.com/psp/EM-CENTRAL/*
-// @version     1.3
+// @version     1.4
 // @grant       GM_log
 // @grant       GM_setValue
 // @grant       GM_getValue
@@ -30,13 +30,27 @@ GM_registerMenuCommand('clear id and password', function(){
     alert('cleared');
 });
 
+//dep begin
+if(window.location.href.indexOf("http://dsiweb01.us.oracle.com/dep/login.asp")>=0){
+    
+    console.log('dep begin');
+    $('input[name="WHO"]').val(getValue('ssoId'));
+    $('input[name="sPassword"]').val(getValue('ssoPass'));
+    fn_Submit();
+    console.log('dep end');
+    return;
+}
+//dep end
+
 //oracle sso begin
 if(window.location.href === "https://login.oracle.com/mysso/signon.jsp"){
     
+    console.log('oracle sso begin');
     $('#sso_username').val(getValue('ssoId'));
     $('#ssopassword').val(getValue('ssoPass'));
     
     doLogin(document.LoginForm);
+    console.log('oracle sso end');
     return;
 }
 //oracle sso end
