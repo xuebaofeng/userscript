@@ -4,12 +4,9 @@
 // @description sso,bugdb,em-entral,dep, bugsmart, ice
 // @include     https://login.oracle.com/mysso/signon.jsp
 // @include     http://*.us.oracle.com*
-// @include     https://bug.oraclecorp.com/pls/bug/webbug_edit*
-// @include     https://bug.oraclecorp.com/pls/bug/webbug_reports.my_open_bugs
-// @include     http://em-central.oraclecorp.com/psp/EM-CENTRAL/*
-// @include     https://bugsmart.oraclecorp.com/cgi-bin/techpm/bug_smart.pl*
-// @include     https://iceportal.oraclecorp.com/psp/ICE/*log*
-// @version     1.6
+// @include     http://*.oraclecorp.com/*
+// @include     https://*.oraclecorp.com/*
+// @version     1.7
 // @grant       GM_log
 // @grant       GM_setValue
 // @grant       GM_getValue
