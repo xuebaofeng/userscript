@@ -1,14 +1,14 @@
 // ==UserScript==
 // @name        OracleMonkey
 // @namespace   oracle
-// @description sso,bugdb,em-entral,dep
+// @description sso,bugdb,em-entral,dep, bugsmart
 // @include     https://login.oracle.com/mysso/signon.jsp
 // @include     http://*.us.oracle.com*
 // @include     https://bug.oraclecorp.com/pls/bug/webbug_edit*
 // @include     https://bug.oraclecorp.com/pls/bug/webbug_reports.my_open_bugs
-// @include     http://*.us.oracle.com*/console/login/LoginForm.jsp
 // @include     http://em-central.oraclecorp.com/psp/EM-CENTRAL/*
-// @version     1.4
+// @include     https://bugsmart.oraclecorp.com/cgi-bin/techpm/bug_smart.pl*
+// @version     1.5
 // @grant       GM_log
 // @grant       GM_setValue
 // @grant       GM_getValue
@@ -29,6 +29,22 @@ GM_registerMenuCommand('clear id and password', function(){
     GM_deleteValue('peoplesoftId');
     alert('cleared');
 });
+
+//bugsmart begin
+if(window.location.href.indexOf('https://bugsmart.oraclecorp.com/cgi-bin/techpm/bug_smart.pl?')>=0){  
+    console.log('bugsmart begin');
+    
+    var nextButton$=$('#Next.button');
+    if(nextButton$.length>0){
+        nextButton$.click();
+    }
+    
+    $('select[name="regression_status"],select[name="product_tgs_9"]').css('background-color','yellow');
+    
+    console.log('bugsmart end');
+    return;
+}
+//bugsmart end
 
 //dep begin
 if(window.location.href.indexOf("http://dsiweb01.us.oracle.com/dep/login.asp")>=0){
