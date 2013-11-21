@@ -6,7 +6,7 @@
 // @include     http://*.us.oracle.com*
 // @include     http://*.oraclecorp.com/*
 // @include     https://*.oraclecorp.com/*
-// @version     1.7
+// @version     1.8
 // @grant       GM_log
 // @grant       GM_setValue
 // @grant       GM_getValue
@@ -26,15 +26,17 @@ GM_registerMenuCommand('clear id and password', function(){
     alert('cleared');
 });
 
+
 //ice begin
-if(window.location.href.indexOf('https://iceportal.oraclecorp.com/psp/ICE/')>=0
-   && window.location.href.indexOf('log')>=0
-  ){
+if(window.location.href.indexOf('https://iceportal.oraclecorp.com/psp/ICE/')>=0){
     console.log('ice begin');
     
-    $('#userid').val(getValue('peoplesoftId'));
+  if($('#userid').length>0){
+        $('#userid').val(getValue('peoplesoftId'));
     $('#pwd').val(getValue('peoplesoftPass'));
     $('input[type="submit"]').click();
+  }
+
     
     console.log('ice end');
     return;
