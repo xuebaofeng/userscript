@@ -28,7 +28,7 @@ GM_registerMenuCommand('clear id and password', function(){
 
 
 //ice begin
-if(window.location.href.indexOf('https://iceportal.oraclecorp.com/psp/ICE/')>=0){
+if(window.location.href.indexOf('https://iceportal.oraclecorp.com/')>=0){
     console.log('ice begin');
     
   if($('#userid').length>0){
