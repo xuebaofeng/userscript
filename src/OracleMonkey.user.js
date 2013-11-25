@@ -89,7 +89,7 @@ if(window.location.href === "https://login.oracle.com/mysso/signon.jsp"){
     $('#sso_username').val(getValue('ssoId'));
     $('#ssopassword').val(getValue('ssoPass'));
     
-    doLogin(document.LoginForm);
+    $('form:first').submit();
     console.log('oracle sso end');
     return;
 }
