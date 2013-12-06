@@ -6,7 +6,7 @@
 // @include     http://*.us.oracle.com*
 // @include     http://*.oraclecorp.com/*
 // @include     https://*.oraclecorp.com/*
-// @version     1.8.1
+// @version     1.8.2
 // @grant       GM_log
 // @grant       GM_setValue
 // @grant       GM_getValue
@@ -31,12 +31,12 @@ GM_registerMenuCommand('clear id and password', function(){
 if(window.location.href.indexOf('https://iceportal.oraclecorp.com/')>=0){
     console.log('ice begin');
     
-  if($('#userid').length>0){
+    if($('#userid').length>0){
         $('#userid').val(getValue('peoplesoftId'));
-    $('#pwd').val(getValue('peoplesoftPass'));
-    $('input[type="submit"]').click();
-  }
-
+        $('#pwd').val(getValue('peoplesoftPass'));
+        $('input[type="submit"]').click();
+    }
+    
     
     console.log('ice end');
     return;
@@ -172,6 +172,21 @@ if(window.location.href.indexOf('https://bug.oraclecorp.com/pls/bug/webbug_edit'
     
     
     $("html, body").animate({ scrollTop:$(document).height() }, 0);
+    
+    //begin to add radio button for note tempalte
+    var bug_desc$=$("#bug_desc");
+    var textspan$=$("#textspan");
+    textspan$.append('<br><a href="#textClear" id="textClear">Clear</a>&nbsp;<a href="#askUpate" id="askUpate">Ask update</a>&nbsp;<a href="#wantClose" id="wantClose">Want to Close</a>');
+    
+    $(document).on('click',"#textClear",function(){
+        console.log('clear');
+        bug_desc$.val('');
+    }).on('click',"#askUpate",function(){
+        bug_desc$.val('Any update?');
+    }).on('click',"#wantClose",function(){
+        bug_desc$.val('I am going to close this bug if no futher response in 3 days.');
+    });
+    
     return;
 }
 //bugdb edit end
@@ -231,4 +246,3 @@ function getValue(key){
     } 
     return value;
 }
-
