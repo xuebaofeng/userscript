@@ -6,7 +6,7 @@
 // @include     http://*.us.oracle.com*
 // @include     http://*.oraclecorp.com/*
 // @include     https://*.oraclecorp.com/*
-// @version     1.8.3
+// @version     1.8.4
 // @grant       GM_log
 // @grant       GM_setValue
 // @grant       GM_getValue
@@ -168,7 +168,7 @@ if(window.location.href.indexOf('https://bug.oraclecorp.com/pls/bug/webbug_edit'
     console.log(wikiString);
     
     var bugform$ =$('form[name="bugform"]');
-    bugform$.append(wikiString);
+    bugform$.append(wikiString.toLowerCase());
     
     
     $("html, body").animate({ scrollTop:$(document).height() }, 0);
