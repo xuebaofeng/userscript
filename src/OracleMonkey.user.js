@@ -129,7 +129,10 @@ if(window.location.href.indexOf('https://bug.oraclecorp.com/pls/bug/webbug_edit'
     $('#mainframespan form center b:first').css('text-transform', 'lowercase');
     
     var bugsmart='https://bugsmart.oraclecorp.com/cgi-bin/techpm/bug_smart.pl?eb=' + $('#rptno').val();
-    $('#mainframespan form table tbody tr td a:first').append('<a target="_blank" href="' + bugsmart+'">bug smart</a>');
+    var iceCreate='https://iceportal.oraclecorp.com/psp/ICE/EMPLOYEE/ICE/c/ICE_BUG.RQ_BUG_RSLT.GBL?FolderPath=PORTAL_ROOT_OBJECT.ICE_20.WRK_RSLT.RQ_BUG_RSLT_GBL&IsFolder=false&IgnoreParamTempl=FolderPath%2cIsFolder';
+    $('#mainframespan form table tbody tr td a:first')
+    .append('<a target="_blank" href="' + bugsmart+'">bug smart</a>')
+    .append('&nbsp;|&nbsp;<a target="_blank" href="' + iceCreate+'">create ice</a>');
     
     
     $('div tt b').css('display','block').css('margin','2px').css('font-weight', 'normal').css('text-transform', 'lowercase').css('background-color','#F2FBEF');
