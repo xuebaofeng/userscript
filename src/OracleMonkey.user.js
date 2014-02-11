@@ -6,7 +6,7 @@
 // @include     http://*.us.oracle.com*
 // @include     http://*.oraclecorp.com/*
 // @include     https://*.oraclecorp.com/*
-// @version     1.8.4
+// @version     1.8.5
 // @grant       GM_log
 // @grant       GM_setValue
 // @grant       GM_getValue
