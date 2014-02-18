@@ -6,7 +6,7 @@
 // @include     http://*.us.oracle.com*
 // @include     http://*.oraclecorp.com/*
 // @include     https://*.oraclecorp.com/*
-// @version     1.8.5
+// @version     1.8.6
 // @grant       GM_log
 // @grant       GM_setValue
 // @grant       GM_getValue
@@ -29,18 +29,33 @@ GM_registerMenuCommand('clear id and password', function(){
 
 //ice begin
 if(window.location.href.indexOf('https://iceportal.oraclecorp.com/')>=0){
-    console.log('ice begin');
+    
     
     if($('#userid').length>0){
+        console.log('ice login begin');
         $('#userid').val(getValue('peoplesoftId'));
         $('#pwd').val(getValue('peoplesoftPass'));
         $('input[type="submit"]').click();
+        console.log('ice login end');
+        return;
     }
     
-    
-    console.log('ice end');
-    return;
+    if(window.location.href.indexOf('psc/ICE/EMPLOYEE/ICE/c/ICE_BUG.RQ_BUG_RSLT.GBL?')>=0){
+        console.log('ice create begin');
+        
+        if($('#RQ_BUG_WRK_RQ_BUG_RPTNO_ADD').length>0){
+            
+            var bugNo = getURLParameter('bugNo');
+            
+            $('#RQ_BUG_WRK_RQ_BUG_RPTNO_ADD').val(bugNo);
+        }
+        
+        console.log('ice create end');
+        return;
+    }
 }
+
+
 //ice end
 
 //em-central begin
@@ -127,9 +142,10 @@ if(window.location.href.indexOf('https://bug.oraclecorp.com/pls/bug/webbug_edit'
     $('#hide_yes').attr('checked', true);
     
     $('#mainframespan form center b:first').css('text-transform', 'lowercase');
-    
-    var bugsmart='https://bugsmart.oraclecorp.com/cgi-bin/techpm/bug_smart.pl?eb=' + $('#rptno').val();
-    var iceCreate='https://iceportal.oraclecorp.com/psp/ICE/EMPLOYEE/ICE/c/ICE_BUG.RQ_BUG_RSLT.GBL?FolderPath=PORTAL_ROOT_OBJECT.ICE_20.WRK_RSLT.RQ_BUG_RSLT_GBL&IsFolder=false&IgnoreParamTempl=FolderPath%2cIsFolder';
+    var bugNo= $('#rptno').val();
+    var bugsmart='https://bugsmart.oraclecorp.com/cgi-bin/techpm/bug_smart.pl?eb=' + bugNo;
+    var iceCreate='https://iceportal.oraclecorp.com/psp/ICE/EMPLOYEE/ICE/c/ICE_BUG.RQ_BUG_RSLT.GBL?FolderPath=PORTAL_ROOT_OBJECT.ICE_20.WRK_RSLT.RQ_BUG_RSLT_GBL&IsFolder=false&IgnoreParamTempl=FolderPath%2cIsFolder'
+    iceCreate+='&bugNo='+bugNo;
     $('#mainframespan form table tbody tr td a:first')
     .append('<a target="_blank" href="' + bugsmart+'">bug smart</a>')
     .append('&nbsp;|&nbsp;<a target="_blank" href="' + iceCreate+'">create ice</a>');
@@ -251,4 +267,18 @@ function getValue(key){
         GM_setValue(key,value);
     } 
     return value;
+}
+
+function getURLParameter(sParam)
+{
+    var sPageURL = window.location.search.substring(1);
+    var sURLVariables = sPageURL.split('&');
+    for (var i = 0; i < sURLVariables.length; i++) 
+    {
+        var sParameterName = sURLVariables[i].split('=');
+        if (sParameterName[0] == sParam) 
+        {
+            return sParameterName[1];
+        }
+    }
 }
