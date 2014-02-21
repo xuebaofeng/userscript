@@ -6,7 +6,7 @@
 // @include     http://*.us.oracle.com*
 // @include     http://*.oraclecorp.com/*
 // @include     https://*.oraclecorp.com/*
-// @version     1.8.6
+// @version     1.8.7
 // @grant       GM_log
 // @grant       GM_setValue
 // @grant       GM_getValue
@@ -240,7 +240,7 @@ table{border-collapse: collapse;}\
         ){
             oneRow$.css('color','gray');
         }else if(
-            oneRow$.find(':nth-child(5)').html()==="1"
+            oneRow$.find(':nth-child(5)').html()==="1" ||oneRow$.find(':nth-child(8)').html().indexOf('ACCESSIBILITY')>=0
         ){
             oneRow$.css('color','red');
         }
