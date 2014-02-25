@@ -6,7 +6,7 @@
 // @include     http://*.us.oracle.com*
 // @include     http://*.oraclecorp.com/*
 // @include     https://*.oraclecorp.com/*
-// @version     1.8.7
+// @version     1.8.8
 // @grant       GM_log
 // @grant       GM_setValue
 // @grant       GM_getValue
@@ -91,7 +91,8 @@ if(window.location.href.indexOf("http://dsiweb01.us.oracle.com/dep/login.asp")>=
     console.log('dep begin');
     $('input[name="WHO"]').val(getValue('ssoId'));
     $('input[name="sPassword"]').val(getValue('ssoPass'));
-    fn_Submit();
+
+    $('input.image').click();
     console.log('dep end');
     return;
 }
