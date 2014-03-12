@@ -4,9 +4,10 @@
 // @description sso,bugdb,em-entral,dep, bugsmart, ice
 // @include     https://login.oracle.com/mysso/signon.jsp
 // @include     http://*.us.oracle.com*
+// @include     https://*.us.oracle.com*
 // @include     http://*.oraclecorp.com/*
 // @include     https://*.oraclecorp.com/*
-// @version     1.8.8
+// @version     1.8.9
 // @grant       GM_log
 // @grant       GM_setValue
 // @grant       GM_getValue
@@ -18,13 +19,18 @@
 // @run-at      document-end
 // ==/UserScript==
 
-GM_registerMenuCommand('clear id and password', function(){
+GM_registerMenuCommand('clear sso', function(){
     GM_deleteValue('ssoPass');
-    GM_deleteValue('peoplesoftPass');
     GM_deleteValue('ssoId');
+    alert('cleared');
+});
+
+GM_registerMenuCommand('clear peoplesoft', function(){
+    GM_deleteValue('peoplesoftPass');
     GM_deleteValue('peoplesoftId');
     alert('cleared');
 });
+
 
 
 //ice begin
