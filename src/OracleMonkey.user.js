@@ -21,13 +21,11 @@
 
 GM_registerMenuCommand('clear sso', function(){
     GM_deleteValue('ssoPass');
-    GM_deleteValue('ssoId');
     alert('cleared');
 });
 
 GM_registerMenuCommand('clear peoplesoft', function(){
     GM_deleteValue('peoplesoftPass');
-    GM_deleteValue('peoplesoftId');
     alert('cleared');
 });
 
