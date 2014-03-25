@@ -7,7 +7,7 @@
 // @include     https://*.us.oracle.com*
 // @include     http://*.oraclecorp.com/*
 // @include     https://*.oraclecorp.com/*
-// @version     1.9
+// @version     2
 // @grant       GM_log
 // @grant       GM_setValue
 // @grant       GM_getValue
@@ -68,7 +68,16 @@ if(window.location.href.indexOf('http://em-central.oraclecorp.com/psp/EM-CENTRAL
     
     $('#userid').val(getValue('peoplesoftId'));
     $('#pwd').val(getValue('peoplesoftPass'));
-    $('#login input.PSLOGINPUSHBUTTON').click();	
+
+    if($('#login table tbody tr.signInTable td.PSERRORTEXT').html().length==0){
+    
+        $('#login input.PSLOGINPUSHBUTTON').click();	
+    }else{
+
+        GM_deleteValue('peoplesoftId');
+        GM_deleteValue('peoplesoftPass');
+    }
+    
     return;
 }
 //em-central end
