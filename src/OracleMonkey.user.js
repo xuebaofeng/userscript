@@ -7,7 +7,7 @@
 // @include     https://*.us.oracle.com*
 // @include     http://*.oraclecorp.com/*
 // @include     https://*.oraclecorp.com/*
-// @version     3
+// @version     4.0
 // @grant       GM_log
 // @grant       GM_setValue
 // @grant       GM_getValue
@@ -63,22 +63,22 @@ if(window.location.href.indexOf('https://iceportal.oraclecorp.com/')>=0){
 //ice end
 
 //em-central begin
-if(window.location.href.indexOf('http://em-central.oraclecorp.com/psp/EM-CENTRAL')>=0){
+if(window.location.href.indexOf('em-central.oraclecorp.com/psp/EM-CENTRAL')>=0){
     console.log('em-central login');
     
     $('#userid').val(getValue('peoplesoftId'));
     $('#pwd').val(getValue('peoplesoftPass'));
-
-    if($('#login table tbody tr.signInTable td.PSERRORTEXT').html().length==0){
     
+    if($('#login table tbody tr.signInTable td.PSERRORTEXT').html().length==0){
+        
         $('#login input.PSLOGINPUSHBUTTON').click();	
-    }else{
-
-        GM_deleteValue('peoplesoftId');
+    }else if(window.location.href.indexOf('cmd=login')>=0){
+        
+        //GM_deleteValue('peoplesoftId');
         GM_deleteValue('peoplesoftPass');
     }
-    
-    return;
+        
+        return;
 }
 //em-central end
 
@@ -104,7 +104,7 @@ if(window.location.href.indexOf("http://dsiweb01.us.oracle.com/dep/login.asp")>=
     console.log('dep begin');
     $('input[name="WHO"]').val(getValue('ssoId'));
     $('input[name="sPassword"]').val(getValue('ssoPass'));
-
+    
     $('input.image').click();
     console.log('dep end');
     return;
