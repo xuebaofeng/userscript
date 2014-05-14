@@ -7,7 +7,7 @@
 // @include     https://*.us.oracle.com*
 // @include     http://*.oraclecorp.com/*
 // @include     https://*.oraclecorp.com/*
-// @version     4.0
+// @version     5.0
 // @grant       GM_log
 // @grant       GM_setValue
 // @grant       GM_getValue
@@ -255,8 +255,8 @@ table{border-collapse: collapse;}\
             oneRow$.css('color','gray');
         }else if(
             oneRow$.find(':nth-child(5)').html()==="1" 
-            ||oneRow$.find(':nth-child(8)').html().indexOf('ACCESSIBILITY')>=0
-            ||oneRow$.find(':nth-child(7)').html().indexOf('54')>=0
+            //||oneRow$.find(':nth-child(8)').html().indexOf('ACCESSIBILITY')>=0
+            //||oneRow$.find(':nth-child(7)').html().indexOf('54')>=0
         ){
             if(oneRow$.find(':nth-child(6)').html().indexOf('11')==-1){
                 oneRow$.css('color','red');
