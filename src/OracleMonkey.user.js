@@ -7,7 +7,7 @@
 // @include     https://*.us.oracle.com*
 // @include     http://*.oraclecorp.com/*
 // @include     https://*.oraclecorp.com/*
-// @version     5.0
+// @version     6.0
 // @grant       GM_log
 // @grant       GM_setValue
 // @grant       GM_getValue
@@ -30,9 +30,11 @@ GM_registerMenuCommand('clear peoplesoft', function(){
 });
 
 
+var currentURL=window.location.href;
+
 
 //ice begin
-if(window.location.href.indexOf('https://iceportal.oraclecorp.com/')>=0){
+if(currentURL.indexOf('https://iceportal.oraclecorp.com/')>=0){
     
     
     if($('#userid').length>0){
@@ -44,7 +46,7 @@ if(window.location.href.indexOf('https://iceportal.oraclecorp.com/')>=0){
         return;
     }
     
-    if(window.location.href.indexOf('psc/ICE/EMPLOYEE/ICE/c/ICE_BUG.RQ_BUG_RSLT.GBL?')>=0){
+    if(currentURL.indexOf('psc/ICE/EMPLOYEE/ICE/c/ICE_BUG.RQ_BUG_RSLT.GBL?')>=0){
         console.log('ice create begin');
         
         if($('#RQ_BUG_WRK_RQ_BUG_RPTNO_ADD').length>0){
@@ -63,7 +65,7 @@ if(window.location.href.indexOf('https://iceportal.oraclecorp.com/')>=0){
 //ice end
 
 //em-central begin
-if(window.location.href.indexOf('em-central.oraclecorp.com/psp/EM-CENTRAL')>=0){
+if(currentURL.indexOf('em-central.oraclecorp.com/psp/EM-CENTRAL')>=0 && currentURL.indexOf('log')>0){
     console.log('em-central login');
     
     $('#userid').val(getValue('peoplesoftId'));
@@ -72,7 +74,7 @@ if(window.location.href.indexOf('em-central.oraclecorp.com/psp/EM-CENTRAL')>=0){
     if($('#login table tbody tr.signInTable td.PSERRORTEXT').html().length==0){
         
         $('#login input.PSLOGINPUSHBUTTON').click();	
-    }else if(window.location.href.indexOf('cmd=login')>=0){
+    }else if(currentURL.indexOf('cmd=login')>=0){
         
         //GM_deleteValue('peoplesoftId');
         GM_deleteValue('peoplesoftPass');
@@ -83,7 +85,7 @@ if(window.location.href.indexOf('em-central.oraclecorp.com/psp/EM-CENTRAL')>=0){
 //em-central end
 
 //bugsmart begin
-if(window.location.href.indexOf('https://bugsmart.oraclecorp.com/cgi-bin/techpm/bug_smart.pl?')>=0){  
+if(currentURL.indexOf('https://bugsmart.oraclecorp.com/cgi-bin/techpm/bug_smart.pl?')>=0){  
     console.log('bugsmart begin');
     
     var nextButton$=$('#Next.button');
@@ -99,7 +101,7 @@ if(window.location.href.indexOf('https://bugsmart.oraclecorp.com/cgi-bin/techpm/
 //bugsmart end
 
 //dep begin
-if(window.location.href.indexOf("http://dsiweb01.us.oracle.com/dep/login.asp")>=0){
+if(currentURL.indexOf("http://dsiweb01.us.oracle.com/dep/login.asp")>=0){
     
     console.log('dep begin');
     $('input[name="WHO"]').val(getValue('ssoId'));
@@ -112,7 +114,7 @@ if(window.location.href.indexOf("http://dsiweb01.us.oracle.com/dep/login.asp")>=
 //dep end
 
 //oracle sso begin
-if(window.location.href === "https://login.oracle.com/mysso/signon.jsp"){
+if(currentURL === "https://login.oracle.com/mysso/signon.jsp"){
     
     console.log('oracle sso begin');
     $('#sso_username').val(getValue('ssoId'));
@@ -127,7 +129,7 @@ if(window.location.href === "https://login.oracle.com/mysso/signon.jsp"){
 //peopletools login page begin
 var ids$=$('#userid,#pwd');
 
-if(ids$.length>0 && window.location.href.indexOf('us.oracle.com')>0){
+if(ids$.length>0 && currentURL.indexOf('us.oracle.com')>0){
     ids$.bind('keyup',function(){
         ids$.val($(this).val().toUpperCase());
     });
@@ -146,7 +148,7 @@ if(ids$.length>0 && window.location.href.indexOf('us.oracle.com')>0){
 //peopletools login page end
 
 //bugdb edit begin
-if(window.location.href.indexOf('https://bug.oraclecorp.com/pls/bug/webbug_edit')>=0 && $('#fixby').length>0){
+if(currentURL.indexOf('https://bug.oraclecorp.com/pls/bug/webbug_edit')>=0 && $('#fixby').length>0){
     
     
     $("<style type='text/css'> \
@@ -228,7 +230,7 @@ if(window.location.href.indexOf('https://bug.oraclecorp.com/pls/bug/webbug_edit'
 //bugdb edit end
 
 //bugdb list begin
-if(window.location.href==='https://bug.oraclecorp.com/pls/bug/webbug_reports.my_open_bugs'){
+if(currentURL==='https://bug.oraclecorp.com/pls/bug/webbug_reports.my_open_bugs'){
     $("<style type='text/css'> \
 *{font-family: 'Tahoma','Microsoft YaHei',sans-serif !important;}\
 table{border-collapse: collapse;}\
@@ -269,7 +271,7 @@ table{border-collapse: collapse;}\
 //bugdb list end
 
 //weblogic console login begin
-if(window.location.href.indexOf('/console/login/LoginForm.jsp')>0){
+if(currentURL.indexOf('/console/login/LoginForm.jsp')>0){
     $('#j_username').val('system');
     $('#j_password').val('11111111');
     $('#loginData div.button-row span.ctrl input.formButton').click();	
