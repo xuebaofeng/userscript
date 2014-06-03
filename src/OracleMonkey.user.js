@@ -220,7 +220,7 @@ if(currentURL.indexOf('https://bug.oraclecorp.com/pls/bug/webbug_edit')>=0 && $(
     }).on('click',"#askUpate",function(){
         bug_desc$.val('Any update?');
     }).on('click',"#wantClose",function(){
-        bug_desc$.val('I am going to close this bug if no futher response in 3 days.');
+        bug_desc$.val('I am going to close this bug if no further response in 3 days.');
     }).on('click',"#closeBug",function(){
         bug_desc$.val('[Root Cause Analysis]\n\n[Impact Analysis]\n\n[Test Cases]\n');
     });
