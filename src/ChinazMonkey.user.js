@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name       ChinazMonkey
 // @namespace  chinaz.com
-// @version    1
+// @version    1.1
 // @description  站长之家文章阅读简化
 // @match      http://www.chinaz.com/start/*.shtml
 // @copyright  GNU
