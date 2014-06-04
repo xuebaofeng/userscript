@@ -8,7 +8,7 @@
 // @require     http://code.jquery.com/jquery-2.1.1.min.js
 // @run-at      document-end
 // @grant       GM_log
-// @downloadURL https://raw.githubusercontent.com/xuebaofeng/userscript/master/src/ChinazMonkey.js
+// @downloadURL https://github.com/xuebaofeng/userscript/raw/master/src/ChinazMonkey.user.js
 // ==/UserScript==
 
 console.log('chinaz begin');
