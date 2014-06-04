@@ -1,10 +1,10 @@
 // ==UserScript==
 // @name       ChinazMonkey
-// @namespace  http://use.i.E.your.homepage/
-// @version    0.1
-// @description  enter something useful
+// @namespace  chinaz.com
+// @version    1
+// @description  站长之家文章阅读简化
 // @match      http://www.chinaz.com/start/*.shtml
-// @copyright  Baofeng
+// @copyright  GNU
 // @require     http://code.jquery.com/jquery-2.1.1.min.js
 // @run-at      document-end
 // @grant       GM_log
