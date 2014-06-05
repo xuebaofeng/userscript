@@ -1,9 +1,9 @@
 // ==UserScript==
 // @name       ChinazMonkey
 // @namespace  chinaz.com
-// @version    1.1
+// @version    1.2
 // @description  站长之家文章阅读简化
-// @match      http://www.chinaz.com/start/*.shtml
+// @match      http://www.chinaz.com/*.shtml
 // @copyright  GNU
 // @require     http://code.jquery.com/jquery-2.1.1.min.js
 // @run-at      document-end
@@ -13,7 +13,7 @@
 
 console.log('chinaz begin');
 
-$('#cz-head,.m-crumb-search,.cz-box-300,#cz-footer').remove();
+$('#cz-head,.m-crumb-search,.cz-box-300,#cz-footer,.u-postfooter,.m-relate,.m-leftad,.m-picshow,#pinglun').remove();
 
 $('#content').removeClass('cz-box-670');
 $('.m-post').removeClass('m-post').css('background','#F5FAFF');
