@@ -7,7 +7,7 @@
 // @include     https://*.us.oracle.com*
 // @include     http://*.oraclecorp.com/*
 // @include     https://*.oraclecorp.com/*
-// @version     6.0
+// @version     7.0
 // @grant       GM_log
 // @grant       GM_setValue
 // @grant       GM_getValue
@@ -155,9 +155,8 @@ if(currentURL.indexOf('https://bug.oraclecorp.com/pls/bug/webbug_edit')>=0 && $(
 *{font-family: 'Tahoma','Microsoft YaHei',sans-serif !important;}\
 </style>").appendTo("head");
     
-    $('#hide_yes').attr('checked', true);
-    
-    $('#mainframespan form center b:first').css('text-transform', 'lowercase');
+
+
     var bugNo= $('#rptno').val();
     var bugsmart='https://bugsmart.oraclecorp.com/cgi-bin/techpm/bug_smart.pl?eb=' + bugNo;
     var iceCreate='https://iceportal.oraclecorp.com/psp/ICE/EMPLOYEE/ICE/c/ICE_BUG.RQ_BUG_RSLT.GBL?FolderPath=PORTAL_ROOT_OBJECT.ICE_20.WRK_RSLT.RQ_BUG_RSLT_GBL&IsFolder=false&IgnoreParamTempl=FolderPath%2cIsFolder'
@@ -166,27 +165,7 @@ if(currentURL.indexOf('https://bug.oraclecorp.com/pls/bug/webbug_edit')>=0 && $(
     .append('<a target="_blank" href="' + bugsmart+'">bug smart</a>')
     .append('&nbsp;|&nbsp;<a target="_blank" href="' + iceCreate+'">create ice</a>');
     
-    
-    $('div tt b').css('display','block').css('margin','2px').css('font-weight', 'normal').css('text-transform', 'lowercase').css('background-color','#F2FBEF');
-    
-    
-    var tt$=$('#mainframespan form div tt');
-    var text =tt$.html();
-    tt$.html(text.replace(/Not specified/g,'').replace(/\*\*\*/g,''));
-    
-    tt$.find('i').each(function () {
-        var text = $(this).html();
-        $(this).html(
-            text.replace('###Resolution Text','')
-            .replace('###Discussion','')
-            .replace(/@/g,'')
-            .replace('###End of section','')  
-        ).css('font-style', 'normal').css('background-color','#CEF6CE').css('display','block');
-    });
-    
-    tt$.find('i + br, b + br').remove();
-    
-    
+
     var wikiString=  '('
     +$('#fixby').val().replace('.00','')
     +','
@@ -200,14 +179,11 @@ if(currentURL.indexOf('https://bug.oraclecorp.com/pls/bug/webbug_edit')>=0 && $(
     + $('#rptno').val()
     +'|Link]]\\\\';
     
-    console.log(wikiString);
     
     var bugform$ =$('form[name="bugform"]');
     bugform$.append(wikiString.toLowerCase());
     
-    
-    $("html, body").animate({ scrollTop:$(document).height() }, 0);
-    
+
     //begin to add radio button for note tempalte
     var bug_desc$=$("#bug_desc");
     var textspan$=$("#textspan");
@@ -220,55 +196,27 @@ if(currentURL.indexOf('https://bug.oraclecorp.com/pls/bug/webbug_edit')>=0 && $(
     }).on('click',"#askUpate",function(){
         bug_desc$.val('Any update?');
     }).on('click',"#wantClose",function(){
-        bug_desc$.val('I am going to close this bug if no further response in 3 days.');
+        bug_desc$.val('I am going to close this bug if no futher response in 3 days.');
     }).on('click',"#closeBug",function(){
-        bug_desc$.val('[Root Cause Analysis]\n\n[Impact Analysis]\n\n[Test Cases]\n');
+        bug_desc$.val('Bug Analysis:\n\
+******************\n\n\
+Problem:\n\
+******************\n\n\
+Analysis:\n\
+******************\n\n\
+Code Change:\n\
+******************\n\n\
+Manual Unit test:\n\
+******************\n\n\
+PTF test case:\n\
+******************\n\n');
     });
     
     return;
 }
 //bugdb edit end
 
-//bugdb list begin
-if(currentURL==='https://bug.oraclecorp.com/pls/bug/webbug_reports.my_open_bugs'){
-    $("<style type='text/css'> \
-*{font-family: 'Tahoma','Microsoft YaHei',sans-serif !important;}\
-table{border-collapse: collapse;}\
-</style>").appendTo("head");
-    
-    var tr$=$('#SummaryTab tr');
-    
-    
-    tr$.css('text-transform','lowercase').css('font-size','18px');
-    
-    tr$.find(':nth-child(9)').remove();
-    tr$.find(':nth-child(9)').remove();
-    tr$.find(':nth-child(4)').remove();
-    tr$.find(':nth-child(2)').remove();
-    
-    
-    tr$.each(function(){
-        var oneRow$=$(this);
-        
-        if(
-            oneRow$.find(':nth-child(5)').html()==="4"
-            ||oneRow$.find(':nth-child(6)').html()==="30"
-        ){
-            oneRow$.css('color','gray');
-        }else if(
-            oneRow$.find(':nth-child(5)').html()==="1" 
-            //||oneRow$.find(':nth-child(8)').html().indexOf('ACCESSIBILITY')>=0
-            //||oneRow$.find(':nth-child(7)').html().indexOf('54')>=0
-        ){
-            if(oneRow$.find(':nth-child(6)').html().indexOf('11')==-1){
-                oneRow$.css('color','red');
-            }
-        }
-            
-            });    
-    return;
-}
-//bugdb list end
+
 
 //weblogic console login begin
 if(currentURL.indexOf('/console/login/LoginForm.jsp')>0){
