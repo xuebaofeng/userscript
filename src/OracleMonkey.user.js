@@ -7,7 +7,7 @@
 // @include     https://*.us.oracle.com*
 // @include     http://*.oraclecorp.com/*
 // @include     https://*.oraclecorp.com/*
-// @version     7.0
+// @version     7.1
 // @grant       GM_log
 // @grant       GM_setValue
 // @grant       GM_getValue
@@ -196,7 +196,7 @@ if(currentURL.indexOf('https://bug.oraclecorp.com/pls/bug/webbug_edit')>=0 && $(
     }).on('click',"#askUpate",function(){
         bug_desc$.val('Any update?');
     }).on('click',"#wantClose",function(){
-        bug_desc$.val('I am going to close this bug if no futher response in 3 days.');
+        bug_desc$.val('I am going to close this bug if no further response in 3 days.');
     }).on('click',"#closeBug",function(){
         bug_desc$.val('Bug Analysis:\n\
 ******************\n\n\
