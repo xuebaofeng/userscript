@@ -1,8 +1,8 @@
 // ==UserScript==
-// @name       ChinazMonkey
-// @namespace  chinaz.com
+// @name       ReadingMonkey
+// @namespace  baofeng.im
 // @version    1.1
-// @description  站长之家文章阅读简化
+// @description  文章阅读简化
 // @match      http://www.chinaz.com/*.shtml
 // @match      http://*.sina.com.cn/*.shtml
 // @copyright  GNU
