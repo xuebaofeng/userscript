@@ -7,7 +7,7 @@
 // @include     https://*.us.oracle.com*
 // @include     http://*.oraclecorp.com/*
 // @include     https://*.oraclecorp.com/*
-// @version     7.2
+// @version     7.3
 // @grant       GM_log
 // @grant       GM_setValue
 // @grant       GM_getValue
@@ -120,7 +120,7 @@ if(currentURL === "https://login.oracle.com/mysso/signon.jsp"){
     
     console.log('oracle sso begin');
     
-    if($('#errormsg').length>0){
+    if($('#errormsg').html().indexOf('invalid')>=0){
         GM_deleteValue('ssoPass');
 
     }else{
