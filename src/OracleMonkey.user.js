@@ -7,7 +7,7 @@
 // @include     https://*.us.oracle.com*
 // @include     http://*.oraclecorp.com/*
 // @include     https://*.oraclecorp.com/*
-// @version     7.1
+// @version     7.2
 // @grant       GM_log
 // @grant       GM_setValue
 // @grant       GM_getValue
@@ -104,10 +104,12 @@ if(currentURL.indexOf('https://bugsmart.oraclecorp.com/cgi-bin/techpm/bug_smart.
 if(currentURL.indexOf("http://dsiweb01.us.oracle.com/dep/login.asp")>=0){
     
     console.log('dep begin');
-    $('input[name="WHO"]').val(getValue('ssoId'));
-    $('input[name="sPassword"]').val(getValue('ssoPass'));
     
-    $('input.image').click();
+
+      $('input[name="WHO"]').val(getValue('ssoId'));
+      $('input[name="sPassword"]').val(getValue('ssoPass'));    
+      $('input.image').click();
+
     console.log('dep end');
     return;
 }
@@ -117,10 +119,16 @@ if(currentURL.indexOf("http://dsiweb01.us.oracle.com/dep/login.asp")>=0){
 if(currentURL === "https://login.oracle.com/mysso/signon.jsp"){
     
     console.log('oracle sso begin');
-    $('#sso_username').val(getValue('ssoId'));
-    $('#ssopassword').val(getValue('ssoPass'));
     
-    $('form:first').submit();
+    if($('#errormsg').length>0){
+        GM_deleteValue('ssoPass');
+
+    }else{
+        $('#sso_username').val(getValue('ssoId'));
+        $('#ssopassword').val(getValue('ssoPass'));
+
+        $('form:first').submit();
+    }
     console.log('oracle sso end');
     return;
 }
