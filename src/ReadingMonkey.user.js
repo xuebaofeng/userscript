@@ -1,10 +1,11 @@
 // ==UserScript==
 // @name       ReadingMonkey
 // @namespace  baofeng.im
-// @version    1.1
-// @description  文章阅读简化
+// @version    1.2
+// @description  文章阅读简化:chinaz,sina,admin1000
 // @match      http://www.chinaz.com/*.shtml
 // @match      http://*.sina.com.cn/*.shtml
+// @match      http://www.admin10000.com/document/*.html
 // @copyright  GNU
 // @require     http://code.jquery.com/jquery-2.1.1.min.js
 // @run-at      document-end
@@ -13,6 +14,7 @@
 // ==/UserScript==
 
 var url = window.location.href;
+
 if(url.indexOf('chinaz')>=0){
 console.log('chinaz begin');
 
@@ -35,6 +37,17 @@ $('.blkContainerSblk').removeClass('blkContainerSblk');
 $('.blkContainer').removeClass('blkContainer');
      
 console.log('sina end');
+return;
+}
+
+if(url.indexOf('admin10000')>=0){
+console.log('admin10000 begin');
+
+$('#miniNav,#header,#nav,#search,#position,#footer,.right,.weixin,.tags,.tip,.relation,.share,.texttip').remove();
+
+$('.left').css('width','100%');
+     
+console.log('admin10000 end');
 return;
 }
 
