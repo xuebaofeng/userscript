@@ -45,8 +45,8 @@ console.log('admin10000 begin');
 
 $('#miniNav,#header,#nav,#search,#position,#footer,.right,.weixin,.tags,.tip,.relation,.share,.texttip').remove();
 
-$('.left').css('width','100%');
-     
+$('.left,#main').css('width','100%').css('background','#F5FAFF');
+
 console.log('admin10000 end');
 return;
 }
