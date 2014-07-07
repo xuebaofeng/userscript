@@ -23,6 +23,8 @@ $('#content').removeClass('cz-box-670');
 $('.m-post').removeClass('m-post').css('background','#F5FAFF');
 $('#fulltext').click();
 
+$('.czbox').css('width','100%');
+
 console.log('chinaz end');
 return;
 }
