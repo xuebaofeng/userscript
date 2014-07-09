@@ -1,11 +1,12 @@
 // ==UserScript==
 // @name       ReadingMonkey
 // @namespace  baofeng.im
-// @version    1.2
-// @description  文章阅读简化:chinaz,sina,admin1000
+// @version    1.3
+// @description  文章阅读简化:chinaz,sina,admin1000,51cto
 // @match      http://www.chinaz.com/*.shtml
 // @match      http://*.sina.com.cn/*.shtml
 // @match      http://www.admin10000.com/document/*.html
+// @match      http://*.blog.51cto.com/*
 // @copyright  GNU
 // @require     http://code.jquery.com/jquery-2.1.1.min.js
 // @run-at      document-end
@@ -50,6 +51,17 @@ $('#miniNav,#header,#nav,#search,#position,#footer,.right,.weixin,.tags,.tip,.re
 $('.left,#main').css('width','100%').css('background','#F5FAFF');
 
 console.log('admin10000 end');
+return;
+}
+
+if(url.indexOf('blog.51cto')>=0){
+console.log('blog.51cto begin');
+
+$('#home_top,.headerBox,.blogLeft,.mainNav,.edu-col-b,.relatedArt').remove();
+
+$('.blogMain,.blogRight').css('width','100%').css('background','#F5FAFF');
+
+console.log('blog.51cto end');
 return;
 }
 
