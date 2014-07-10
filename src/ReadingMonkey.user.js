@@ -34,11 +34,13 @@ return;
 if(url.indexOf('sina')>=0){
 console.log('sina begin');
 
-$('#navTop,#hdnav,#blkBreadcrumb,.sidebar,.can_right,.wb_rec,.wc14_qr,.guess-view-list,.blkContainerOther,#J_Comment_Form_B').remove();
+$('#navTop,#hdnav,#blkBreadcrumb,.sidebar,.can_right,.wb_rec,.wc14_qr,.guess-view-list,.blkContainerOther,#J_Comment_Form_B,.side-btns-2wm').remove();
 
 $('.blkContainerSblk').removeClass('blkContainerSblk');
 $('.blkContainer').removeClass('blkContainer');
-     
+
+$('.wrap').css('width','100%').css('background','#F5FAFF');
+
 console.log('sina end');
 return;
 }
