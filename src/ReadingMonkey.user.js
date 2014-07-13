@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name       ReadingMonkey
 // @namespace  baofeng.im
-// @version    1.3
+// @version    1.4
 // @description  文章阅读简化:chinaz,sina,admin1000,51cto
 // @match      http://www.chinaz.com/*.shtml
 // @match      http://*.sina.com.cn/*.shtml
@@ -48,7 +48,7 @@ return;
 if(url.indexOf('admin10000')>=0){
 console.log('admin10000 begin');
 
-$('#miniNav,#header,#nav,#search,#position,#footer,.right,.weixin,.tags,.tip,.relation,.share,.texttip').remove();
+$('#miniNav,#header,#nav,#search,#position,#footer,.right,.weixin,.tags,.tip,.relation,.share,.texttip,.ad_336x280,.ad_640x90,iframe').remove();
 
 $('.left,#main').css('width','100%').css('background','#F5FAFF');
 
