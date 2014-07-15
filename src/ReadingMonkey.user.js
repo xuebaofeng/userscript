@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name       ReadingMonkey
 // @namespace  baofeng.im
-// @version    1.4
+// @version    1.5
 // @description  文章阅读简化:chinaz,sina,admin1000,51cto
 // @match      http://www.chinaz.com/*.shtml
 // @match      http://*.sina.com.cn/*.shtml
@@ -19,7 +19,7 @@ var url = window.location.href;
 if(url.indexOf('chinaz')>=0){
 console.log('chinaz begin');
 
-$('#cz-head,.m-crumb-search,.cz-box-300,#cz-footer,.u-postfooter,.m-relate,.m-leftad,.m-picshow,#pinglun').remove();
+$('#cz-head,.m-crumb-search,.cz-box-300,#cz-footer,.u-postfooter,.m-relate,.m-leftad,.m-picshow,#pinglun,#m-rightshare').remove();
 $('#content').removeClass('cz-box-670');
 $('.m-post').removeClass('m-post').css('background','#F5FAFF');
 $('#fulltext').click();
