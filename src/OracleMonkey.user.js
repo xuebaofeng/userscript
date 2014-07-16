@@ -7,7 +7,7 @@
 // @include     https://*.us.oracle.com*
 // @include     http://*.oraclecorp.com/*
 // @include     https://*.oraclecorp.com/*
-// @version     7.5
+// @version     8.0
 // @grant       GM_log
 // @grant       GM_setValue
 // @grant       GM_getValue
@@ -19,18 +19,49 @@
 // @run-at      document-end
 // ==/UserScript==
 
-GM_registerMenuCommand('clear sso', function(){
-    GM_deleteValue('ssoPass');
-    alert('cleared');
-});
-
-GM_registerMenuCommand('clear peoplesoft', function(){
-    GM_deleteValue('peoplesoftPass');
-    alert('cleared');
-});
-
 
 var currentURL=window.location.href;
+
+if(currentURL.indexOf('/psp/')>0 && currentURL.indexOf('us.oracle.com')>0){
+console.log('peoplesoft menue begin');
+    
+    $("<style type='text/css'> \
+#baofeng_qa{position:fixed; top:0; left:800px; z-index:100000;}\
+</style>").appendTo("head");
+    
+    $('body').prepend('<div id="baofeng_qa">QA<ul id="baofeng_qa_menu" style="display: none"></ul></div>');
+
+(function () {
+        var currentURL = 'http://slc04lpv.us.oracle.com:4001/psp/ps/EMPLOYEE/HRMS/h/?tab=DEFAULT';
+        var prefixIndex = currentURL.indexOf('/h/');
+        if (prefixIndex == -1) {
+            prefixIndex = currentURL.indexOf('/c/');
+        }
+        if (prefixIndex == -1) {
+            prefixIndex = currentURL.indexOf('/w/');
+        }
+
+        var prefix = currentURL.substring(0, prefixIndex);
+
+        var urlMap = {
+            'home': '/h/?tab=DEFAULT',
+            'peopeltools options': '/c/UTILITIES.PSOPTIONS.GBL',
+            'system options': '/c/PTPP_PORTAL_ADMIN.PTPP_OPTIONS.GBL',
+            'web profile': '/c/WEB_PROFILE.WEB_PROFILE.GBL'
+        };
+        for (var o in urlMap) {
+            $('#baofeng_qa_menu').append('<li><a href="' + prefix + urlMap[o] + '">' + o + '</a></li>');
+
+        }
+
+        $('#baofeng_qa').on('click', function () {
+            $('#baofeng_qa_menu').toggle();
+        });
+    })();
+
+    
+console.log('peoplesoft menue end');
+}
 
 
 //ice begin
@@ -236,13 +267,15 @@ PTF test case:\n\
 
 
 
-//weblogic console login begin
-if(currentURL.indexOf('/console/login/LoginForm.jsp')>0){
-    $('#j_username').val('system');
-    $('#j_password').val('11111111');
-    $('#loginData div.button-row span.ctrl input.formButton').click();	
-}
-//weblogic console login end
+GM_registerMenuCommand('clear sso', function(){
+    GM_deleteValue('ssoPass');
+    alert('cleared');
+});
+
+GM_registerMenuCommand('clear peoplesoft', function(){
+    GM_deleteValue('peoplesoftPass');
+    alert('cleared');
+});
 
 
 function getValue(key){
