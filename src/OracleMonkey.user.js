@@ -7,7 +7,7 @@
 // @include     https://*.us.oracle.com*
 // @include     http://*.oraclecorp.com/*
 // @include     https://*.oraclecorp.com/*
-// @version     8.0
+// @version     8.1
 // @grant       GM_log
 // @grant       GM_setValue
 // @grant       GM_getValue
@@ -29,7 +29,7 @@ console.log('peoplesoft menue begin');
 #baofeng_qa{position:fixed; top:0; left:800px; z-index:100000;}\
 </style>").appendTo("head");
     
-    $('body').prepend('<div id="baofeng_qa">QA<ul id="baofeng_qa_menu" style="display: none"></ul></div>');
+    $('body').prepend('<div id="baofeng_qa">+<ul id="baofeng_qa_menu" style="display: none"></ul></div>');
 
 (function () {
         var currentURL = 'http://slc04lpv.us.oracle.com:4001/psp/ps/EMPLOYEE/HRMS/h/?tab=DEFAULT';
@@ -47,7 +47,8 @@ console.log('peoplesoft menue begin');
             'home': '/h/?tab=DEFAULT',
             'peopeltools options': '/c/UTILITIES.PSOPTIONS.GBL',
             'system options': '/c/PTPP_PORTAL_ADMIN.PTPP_OPTIONS.GBL',
-            'web profile': '/c/WEB_PROFILE.WEB_PROFILE.GBL'
+            'web profile': '/c/WEB_PROFILE.WEB_PROFILE.GBL',
+            'branding system option': '/c/PTBR_MENU.PTBRANDINGSYSTEMOP.GBL'
         };
         for (var o in urlMap) {
             $('#baofeng_qa_menu').append('<li><a href="' + prefix + urlMap[o] + '">' + o + '</a></li>');
