@@ -7,7 +7,7 @@
 // @include     https://*.us.oracle.com*
 // @include     http://*.oraclecorp.com/*
 // @include     https://*.oraclecorp.com/*
-// @version     8.1
+// @version     8.2
 // @grant       GM_log
 // @grant       GM_setValue
 // @grant       GM_getValue
@@ -26,13 +26,13 @@ if(currentURL.indexOf('/psp/')>0 && currentURL.indexOf('us.oracle.com')>0){
 console.log('peoplesoft menue begin');
     
     $("<style type='text/css'> \
-#baofeng_qa{position:fixed; top:0; left:800px; z-index:100000;}\
+#baofeng_qa{position:fixed; top:0; left:0; z-index:100000;}\
 </style>").appendTo("head");
     
-    $('body').prepend('<div id="baofeng_qa">+<ul id="baofeng_qa_menu" style="display: none"></ul></div>');
+    $('body').prepend('<div id="baofeng_qa">+<ul id="baofeng_qa_menu" style="display: none; background-color:white;"></ul></div>');
 
 (function () {
-        var currentURL = 'http://slc04lpv.us.oracle.com:4001/psp/ps/EMPLOYEE/HRMS/h/?tab=DEFAULT';
+
         var prefixIndex = currentURL.indexOf('/h/');
         if (prefixIndex == -1) {
             prefixIndex = currentURL.indexOf('/c/');
