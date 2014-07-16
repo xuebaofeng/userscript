@@ -3,14 +3,14 @@ userscript
 
 userscript of Baofeng
 
-甲骨文内部网页增强
+网页增强
 
 
 
-支持浏览器firefox， chrome
+支持浏览器firefox
 
 功能增强
-bugdb, peoplesoft login, em-central login
+bugdb, bugsmart, peoplesoft login, em-central, peopletools quick access, sso, ice, dep
 
 
 使用方法
@@ -19,12 +19,7 @@ bugdb, peoplesoft login, em-central login
 安装插件
 https://addons.mozilla.org/en-US/firefox/addon/greasemonkey/
 
-2.chrome
-安装插件
-https://chrome.google.com/webstore/detail/tampermonkey/dhdgffkkebhmkfjojejmpbldmpobfkfo
-
-3.
-firefox, chrome 安装以上插件后，在浏览器内打开地址
+2.在浏览器内打开地址
 https://github.com/xuebaofeng/userscript/raw/master/src/OracleMonkey.user.js
 按照提示安装脚本
 
