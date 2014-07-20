@@ -1,12 +1,13 @@
 // ==UserScript==
 // @name       ReadingMonkey
 // @namespace  baofeng.im
-// @version    1.5
-// @description  文章阅读简化:chinaz,sina,admin1000,51cto
+// @version    1.6
+// @description  文章阅读简化:chinaz,sina,admin1000,51cto,csdn
 // @match      http://www.chinaz.com/*.shtml
 // @match      http://*.sina.com.cn/*.shtml
 // @match      http://www.admin10000.com/document/*.html
 // @match      http://*.blog.51cto.com/*
+// @match      http://blog.csdn.net/*/article/details/*
 // @copyright  GNU
 // @require     http://code.jquery.com/jquery-2.1.1.min.js
 // @run-at      document-end
@@ -15,6 +16,24 @@
 // ==/UserScript==
 
 var url = window.location.href;
+
+    $("<style type='text/css'> \
+p{font-size:20px;font-family: Georgia, \"Times New Roman\", \"Microsoft YaHei\", \"微软雅黑\", STXihei, \"华文细黑\", serif;}\
+</style>").appendTo("head");
+    
+
+if(url.indexOf('blog.csdn.net')>=0){
+console.log('csdn begin');
+
+$('.csdn-toolbar,#header,#navigator,#side,.notice,#res-relatived,.blog-associat-tag,.tag_list,#pub_footerall').remove();
+$('#content').removeClass('cz-box-670');
+
+$('#body,#main').css('width','100%').css('background','#F5FAFF');
+
+console.log('csdn end');
+return;
+}
+
 
 if(url.indexOf('chinaz')>=0){
 console.log('chinaz begin');
