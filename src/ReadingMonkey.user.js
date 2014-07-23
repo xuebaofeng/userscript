@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name       ReadingMonkey
 // @namespace  baofeng.im
-// @version    1.7
+// @version    1.8
 // @description  文章阅读简化:chinaz,sina,admin1000,51cto,csdn
 // @match      http://www.chinaz.com/*.shtml
 // @match      http://*.sina.com.cn/*.shtml
@@ -18,7 +18,8 @@
 var url = window.location.href;
 
     $("<style type='text/css'> \
-p{font-size:20px;font-family: Georgia, \"Times New Roman\", \"Microsoft YaHei\", \"微软雅黑\", STXihei, \"华文细黑\", serif;}\
+p{font-size:20px !important;\
+font-family: Georgia, \"Times New Roman\", \"Microsoft YaHei\", \"微软雅黑\", STXihei, \"华文细黑\", serif !important;}\
 </style>").appendTo("head");
     
 
