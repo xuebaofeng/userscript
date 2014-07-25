@@ -19,8 +19,9 @@
 var url = window.location.href;
 
     $("<style type='text/css'> \
-p,div{font-size:x-large !important;\
+p,div{font-size:large !important;\
 font-family: Georgia, \"Times New Roman\", \"Microsoft YaHei\", \"微软雅黑\", STXihei, \"华文细黑\", serif !important;}\
+body{background-color:#F5FAFF}\
 </style>").appendTo("head");
   
 if(url.indexOf('cnblogs')>=0){
@@ -29,7 +30,6 @@ console.log('cnblogs begin');
 $('#header,#footer,#sideBar,#blog_news_kb').remove();
 $('#mainContent .forFlow').css('padding',0);
 
-$('#body,#main').css('width','100%').css('background','#F5FAFF');
 
 console.log('cnblogs end');
 return;
@@ -41,7 +41,7 @@ console.log('csdn begin');
 $('.csdn-toolbar,#header,#navigator,#side,.notice,#res-relatived,.blog-associat-tag,.tag_list,#pub_footerall').remove();
 $('#content').removeClass('cz-box-670');
 
-$('#body,#main').css('width','100%').css('background','#F5FAFF');
+$('#body,#main').css('width','100%');
 
 console.log('csdn end');
 return;
@@ -53,7 +53,7 @@ console.log('chinaz begin');
 
 $('#cz-head,.m-crumb-search,.cz-box-300,#cz-footer,.u-postfooter,.m-relate,.m-leftad,.m-picshow,#pinglun,#m-rightshare').remove();
 $('#content').removeClass('cz-box-670');
-$('.m-post').removeClass('m-post').css('background','#F5FAFF');
+$('.m-post').removeClass('m-post');
 $('#fulltext').click();
 
 $('.czbox').css('width','100%');
@@ -71,7 +71,7 @@ $('#navTop,#hdnav,#blkBreadcrumb,.sidebar,.can_right,.wb_rec,.wc14_qr,.guess-vie
 $('.blkContainerSblk').removeClass('blkContainerSblk');
 $('.blkContainer').removeClass('blkContainer');
 
-$('.wrap').css('width','100%').css('background','#F5FAFF');
+$('.wrap').css('width','100%');
 
 console.log('sina end');
 return;
@@ -81,8 +81,7 @@ if(url.indexOf('admin10000')>=0){
 console.log('admin10000 begin');
 
 $('#miniNav,#header,#nav,#search,#position,#footer,.right,.weixin,.tags,.tip,.relation,.share,.texttip,.ad_336x280,.ad_640x90,iframe').remove();
-
-$('.left,#main').css('width','100%').css('background','#F5FAFF');
+$('.left,#main').css('width','100%');
 
 console.log('admin10000 end');
 return;
@@ -92,8 +91,7 @@ if(url.indexOf('blog.51cto')>=0){
 console.log('blog.51cto begin');
 
 $('#home_top,.headerBox,.blogLeft,.mainNav,.edu-col-b,.relatedArt,#message').remove();
-
-$('.blogMain,.blogRight').css('width','100%').css('background','#F5FAFF');
+$('.blogMain,.blogRight').css('width','100%');
 
 console.log('blog.51cto end');
 return;
