@@ -27,8 +27,9 @@ body{background-color:#F5FAFF}\
 if(url.indexOf('cnblogs')>=0){
 console.log('cnblogs begin');
 
-$('#header,#footer,#sideBar,#blog_news_kb').remove();
+$('#header,#footer,#sideBar,#blog_news_kb,#wrap,#main_header,#sideright,#guide').remove();
 $('#mainContent .forFlow').css('padding',0);
+$('#main_wrapper,#sideleft').css('width','100%');
 
 
 console.log('cnblogs end');
