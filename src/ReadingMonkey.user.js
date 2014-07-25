@@ -1,13 +1,14 @@
 // ==UserScript==
 // @name       ReadingMonkey
 // @namespace  baofeng.im
-// @version    1.8
-// @description  文章阅读简化:chinaz,sina,admin1000,51cto,csdn
+// @version    1.9
+// @description  文章阅读简化:chinaz,sina,admin1000,51cto,csdn,cnblog
 // @match      http://www.chinaz.com/*.shtml
 // @match      http://*.sina.com.cn/*.shtml
 // @match      http://www.admin10000.com/document/*.html
 // @match      http://*.blog.51cto.com/*
 // @match      http://blog.csdn.net/*/article/details/*
+// @match      http://www.cnblogs.com/*/p/*.html
 // @copyright  GNU
 // @require     http://code.jquery.com/jquery-2.1.1.min.js
 // @run-at      document-end
@@ -18,10 +19,21 @@
 var url = window.location.href;
 
     $("<style type='text/css'> \
-p{font-size:20px !important;\
+p,div{font-size:x-large !important;\
 font-family: Georgia, \"Times New Roman\", \"Microsoft YaHei\", \"微软雅黑\", STXihei, \"华文细黑\", serif !important;}\
 </style>").appendTo("head");
-    
+  
+if(url.indexOf('cnblogs')>=0){
+console.log('cnblogs begin');
+
+$('#header,#footer,#sideBar,#blog_news_kb').remove();
+$('#mainContent .forFlow').css('padding',0);
+
+$('#body,#main').css('width','100%').css('background','#F5FAFF');
+
+console.log('cnblogs end');
+return;
+}
 
 if(url.indexOf('blog.csdn.net')>=0){
 console.log('csdn begin');
