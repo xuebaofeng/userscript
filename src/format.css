@@ -1,0 +1,10 @@
+p {
+    font-family: "Microsoft YaHei", "微软雅黑", STXihei, "华文细黑", serif !important;
+    line-height: 1.5em !important;
+    text-indent: 2em !important;
+    margin: 1em !important;
+}
+
+body {
+    background-color: #eeeeee !important;
+}
