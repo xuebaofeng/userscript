@@ -1,102 +1,111 @@
 // ==UserScript==
 // @name       ReadingMonkey
 // @namespace  baofeng.im
-// @version    1.9
+// @version    2.0
 // @description  文章阅读简化:chinaz,sina,admin1000,51cto,csdn,cnblog
 // @match      http://www.chinaz.com/*.shtml
 // @match      http://*.sina.com.cn/*.shtml
 // @match      http://www.admin10000.com/document/*.html
 // @match      http://*.blog.51cto.com/*
 // @match      http://blog.csdn.net/*/article/details/*
-// @match      http://www.cnblogs.com/*/p/*.html
+// @match      http://www.cnblogs.com/*/*.html
+// @match      http://news.cnblogs.com/n/*
 // @copyright  GNU
 // @require     http://code.jquery.com/jquery-2.1.1.min.js
 // @run-at      document-end
 // @grant       GM_log
-// @downloadURL https://github.com/xuebaofeng/userscript/raw/master/src/ReadingMonkey.user.js
-// @updateURL https://github.com/xuebaofeng/userscript/raw/master/src/ReadingMonkey.user.js
+// @downloadURL https://github.com/xuebaofeng/userscript/raw/master/src/ChinazMonkey.user.js
 // ==/UserScript==
+(function () {
 
-var url = window.location.href;
+    var url = window.location.href;
+
+    function expand(s) {
+        $(s).css('width', '100%').css('padding', 0).css('border', 0).css('margin', 0);
+    }
 
     $("<style type='text/css'> \
 p,div{font-size:large !important;\
 font-family: Georgia, \"Times New Roman\", \"Microsoft YaHei\", \"微软雅黑\", STXihei, \"华文细黑\", serif !important;}\
 body{background-color:#F5FAFF}\
 </style>").appendTo("head");
-  
-if(url.indexOf('cnblogs')>=0){
-console.log('cnblogs begin');
 
-$('#header,#footer,#sideBar,#blog_news_kb,#wrap,#main_header,#sideright,#guide').remove();
-$('#mainContent .forFlow').css('padding',0);
-$('#main_wrapper,#sideleft').css('width','100%');
+    if (url.indexOf('cnblogs') >= 0) {
+        console.log('cnblogs begin');
 
+        $('#header,#footer,#sideBar,#blog_news_kb,#wrap,#main_header,#sideright,#guide,').remove();
+        $('#mainContent .forFlow').css('padding', 0);
 
-console.log('cnblogs end');
-return;
-}
+        expand('#main_wrapper,#sideleft');
 
-if(url.indexOf('blog.csdn.net')>=0){
-console.log('csdn begin');
+        console.log('cnblogs end');
+        return;
+    }
 
-$('.csdn-toolbar,#header,#navigator,#side,.notice,#res-relatived,.blog-associat-tag,.tag_list,#pub_footerall').remove();
-$('#content').removeClass('cz-box-670');
+    if (url.indexOf('blog.csdn.net') >= 0) {
+        console.log('csdn begin');
 
-$('#body,#main').css('width','100%');
+        $('.csdn-toolbar,#header,#navigator,#side,.notice,#res-relatived,.blog-associat-tag,.tag_list,#pub_footerall').remove();
+        $('#content').removeClass('cz-box-670');
 
-console.log('csdn end');
-return;
-}
+        expand('#body,#main');
 
-
-if(url.indexOf('chinaz')>=0){
-console.log('chinaz begin');
-
-$('#cz-head,.m-crumb-search,.cz-box-300,#cz-footer,.u-postfooter,.m-relate,.m-leftad,.m-picshow,#pinglun,#m-rightshare').remove();
-$('#content').removeClass('cz-box-670');
-$('.m-post').removeClass('m-post');
-$('#fulltext').click();
-
-$('.czbox').css('width','100%');
-
-console.log('chinaz end');
-return;
-}
+        console.log('csdn end');
+        return;
+    }
 
 
-if(url.indexOf('sina')>=0){
-console.log('sina begin');
+    if (url.indexOf('chinaz') >= 0) {
+        console.log('chinaz begin');
 
-$('#navTop,#hdnav,#blkBreadcrumb,.sidebar,.can_right,.wb_rec,.wc14_qr,.guess-view-list,.blkContainerOther,#J_Comment_Form_B,.side-btns-2wm').remove();
+        $('#cz-head,.m-crumb-search,.cz-box-300,#cz-footer,.u-postfooter,.m-relate,.m-leftad,.m-picshow,#pinglun,#m-rightshare,.u-post-textad').remove();
+        $('#content').removeClass('cz-box-670');
+        $('.m-post').removeClass('m-post');
+        $('#fulltext').click();
 
-$('.blkContainerSblk').removeClass('blkContainerSblk');
-$('.blkContainer').removeClass('blkContainer');
 
-$('.wrap').css('width','100%');
+        expand('.czbox');
 
-console.log('sina end');
-return;
-}
+        console.log('chinaz end');
+        return;
+    }
 
-if(url.indexOf('admin10000')>=0){
-console.log('admin10000 begin');
 
-$('#miniNav,#header,#nav,#search,#position,#footer,.right,.weixin,.tags,.tip,.relation,.share,.texttip,.ad_336x280,.ad_640x90,iframe').remove();
-$('.left,#main').css('width','100%');
+    if (url.indexOf('sina') >= 0) {
+        console.log('sina begin');
 
-console.log('admin10000 end');
-return;
-}
+        $('#navTop,#hdnav,#blkBreadcrumb,.sidebar,.can_right,.wb_rec,.wc14_qr,.guess-view-list,.blkContainerOther,#J_Comment_Form_B,.side-btns-2wm').remove();
 
-if(url.indexOf('blog.51cto')>=0){
-console.log('blog.51cto begin');
+        $('.blkContainerSblk').removeClass('blkContainerSblk');
+        $('.blkContainer').removeClass('blkContainer');
 
-$('#home_top,.headerBox,.blogLeft,.mainNav,.edu-col-b,.relatedArt,#message').remove();
-$('.blogMain,.blogRight').css('width','100%');
+        expand('.wrap');
 
-console.log('blog.51cto end');
-return;
-}
+        console.log('sina end');
+        return;
+    }
+
+    if (url.indexOf('admin10000') >= 0) {
+        console.log('admin10000 begin');
+
+        $('#miniNav,#header,#nav,#search,#position,#footer,.right,.weixin,.tags,.tip,.relation,.share,.texttip,.ad_336x280,.ad_640x90,iframe').remove();
+        expand('.left,#main');
+
+        console.log('admin10000 end');
+        return;
+    }
+
+    if (url.indexOf('blog.51cto') >= 0) {
+        console.log('blog.51cto begin');
+
+        $('#home_top,.headerBox,.blogLeft,.mainNav,.edu-col-b,.relatedArt,#message').remove();
+        expand('.blogMain,.blogRight');
+
+        console.log('blog.51cto end');
+        return;
+    }
+
+})();
+
 
 
