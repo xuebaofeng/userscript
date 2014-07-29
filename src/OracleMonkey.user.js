@@ -7,7 +7,7 @@
 // @include     https://*.us.oracle.com*
 // @include     http://*.oraclecorp.com*
 // @include     https://*.oraclecorp.com*
-// @version     8.4
+// @version     8.5
 // @grant       GM_setValue
 // @grant       GM_getValue
 // @grant       GM_deleteValue
@@ -22,15 +22,15 @@
 
     var currentURL = window.location.href;
 
-
-$("\
-<style type='text/css'>\
-body,td{\
+    function addStyle() {
+        $("<style type='text/css'> \
+body{\
 font-family: 'Microsoft YaHei', sans-serif !important;\
 font-size: 120% !important;\
-}\
-</style>\
-").appendTo("head");
+          }\
+</style>").appendTo("head");
+    }
+
 
     if (currentURL.indexOf('/psp/') > 0 && currentURL.indexOf('us.oracle.com') > 0) {
         console.log('peoplesoft menue begin');
@@ -137,7 +137,7 @@ font-size: 120% !important;\
 //bugsmart begin
     if (currentURL.indexOf('https://bugsmart.oraclecorp.com/cgi-bin/techpm/bug_smart.pl?') >= 0) {
         console.log('bugsmart begin');
-
+        addStyle();
         var nextButton$ = $('#Next.button');
         if (nextButton$.length > 0) {
             nextButton$.click();
@@ -218,6 +218,7 @@ font-size: 120% !important;\
 //bugdb edit begin
     if (currentURL.indexOf('https://bug.oraclecorp.com/pls/bug/webbug_edit') >= 0 && $('#fixby').length > 0) {
 
+        addStyle();
 
         var bugNo = $('#rptno').val();
         var bugsmart = 'https://bugsmart.oraclecorp.com/cgi-bin/techpm/bug_smart.pl?eb=' + bugNo;
