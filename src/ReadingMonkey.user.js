@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name       ReadingMonkey
 // @namespace  baofeng.im
-// @version    2.1
+// @version    2.2
 // @description  文章阅读简化:chinaz,sina,admin1000,51cto,csdn,cnblog
 // @match      http://www.chinaz.com/*.shtml
 // @match      http://*.sina.com.cn/*.shtml
@@ -14,7 +14,8 @@
 // @require     http://code.jquery.com/jquery-2.1.1.min.js
 // @run-at      document-end
 // @grant       GM_log
-// @downloadURL https://github.com/xuebaofeng/userscript/raw/master/src/ChinazMonkey.user.js
+// @downloadURL https://github.com/xuebaofeng/userscript/raw/master/src/ReadingMonkey.user.js
+// @updateURL https://github.com/xuebaofeng/userscript/raw/master/src/ReadingMonkey.user.js
 // ==/UserScript==
 
 (function () {
