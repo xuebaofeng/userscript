@@ -7,7 +7,7 @@
 // @include     https://*.us.oracle.com*
 // @include     http://*.oraclecorp.com*
 // @include     https://*.oraclecorp.com*
-// @version     8.3
+// @version     8.4
 // @grant       GM_setValue
 // @grant       GM_getValue
 // @grant       GM_deleteValue
@@ -21,6 +21,16 @@
 (function () {
 
     var currentURL = window.location.href;
+
+
+$("\
+<style type='text/css'>\
+body,td{\
+font-family: 'Microsoft YaHei', sans-serif !important;\
+font-size: 120% !important;\
+}\
+</style>\
+").appendTo("head");
 
     if (currentURL.indexOf('/psp/') > 0 && currentURL.indexOf('us.oracle.com') > 0) {
         console.log('peoplesoft menue begin');
@@ -48,6 +58,7 @@
                 'peopeltools options': '/c/UTILITIES.PSOPTIONS.GBL',
                 'system options': '/c/PTPP_PORTAL_ADMIN.PTPP_OPTIONS.GBL',
                 'web profile': '/c/WEB_PROFILE.WEB_PROFILE.GBL',
+                'Structure and Content ': '/c/PORTAL_ADMIN.PORTAL_OBJ_LIST.GBL',
                 'branding system option': '/c/PTBR_MENU.PTBRANDINGSYSTEMOP.GBL'
             };
             for (var o in urlMap) {
@@ -206,11 +217,6 @@
 
 //bugdb edit begin
     if (currentURL.indexOf('https://bug.oraclecorp.com/pls/bug/webbug_edit') >= 0 && $('#fixby').length > 0) {
-
-
-        $("<style type='text/css'> \
-*{font-family: 'Tahoma','Microsoft YaHei',sans-serif !important;}\
-</style>").appendTo("head");
 
 
         var bugNo = $('#rptno').val();
