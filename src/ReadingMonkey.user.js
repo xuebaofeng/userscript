@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name       ReadingMonkey
 // @namespace  baofeng.im
-// @version    2.2
+// @version    2.3
 // @description  文章阅读简化:chinaz,sina,admin1000,51cto,csdn,cnblog
 // @match      http://www.chinaz.com/*.shtml
 // @match      http://*.sina.com.cn/*.shtml
@@ -35,7 +35,7 @@ font-family: Georgia, \"Times New Roman\", \"Microsoft YaHei\", \"微软雅黑\"
         console.log('cnblogs begin');
 
         $('#header,#footer,#sideBar,#blog_news_kb,#wrap,#main_header,#sideright,#guide').remove();
-        $('#mainContent .forFlow').css('padding', 0);
+        $('#mainContent').find('.forFlow').css('padding', 0);
 
         expand('#main_wrapper,#sideleft,#main,#home,#mainContent');
 
@@ -77,10 +77,7 @@ font-family: Georgia, \"Times New Roman\", \"Microsoft YaHei\", \"微软雅黑\"
 
         $('#navTop,#hdnav,#blkBreadcrumb,.sidebar,.can_right,.wb_rec,.wc14_qr,.guess-view-list,.blkContainerOther,#J_Comment_Form_B,.side-btns-2wm').remove();
 
-        $('.blkContainerSblk').removeClass('blkContainerSblk');
-        $('.blkContainer').removeClass('blkContainer');
-
-        expand('.wrap');
+        expand('.wrap,.blkContainerSblk,.blkContainer');
 
         console.log('sina end');
         return;
