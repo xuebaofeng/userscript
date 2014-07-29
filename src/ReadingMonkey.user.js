@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name       ReadingMonkey
 // @namespace  baofeng.im
-// @version    2.0
+// @version    2.1
 // @description  文章阅读简化:chinaz,sina,admin1000,51cto,csdn,cnblog
 // @match      http://www.chinaz.com/*.shtml
 // @match      http://*.sina.com.cn/*.shtml
@@ -16,27 +16,27 @@
 // @grant       GM_log
 // @downloadURL https://github.com/xuebaofeng/userscript/raw/master/src/ChinazMonkey.user.js
 // ==/UserScript==
+
 (function () {
 
     var url = window.location.href;
 
     function expand(s) {
-        $(s).css('width', '100%').css('padding', 0).css('border', 0).css('margin', 0);
+        $(s).css('width', '100%').css('padding', 0).css('border', 0).css('margin', 0).css('background-color', '#F5FAFF');
     }
 
     $("<style type='text/css'> \
 p,div{font-size:large !important;\
 font-family: Georgia, \"Times New Roman\", \"Microsoft YaHei\", \"微软雅黑\", STXihei, \"华文细黑\", serif !important;}\
-body{background-color:#F5FAFF}\
 </style>").appendTo("head");
 
     if (url.indexOf('cnblogs') >= 0) {
         console.log('cnblogs begin');
 
-        $('#header,#footer,#sideBar,#blog_news_kb,#wrap,#main_header,#sideright,#guide,').remove();
+        $('#header,#footer,#sideBar,#blog_news_kb,#wrap,#main_header,#sideright,#guide').remove();
         $('#mainContent .forFlow').css('padding', 0);
 
-        expand('#main_wrapper,#sideleft');
+        expand('#main_wrapper,#sideleft,#main,#home,#mainContent');
 
         console.log('cnblogs end');
         return;
@@ -102,10 +102,6 @@ body{background-color:#F5FAFF}\
         expand('.blogMain,.blogRight');
 
         console.log('blog.51cto end');
-        return;
     }
 
 })();
-
-
-
