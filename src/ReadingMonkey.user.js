@@ -1,8 +1,8 @@
 // ==UserScript==
 // @name       ReadingMonkey
-// @namespace  baofeng.im
-// @version    2.3
-// @description  文章阅读简化:chinaz,sina,admin1000,51cto,csdn,cnblog
+// @namespace  baofeng.reading
+// @version    2.4
+// @description  文章阅读简化:站长之家,新浪,web开发者,51cto,csdn,博客园
 // @match      http://www.chinaz.com/*.shtml
 // @match      http://*.sina.com.cn/*.shtml
 // @match      http://www.admin10000.com/document/*.html
@@ -29,6 +29,7 @@
     $("<style type='text/css'> \
 p,div{font-size:large !important;\
 font-family: Georgia, \"Times New Roman\", \"Microsoft YaHei\", \"微软雅黑\", STXihei, \"华文细黑\", serif !important;}\
+body{overflow-x:hidden;}\
 </style>").appendTo("head");
 
     if (url.indexOf('cnblogs') >= 0) {
@@ -75,7 +76,7 @@ font-family: Georgia, \"Times New Roman\", \"Microsoft YaHei\", \"微软雅黑\"
     if (url.indexOf('sina') >= 0) {
         console.log('sina begin');
 
-        $('#navTop,#hdnav,#blkBreadcrumb,.sidebar,.can_right,.wb_rec,.wc14_qr,.guess-view-list,.blkContainerOther,#J_Comment_Form_B,.side-btns-2wm').remove();
+        $('#navTop,#hdnav,#blkBreadcrumb,.sidebar,.can_right,.wb_rec,.wc14_qr,.guess-view-list,.blkContainerOther,#J_Comment_Form_B,.side-btns-2wm,.navTop,.blkBreadcrumb,.footer,iframe').remove();
 
         expand('.wrap,.blkContainerSblk,.blkContainer');
 
