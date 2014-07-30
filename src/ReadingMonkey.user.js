@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name       ReadingMonkey
 // @namespace  baofeng.reading
-// @version    2.5
+// @version    2.6
 // @description  文章阅读简化:站长之家,新浪,web开发者,51cto,csdn,博客园,qq
 // @match      http://www.chinaz.com/*.shtml
 // @match      http://*.sina.com.cn/*.shtml
@@ -45,19 +45,9 @@ font-family: Georgia, \"Times New Roman\", \"Microsoft YaHei\", \"微软雅黑\"
     }
 
     simplify('qq.com', '.navWrap,.foot-Article-QQ,#sideBars,.crumbs-tool,#about,.ft,#scrollBtn', '.body-Article-QQ,#Main-Article-QQ,.main');
+    simplify('cnblogs.com', '#header,#footer,#sideBar,#blog_news_kb,#wrap,#main_header,#sideright,#guide,.blogStats,#leftcontent,#mylinks',
+        '#main_wrapper,#sideleft,#main,#home,#mainContent,.post');
 
-
-    if (url.indexOf('cnblogs') >= 0) {
-        console.log('cnblogs begin');
-
-        $('#header,#footer,#sideBar,#blog_news_kb,#wrap,#main_header,#sideright,#guide').remove();
-        $('#mainContent').find('.forFlow').css('padding', 0);
-
-        expand('#main_wrapper,#sideleft,#main,#home,#mainContent');
-
-        console.log('cnblogs end');
-        return;
-    }
 
     if (url.indexOf('blog.csdn.net') >= 0) {
         console.log('csdn begin');
