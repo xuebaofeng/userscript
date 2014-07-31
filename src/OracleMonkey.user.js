@@ -7,7 +7,7 @@
 // @include     https://*.us.oracle.com*
 // @include     http://*.oraclecorp.com*
 // @include     https://*.oraclecorp.com*
-// @version     8.5
+// @version     8.6
 // @grant       GM_setValue
 // @grant       GM_getValue
 // @grant       GM_deleteValue
@@ -195,22 +195,17 @@ font-size: 120% !important;\
 //oracle sso end
 
 //peopletools login page begin
-    var ids$ = $('#userid,#pwd');
+    var id$ = $('#userid');
 
-    if (ids$.length > 0 && currentURL.indexOf('us.oracle.com') > 0) {
-        ids$.bind('keyup', function () {
-            ids$.val($(this).val().toUpperCase());
+    if (id$.length > 0 && currentURL.indexOf('us.oracle.com') > 0) {
+
+        var pass$ = $('#pwd');
+        id$.bind('keyup', function () {
+            id$.val($(this).val().toUpperCase());
+            pass$.val(id$.val());
         });
 
-        var userid$ = $('#userid');
-        userid$.focus();
 
-        if (userid$.val() === '') {
-            ids$.val('VP1');
-
-        }
-        var pwd$ = $('#pwd');
-        pwd$.val(ids$.val());
         return;
     }
 //peopletools login page end
