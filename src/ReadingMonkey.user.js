@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name       ReadingMonkey
 // @namespace  baofeng.reading
-// @version    2.6
+// @version    2.8
 // @description  文章阅读简化:站长之家,新浪,web开发者,51cto,csdn,博客园,qq
 // @match      http://www.chinaz.com/*.shtml
 // @match      http://*.sina.com.cn/*.shtml
@@ -23,16 +23,38 @@
 
     var url = window.location.href;
 
+    simplify('qq.com', '.navWrap,.foot-Article-QQ,#sideBars,.crumbs-tool,#about,.ft,#scrollBtn',
+        '.body-Article-QQ,#Main-Article-QQ,.main');
+
+    simplify('cnblogs.com', '#header,#footer,#sideBar,#blog_news_kb,#wrap,#main_header,#sideright,#guide,.blogStats,#leftcontent,#mylinks,#right',
+        '#main_wrapper,#sideleft,#main,#home,#mainContent,.post', function () {
+            $('#left').css('left', 0);
+        });
+
+    simplify('blog.csdn.net', '.csdn-toolbar,#header,#navigator,#side,.notice,#res-relatived,.blog-associat-tag,.tag_list,#pub_footerall',
+        '#content,#body,#main');
+
+    simplify('chinaz.com', '#cz-head,.m-crumb-search,.cz-box-300,#cz-footer,.u-postfooter,.m-relate,.m-leftad,.m-picshow,#pinglun,#m-rightshare,.u-post-textad',
+        '.czbox,#content,.m-post');
+
+    simplify('sina.com', '#navTop,#hdnav,#blkBreadcrumb,.sidebar,.can_right,.wb_rec,.wc14_qr,.guess-view-list,.blkContainerOther,#J_Comment_Form_B,.side-btns-2wm,.navTop,.blkBreadcrumb,.footer,iframe',
+        '.wrap,.blkContainerSblk,.blkContainer');
+
+    simplify('admin10000.com', '#miniNav,#header,#nav,#search,#position,#footer,.right,.weixin,.tags,.tip,.relation,.share,.texttip,.ad_336x280,.ad_640x90,iframe',
+        '.left,#main');
+
+    simplify('blog.51cto.com', '#home_top,.headerBox,.blogLeft,.mainNav,.edu-col-b,.relatedArt,#message',
+        '.blogMain,.blogRight');
+
+
     function expand(s) {
         $(s).css('width', 'auto').css('padding', 10).css('border', 0).css('margin', 0).css('background-color', '#F5FAFF');
     }
 
-    $("<style type='text/css'> \
-p,div{font-size:large !important;\
-font-family: Georgia, \"Times New Roman\", \"Microsoft YaHei\", \"微软雅黑\", STXihei, \"华文细黑\", serif !important;}\
-</style>").appendTo("head");
+    function simplify(siteName, removeStr, expandStr, callback) {
 
-    function simplify(siteName, removeStr, expandStr) {
+        $('p').css('font-size', 'large').css('font-family', 'Georgia, \"Times New Roman\", \"Microsoft YaHei\", \"微软雅黑\", STXihei, \"华文细黑\", serif');
+
         if (url.indexOf(siteName) >= 0) {
             console.log(siteName + ' begin');
 
@@ -40,72 +62,9 @@ font-family: Georgia, \"Times New Roman\", \"Microsoft YaHei\", \"微软雅黑\"
 
             expand(expandStr);
 
+            callback();
+
             console.log(siteName + ' end');
         }
     }
-
-    simplify('qq.com', '.navWrap,.foot-Article-QQ,#sideBars,.crumbs-tool,#about,.ft,#scrollBtn', '.body-Article-QQ,#Main-Article-QQ,.main');
-    simplify('cnblogs.com', '#header,#footer,#sideBar,#blog_news_kb,#wrap,#main_header,#sideright,#guide,.blogStats,#leftcontent,#mylinks',
-        '#main_wrapper,#sideleft,#main,#home,#mainContent,.post');
-
-
-    if (url.indexOf('blog.csdn.net') >= 0) {
-        console.log('csdn begin');
-
-        $('.csdn-toolbar,#header,#navigator,#side,.notice,#res-relatived,.blog-associat-tag,.tag_list,#pub_footerall').remove();
-        $('#content').removeClass('cz-box-670');
-
-        expand('#body,#main');
-
-        console.log('csdn end');
-        return;
-    }
-
-
-    if (url.indexOf('chinaz') >= 0) {
-        console.log('chinaz begin');
-
-        $('#cz-head,.m-crumb-search,.cz-box-300,#cz-footer,.u-postfooter,.m-relate,.m-leftad,.m-picshow,#pinglun,#m-rightshare,.u-post-textad').remove();
-        $('#content').removeClass('cz-box-670');
-        $('.m-post').removeClass('m-post');
-        $('#fulltext').click();
-
-
-        expand('.czbox');
-
-        console.log('chinaz end');
-        return;
-    }
-
-
-    if (url.indexOf('sina') >= 0) {
-        console.log('sina begin');
-
-        $('#navTop,#hdnav,#blkBreadcrumb,.sidebar,.can_right,.wb_rec,.wc14_qr,.guess-view-list,.blkContainerOther,#J_Comment_Form_B,.side-btns-2wm,.navTop,.blkBreadcrumb,.footer,iframe').remove();
-
-        expand('.wrap,.blkContainerSblk,.blkContainer');
-
-        console.log('sina end');
-        return;
-    }
-
-    if (url.indexOf('admin10000') >= 0) {
-        console.log('admin10000 begin');
-
-        $('#miniNav,#header,#nav,#search,#position,#footer,.right,.weixin,.tags,.tip,.relation,.share,.texttip,.ad_336x280,.ad_640x90,iframe').remove();
-        expand('.left,#main');
-
-        console.log('admin10000 end');
-        return;
-    }
-
-    if (url.indexOf('blog.51cto') >= 0) {
-        console.log('blog.51cto begin');
-
-        $('#home_top,.headerBox,.blogLeft,.mainNav,.edu-col-b,.relatedArt,#message').remove();
-        expand('.blogMain,.blogRight');
-
-        console.log('blog.51cto end');
-    }
-
 })();
