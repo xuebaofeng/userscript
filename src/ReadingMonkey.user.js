@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name       ReadingMonkey
 // @namespace  baofeng.reading
-// @version    2.8
+// @version    2.9
 // @description  文章阅读简化:站长之家,新浪,web开发者,51cto,csdn,博客园,qq
 // @match      http://www.chinaz.com/*.shtml
 // @match      http://*.sina.com.cn/*.shtml
@@ -62,7 +62,9 @@
 
             expand(expandStr);
 
-            callback();
+            if (callback) {
+                callback();
+            }
 
             console.log(siteName + ' end');
         }
