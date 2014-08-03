@@ -1,8 +1,8 @@
 // ==UserScript==
 // @name       ReadingMonkey
 // @namespace  baofeng.reading
-// @version    2.9
-// @description  文章阅读简化:站长之家,新浪,web开发者,51cto,csdn,博客园,qq
+// @version    3.0
+// @description  文章阅读简化:站长之家,新浪,web开发者,51cto,csdn,博客园,qq,infoq
 // @match      http://www.chinaz.com/*.shtml
 // @match      http://*.sina.com.cn/*.shtml
 // @match      http://www.admin10000.com/document/*.html
@@ -11,6 +11,7 @@
 // @match      http://www.cnblogs.com/*/*.html
 // @match      http://news.cnblogs.com/n/*
 // @match      http://*.qq.com/*.htm*
+// @match      http://www.infoq.com/*
 // @copyright  GNU
 // @require     http://code.jquery.com/jquery-2.1.1.min.js
 // @run-at      document-end
@@ -46,6 +47,8 @@
     simplify('blog.51cto.com', '#home_top,.headerBox,.blogLeft,.mainNav,.edu-col-b,.relatedArt,#message',
         '.blogMain,.blogRight');
 
+    simplify('infoq.com', '#topInfo,#header,#footer,.share_this,.article_page_right,.random_links,.bottomContent',
+        '#wrapper,#site,#content,.article_page_left');
 
     function expand(s) {
         $(s).css('width', 'auto').css('padding', 10).css('border', 0).css('margin', 0).css('background-color', '#F5FAFF');
