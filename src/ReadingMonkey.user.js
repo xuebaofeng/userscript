@@ -1,8 +1,8 @@
 // ==UserScript==
 // @name       ReadingMonkey
 // @namespace  baofeng.reading
-// @version    3.1
-// @description  文章阅读简化:站长之家,新浪,web开发者,51cto,csdn,博客园,qq,infoq,开源中国
+// @version    3.2
+// @description  文章阅读简化:站长之家,新浪,web开发者,51cto,csdn,博客园,qq,infoq,开源中国,网易
 // @match      http://www.chinaz.com/*.shtml
 // @match      http://*.sina.com.cn/*.shtml
 // @match      http://www.admin10000.com/document/*.html
@@ -13,6 +13,7 @@
 // @match      http://*.qq.com/*.htm*
 // @match      http://www.infoq.com/*
 // @match      http://www.oschina.net/*
+// @match      http://*.163.com/*.html
 // @copyright  GNU
 // @require     http://code.jquery.com/jquery-2.1.1.min.js
 // @run-at      document-end
@@ -58,11 +59,17 @@
         '#OSC_NavTop,#OSC_Banner,#OSC_Footer,.NewsRight,.toolbar,.copyright,.RelatedNews,.RelatedThreads,#upprev_box',
         '#OSC_Screen,.NewsBody,.NewsEntity');
 
+    simplify('163.com',
+        '#js_N_nav,.ep-header,.subfoot-wrap,.N-nav-bottom,#epContentRight,.sharecommend-wrap,.ep-keywords,.atleLP,iframe,.ep-returnlink,.extra-tag',
+        '#js-epContent,#epContentLeft,#endText');
+
+
     function expand(s) {
         $(s).css('width', 'auto').css('padding', 10).css('border', 0).css('margin', 0).css('background-color', '#F5FAFF');
     }
 
     function simplify(siteName, removeStr, expandStr, callback) {
+        $('body').css('padding', 0);
         $('p').css('font-size', 'large').css('font-family', 'Georgia, "Times New Roman", "Microsoft YaHei", "微软雅黑", STXihei, "华文细黑", serif');
         if (url.indexOf(siteName) >= 0) {
             console.log(siteName + ' begin');
