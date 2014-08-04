@@ -7,7 +7,7 @@
 // @include     https://*.us.oracle.com*
 // @include     http://*.oraclecorp.com*
 // @include     https://*.oraclecorp.com*
-// @version     8.6
+// @version     8.7
 // @grant       GM_setValue
 // @grant       GM_getValue
 // @grant       GM_deleteValue
@@ -59,7 +59,9 @@ font-size: 120% !important;\
                 'system options': '/c/PTPP_PORTAL_ADMIN.PTPP_OPTIONS.GBL',
                 'web profile': '/c/WEB_PROFILE.WEB_PROFILE.GBL',
                 'Structure and Content ': '/c/PORTAL_ADMIN.PORTAL_OBJ_LIST.GBL',
-                'branding system option': '/c/PTBR_MENU.PTBRANDINGSYSTEMOP.GBL'
+                'branding system option': '/c/PTBR_MENU.PTBRANDINGSYSTEMOP.GBL',
+                'Node Definitions': '/c/PORTAL_ADMIN.IB_NODE.GBL',
+                'Single Signon': '/c/PORTAL_ADMIN.IB_NODE.GBL'
             };
             for (var o in urlMap) {
                 $('#baofeng_qa_menu').append('<li><a href="' + prefix + urlMap[o] + '">' + o + '</a></li>');
