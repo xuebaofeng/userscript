@@ -1,12 +1,12 @@
 // ==UserScript==
 // @name       ReadingMonkey
 // @namespace  baofeng.reading
-// @version    3.2
+// @version    3.3
 // @description  文章阅读简化:站长之家,新浪,web开发者,51cto,csdn,博客园,qq,infoq,开源中国,网易
 // @match      http://www.chinaz.com/*.shtml
 // @match      http://*.sina.com.cn/*.shtml
 // @match      http://www.admin10000.com/document/*.html
-// @match      http://*.blog.51cto.com/*
+// @match      http://*.51cto.com/*
 // @match      http://blog.csdn.net/*/article/details/*
 // @match      http://www.cnblogs.com/*/*.html
 // @match      http://news.cnblogs.com/n/*
@@ -42,15 +42,16 @@
         '.czbox,#content,.m-post');
 
     simplify('sina.com',
-        '#navTop,#hdnav,#blkBreadcrumb,.sidebar,.can_right,.wb_rec,.wc14_qr,.guess-view-list,.blkContainerOther,#J_Comment_Form_B,.side-btns-2wm,.navTop,.blkBreadcrumb,.footer,iframe',
+        '#navTop,#hdnav,#blkBreadcrumb,.sidebar,.can_right,.wb_rec,.wc14_qr,.guess-view-list,.blkContainerOther,#J_Comment_Form_B,.side-btns-2wm,.navTop,.blkBreadcrumb,.footer',
         '.wrap,.blkContainerSblk,.blkContainer');
 
     simplify('admin10000.com',
-        '#miniNav,#header,#nav,#search,#position,#footer,.right,.weixin,.tags,.tip,.relation,.share,.texttip,.ad_336x280,.ad_640x90,iframe',
+        '#miniNav,#header,#nav,#search,#position,#footer,.right,.weixin,.tags,.tip,.relation,.share,.texttip,.ad_336x280,.ad_640x90',
         '.left,#main');
 
-    simplify('blog.51cto.com',
-        '#home_top,.headerBox,.blogLeft,.mainNav,.edu-col-b,.relatedArt,#message', '.blogMain,.blogRight');
+    simplify('51cto.com',
+        '#home_top,.headerBox,.blogLeft,.mainNav,.edu-col-b,.relatedArt,#message,.mb10,.menu,.subweb,.g_13,.tips,.titbg,.reltag,.relart,.cathot,.bor,#ft',
+        '.blogMain,.blogRight,.g_26,.g_39,.brief ');
 
     simplify('infoq.com', '#topInfo,#header,#footer,.share_this,.article_page_right,.random_links,.bottomContent',
         '#wrapper,#site,#content,.article_page_left');
@@ -60,7 +61,7 @@
         '#OSC_Screen,.NewsBody,.NewsEntity');
 
     simplify('163.com',
-        '#js_N_nav,.ep-header,.subfoot-wrap,.N-nav-bottom,#epContentRight,.sharecommend-wrap,.ep-keywords,.atleLP,iframe,.ep-returnlink,.extra-tag',
+        '#js_N_nav,.ep-header,.subfoot-wrap,.N-nav-bottom,#epContentRight,.sharecommend-wrap,.ep-keywords,.atleLP,.ep-returnlink,.extra-tag',
         '#js-epContent,#epContentLeft,#endText');
 
 
@@ -71,6 +72,7 @@
     function simplify(siteName, removeStr, expandStr, callback) {
         $('body').css('padding', 0);
         $('p').css('font-size', 'large').css('font-family', 'Georgia, "Times New Roman", "Microsoft YaHei", "微软雅黑", STXihei, "华文细黑", serif');
+        $('iframe').remove();
         if (url.indexOf(siteName) >= 0) {
             console.log(siteName + ' begin');
             $(removeStr).remove();
