@@ -35,7 +35,7 @@
 
     simplify('blog.csdn.net',
         '.csdn-toolbar,#header,#navigator,#side,.notice,#res-relatived,.blog-associat-tag,.tag_list,#pub_footerall',
-        '#content,#body,#main');
+        '#content,#body,#main,.main,.details');
 
     simplify('chinaz.com',
         '#cz-head,.m-crumb-search,.cz-box-300,#cz-footer,.u-postfooter,.m-relate,.m-leftad,.m-picshow,#pinglun,#m-rightshare,.u-post-textad',
@@ -66,13 +66,14 @@
 
 
     function expand(s) {
-        $(s).css('width', 'auto').css('padding', 10).css('border', 0).css('margin', 0).css('background-color', '#F5FAFF');
+        $(s).css('width', '100%').css('padding', 0).css('border', 0).css('margin', 0).css('background-color', '#F5FAFF');
     }
 
     function simplify(siteName, removeStr, expandStr, callback) {
-        $('body').css('padding', 0);
+        $('body').css('padding', 0).css('margin', 5);
         $('p').css('font-size', 'large').css('font-family', 'Georgia, "Times New Roman", "Microsoft YaHei", "微软雅黑", STXihei, "华文细黑", serif');
         $('iframe').remove();
+
         if (url.indexOf(siteName) >= 0) {
             console.log(siteName + ' begin');
             $(removeStr).remove();
