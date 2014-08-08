@@ -48,7 +48,7 @@
         '.left,#main');
 
     simplify('51cto.com',
-        '#home_top,.headerBox,.blogLeft,.mainNav,.edu-col-b,.relatedArt,#message,.mb10,.menu,.subweb,.g_13,.tips,.titbg,.reltag,.relart,.cathot,.bor,#ft',
+        '#home_top,.headerBox,.blogLeft,.mainNav,.edu-col-b,.relatedArt,#message,.mb10,.menu,.subweb,.g_13,.tips,.titbg,.reltag,.relart,.cathot,.bor,#ft,.crumb',
         '.blogMain,.blogRight,.g_26,.g_39,.brief ');
 
     simplify('infoq.com', '#topInfo,#header,#footer,.share_this,.article_page_right,.random_links,.bottomContent',
@@ -64,15 +64,33 @@
 
 
     function expand(s) {
-        $(s).css('width', '100%').css('padding', 0).css('border', 0).css('margin', 0).css('background-color', '#F5FAFF');
+        $(s).css('width', '100%')
+            .css('padding', 0)
+            .css('border', 0)
+            .css('margin', 0);
     }
 
     function simplify(siteName, removeStr, expandStr, callback) {
-        $('body').css('padding', 0).css('border', 0).css('margin', 20);
-        $('p').css('font-family', 'Georgia, "Times New Roman", "Microsoft YaHei", "微软雅黑", STXihei, "华文细黑", serif').css('font-size', 'large').css('text-indent', '2em');
+
+        var backGroundColor = '#F5FAFF';
+
+        $('body').css('padding', 0)
+            .css('border', 0)
+            .css('margin', 20)
+            .css('background-color', backGroundColor);
+
+        $('p').css('font-family', 'Georgia, "Times New Roman", "Microsoft YaHei", "微软雅黑", STXihei, "华文细黑", serif')
+            .css('font-size', 'large')
+            .css('color', '#000000')
+            .css('text-indent', '1em')
+            .css('background-color', backGroundColor);
+
         $('span,strong').css('font-size', 'medium');
 
-        $('iframe').remove();
+        setInterval(function () {
+            $('iframe').remove();
+        }, 1000);
+
 
         if (url.indexOf(siteName) >= 0) {
             console.log(siteName + ' begin');
