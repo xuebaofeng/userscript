@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name       ReadingMonkey
 // @namespace  baofeng.reading
-// @version    3.4
+// @version    3.5
 // @description  文章阅读简化:站长之家,新浪,web开发者,51cto,csdn,博客园,qq,infoq,开源中国,网易
 // @match      http://www.chinaz.com/*.shtml
 // @match      http://*.sina.com.cn/*.shtml
@@ -28,14 +28,12 @@
         '.navWrap,.foot-Article-QQ,#sideBars,.crumbs-tool,#about,.ft,#scrollBtn', '.body-Article-QQ,#Main-Article-QQ,.main');
 
     simplify('cnblogs.com',
-        '#header,#footer,#sideBar,#blog_news_kb,#wrap,#main_header,#sideright,#guide,.blogStats,#leftcontent,#mylinks,#right',
-        '#main_wrapper,#sideleft,#main,#home,#mainContent,.post', function () {
-            $('#left').css('left', 0);
-        });
+        '#header,#footer,#sideBar,#blog_news_kb,#wrap,#main_header,#sideright,#guide,.blogStats,#leftcontent,#mylinks,#right,#mytopmenu,.footer',
+        '#main_wrapper,#sideleft,#main,#home,#mainContent,.post,#centercontent,#left');
 
     simplify('blog.csdn.net',
         '.csdn-toolbar,#header,#navigator,#side,.notice,#res-relatived,.blog-associat-tag,.tag_list,#pub_footerall',
-        '#content,#body,#main,.main,.details');
+        '#content,#body,#main,.main,.details,.post');
 
     simplify('chinaz.com',
         '#cz-head,.m-crumb-search,.cz-box-300,#cz-footer,.u-postfooter,.m-relate,.m-leftad,.m-picshow,#pinglun,#m-rightshare,.u-post-textad',
@@ -70,8 +68,10 @@
     }
 
     function simplify(siteName, removeStr, expandStr, callback) {
-        $('body').css('padding', 0).css('margin', 5);
-        $('p').css('font-size', 'large').css('font-family', 'Georgia, "Times New Roman", "Microsoft YaHei", "微软雅黑", STXihei, "华文细黑", serif');
+        $('body').css('padding', 0).css('border', 0).css('margin', 20);
+        $('p').css('font-family', 'Georgia, "Times New Roman", "Microsoft YaHei", "微软雅黑", STXihei, "华文细黑", serif').css('font-size', 'large').css('text-indent', '2em');
+        $('span,strong').css('font-size', 'medium');
+
         $('iframe').remove();
 
         if (url.indexOf(siteName) >= 0) {
