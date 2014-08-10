@@ -1,10 +1,10 @@
 // ==UserScript==
 // @name       ReadingMonkey
 // @namespace  baofeng.reading
-// @version    3.6
+// @version    3.7
 // @description  文章阅读简化:站长之家,新浪,web开发者,51cto,csdn,博客园,qq,infoq,开源中国,网易
 // @match      http://www.chinaz.com/*.shtml
-// @match      http://*.sina.com.cn/*.shtml
+// @match      http://*.sina.com.cn/*html
 // @match      http://www.admin10000.com/document/*.html
 // @match      http://*.51cto.com/*
 // @match      http://blog.csdn.net/*/article/details/*
@@ -40,8 +40,8 @@
         '.czbox,#content,.m-post');
 
     simplify('sina.com',
-        '#navTop,#hdnav,#blkBreadcrumb,.sidebar,.can_right,.wb_rec,.wc14_qr,.guess-view-list,.blkContainerOther,#J_Comment_Form_B,.side-btns-2wm,.navTop,.blkBreadcrumb,.footer',
-        '.wrap,.blkContainerSblk,.blkContainer');
+        '#navTop,#hdnav,#blkBreadcrumb,.sidebar,.can_right,.wb_rec,.wc14_qr,.guess-view-list,.blkContainerOther,#J_Comment_Form_B,.side-btns-2wm,.navTop,.blkBreadcrumb,.footer,.nsinatopbar,#sinablogHead,#column_1,#sinablogfooter,.SG_connHead',
+        '.wrap,.blkContainerSblk,.blkContainer,#column_2,#sinablogbody,.articalContent,.SG_connBody');
 
     simplify('admin10000.com',
         '#miniNav,#header,#nav,#search,#position,#footer,.right,.weixin,.tags,.tip,.relation,.share,.texttip,.ad_336x280,.ad_640x90',
@@ -67,7 +67,8 @@
         $(s).css('width', '100%')
             .css('padding', 0)
             .css('border', 0)
-            .css('margin', 0);
+            .css('margin', 0)
+            .css('background-image', 'none');
     }
 
     function simplify(siteName, removeStr, expandStr, callback) {
@@ -76,7 +77,9 @@
 
         $('body').css('padding', 0)
             .css('border', 0)
-            .css('margin', 20)
+            .css('margin-left', 20)
+            .css('margin-right', 20)
+            .css('background-image', 'none')
             .css('background-color', backGroundColor);
 
         $('p').css('font-family', 'Georgia, "Times New Roman", "Microsoft YaHei", "微软雅黑", STXihei, "华文细黑", serif')
