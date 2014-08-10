@@ -66,10 +66,10 @@
 
     function simplify(siteName, removeStr, expandStr, callback) {
 
-        $('body').css('padding', 0)
+        $('body').css('margin', 0)
             .css('border', 0)
-            .css('margin-left', 20)
-            .css('margin-right', 20)
+            .css('padding-left', 20)
+            .css('padding-right', 20)
             .css('background-image', 'none')
             .css('width', 'auto');
 
