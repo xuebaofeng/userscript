@@ -1,10 +1,10 @@
 // ==UserScript==
 // @name       ReadingMonkey
 // @namespace  baofeng.reading
-// @version    3.7
+// @version    3.8
 // @description  文章阅读简化:站长之家,新浪,web开发者,51cto,csdn,博客园,qq,infoq,开源中国,网易
 // @match      http://www.chinaz.com/*.shtml
-// @match      http://*.sina.com.cn/*html
+// @match      http://*.sina.com.cn/*htm*
 // @match      http://www.admin10000.com/document/*.html
 // @match      http://*.51cto.com/*
 // @match      http://blog.csdn.net/*/article/details/*
@@ -13,7 +13,7 @@
 // @match      http://*.qq.com/*.htm*
 // @match      http://www.infoq.com/*
 // @match      http://www.oschina.net/*
-// @match      http://*.163.com/*.html
+// @match      http://*.163.com/*.html*
 // @copyright  GNU
 // @require     http://code.jquery.com/jquery-2.1.1.min.js
 // @run-at      document-end
@@ -40,8 +40,9 @@
         '.czbox,#content,.m-post');
 
     simplify('sina.com',
-        '#navTop,#hdnav,#blkBreadcrumb,.sidebar,.can_right,.wb_rec,.wc14_qr,.guess-view-list,.blkContainerOther,#J_Comment_Form_B,.side-btns-2wm,.navTop,.blkBreadcrumb,.footer,.nsinatopbar,#sinablogHead,#column_1,#sinablogfooter,.SG_connHead',
-        '.wrap,.blkContainerSblk,.blkContainer,#column_2,#sinablogbody,.articalContent,.SG_connBody');
+        '#navTop,#hdnav,#blkBreadcrumb,.sidebar,.can_right,.wb_rec,.wc14_qr,.guess-view-list,.blkContainerOther,#J_Comment_Form_B,.side-btns-2wm,\
+.navTop,.blkBreadcrumb,.footer,.nsinatopbar,#sinablogHead,#column_1,#sinablogfooter,.SG_connHead,#blk_nav_1,.topbar',
+        '.wrap,.blkContainerSblk,.blkContainer,#column_2,#sinablogbody,.articalContent,.SG_connBody,.blkContainerSblk,.Main');
 
     simplify('admin10000.com',
         '#miniNav,#header,#nav,#search,#position,#footer,.right,.weixin,.tags,.tip,.relation,.share,.texttip,.ad_336x280,.ad_640x90',
@@ -63,32 +64,19 @@
         '#js-epContent,#epContentLeft,#endText');
 
 
-    function expand(s) {
-        $(s).css('width', '100%')
-            .css('padding', 0)
-            .css('border', 0)
-            .css('margin', 0)
-            .css('background-image', 'none');
-    }
-
     function simplify(siteName, removeStr, expandStr, callback) {
-
-        var backGroundColor = '#F5FAFF';
 
         $('body').css('padding', 0)
             .css('border', 0)
             .css('margin-left', 20)
             .css('margin-right', 20)
-            .css('background-image', 'none')
-            .css('background-color', backGroundColor);
+            .css('background-image', 'none');
 
         $('p').css('font-family', 'Georgia, "Times New Roman", "Microsoft YaHei", "微软雅黑", STXihei, "华文细黑", serif')
             .css('font-size', 'large')
             .css('color', '#000000')
-            .css('text-indent', '1em')
-            .css('background-color', backGroundColor);
+            .css('text-indent', '1em');
 
-        $('span,strong').css('font-size', 'medium');
 
         setInterval(function () {
             $('iframe').remove();
@@ -98,10 +86,18 @@
         if (url.indexOf(siteName) >= 0) {
             console.log(siteName + ' begin');
             $(removeStr).remove();
-            expand(expandStr);
+
+            $(expandStr).css('width', '100%')
+                .css('padding', 0)
+                .css('border', 0)
+                .css('margin', 0)
+                .css('background-image', 'none')
+                .css('background-color', '#F5FAFF');
+
             if (callback) {
                 callback();
             }
+
             console.log(siteName + ' end');
         }
     }
