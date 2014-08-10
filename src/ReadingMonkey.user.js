@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name       ReadingMonkey
 // @namespace  baofeng.reading
-// @version    3.8
+// @version    3.9
 // @description  文章阅读简化:站长之家,新浪,web开发者,51cto,csdn,博客园,qq,infoq,开源中国,网易
 // @match      http://www.chinaz.com/*.shtml
 // @match      http://*.sina.com.cn/*htm*
@@ -70,7 +70,8 @@
             .css('border', 0)
             .css('margin-left', 20)
             .css('margin-right', 20)
-            .css('background-image', 'none');
+            .css('background-image', 'none')
+            .css('width', 'auto');
 
         $('p').css('font-family', 'Georgia, "Times New Roman", "Microsoft YaHei", "微软雅黑", STXihei, "华文细黑", serif')
             .css('font-size', 'large')
