@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name       ReadingMonkey
 // @namespace  baofeng.reading
-// @version    4.0
+// @version    4.1
 // @description  文章阅读简化:站长之家,新浪,web开发者,51cto,csdn,博客园,qq,infoq,开源中国,网易,伯乐在线
 // @match      http://www.chinaz.com/*.shtml
 // @match      http://*.sina.com.cn/*htm*
@@ -42,7 +42,7 @@
 
     simplify('sina.com',
         '#navTop,#hdnav,#blkBreadcrumb,.can_right,.wb_rec,.wc14_qr,.guess-view-list,.blkContainerOther,#J_Comment_Form_B,.side-btns-2wm,\
-.navTop,.blkBreadcrumb,,.nsinatopbar,#sinablogHead,#column_1,#sinablogfooter,.SG_connHead,#blk_nav_1,.topbar',
+.navTop,.blkBreadcrumb,.nsinatopbar,#sinablogHead,#column_1,#sinablogfooter,.SG_connHead,#blk_nav_1,.topbar',
         '.wrap,.blkContainerSblk,.blkContainer,#column_2,#sinablogbody,.articalContent,.SG_connBody,.blkContainerSblk,.Main');
 
     simplify('admin10000.com',
@@ -70,42 +70,49 @@
 
     function simplify(siteName, removeStr, expandStr, callback) {
 
+
+        if (url.indexOf(siteName) == -1) return;
+        console.log(siteName + ' begin');
+
         $('body').css('margin', 0)
             .css('border', 0)
             .css('padding-left', 20)
             .css('padding-right', 20)
             .css('background-image', 'none')
             .css('width', 'auto');
+        console.log('body set');
 
         $('p').css('font-family', 'Georgia, "Times New Roman", "Microsoft YaHei", "微软雅黑", STXihei, "华文细黑", serif')
             .css('font-size', 'large')
             .css('color', '#000000')
             .css('text-indent', '1em');
+        console.log('p set');
 
 
         $('header,nav,footer,iframe,#header,#footer,#sidebar,.sidebar,#breadcrumb,.header,.footer,#nav').remove();
+        console.log('common removed');
 
         setTimeout(function () {
             $('iframe').remove();
         }, 3000);
 
 
-        if (url.indexOf(siteName) >= 0) {
-            console.log(siteName + ' begin');
-            $(removeStr).remove();
+        $(removeStr).remove();
+        console.log('elements removed');
 
-            $(expandStr).css('width', '100%')
-                .css('padding', 0)
-                .css('border', 0)
-                .css('margin', 0)
-                .css('background-image', 'none')
-                .css('background-color', '#F5FAFF');
+        $(expandStr).css('width', '100%')
+            .css('padding', 0)
+            .css('border', 0)
+            .css('margin', 0)
+            .css('background-image', 'none')
+            .css('background-color', '#F5FAFF');
+        console.log('elements expanded');
 
-            if (callback) {
-                callback();
-            }
-
-            console.log(siteName + ' end');
+        if (callback) {
+            callback();
         }
+
+        console.log(siteName + ' end');
+
     }
 })();
