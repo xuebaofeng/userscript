@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name       ReadingMonkey
 // @namespace  baofeng.reading
-// @version    4.3
+// @version    4.4
 // @description  文章阅读简化:站长之家,新浪,web开发者,51cto,csdn,博客园,qq,infoq,开源中国,网易,伯乐在线,feedly
 // @match      http://www.chinaz.com/*.shtml
 // @match      http://*.sina.com.cn/*htm*
@@ -84,18 +84,18 @@
         console.log(siteName + ' begin');
 
         $("<style type='text/css'>\
-body{margin:0;border:0;padding-left:20;padding-right:20;background-image:none;width:auto;}\
+body{margin:0;border:0;padding-left:20px;padding-right:20px;background-image:none;width:auto;}\
 p{font-family:Georgia, \"Times New Roman\", \"Microsoft YaHei\", \"微软雅黑\", STXihei, \"华文细黑\", serif;font-size:large;color:#000000;text-indent:1em;}\
 </style>").appendTo("head");
 
         console.log('style append');
 
 
-        $('header,nav,footer,iframe,#header,#footer,#sidebar,.sidebar,#breadcrumb,.header,.footer,#nav').remove();
+        $('header,nav,footer,iframe,#header,#footer,#sidebar,.sidebar,#breadcrumb,.header,.footer,#nav,iframe,embed').remove();
         console.log('common removed');
 
         setTimeout(function () {
-            $('iframe').remove();
+            $('iframe,embed').remove();
         }, 3000);
 
         if (removeStr) {
