@@ -103,13 +103,16 @@ p{font-family:Georgia, \"Times New Roman\", \"Microsoft YaHei\", \"微软雅黑\
             console.log('elements removed');
         }
         if (expandStr) {
-            $(expandStr).css('width', '100%')
-                .css('padding', 0)
-                .css('border', 0)
-                .css('margin', 0)
-                .css('background-image', 'none')
-                .css('background-color', '#F5FAFF')
-                .css('max-width', 'none');
+            $(expandStr).css({
+                    'width': '100%',
+                    'padding': 0,
+                    'border': 0,
+                    'margin': 0,
+                    'background-image': 'none',
+                    'background-color': '#F5FAFF',
+                    'max-width': 'none'
+                }
+            );
             console.log('elements expanded');
         }
 
