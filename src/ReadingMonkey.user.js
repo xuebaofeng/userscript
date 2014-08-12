@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name       ReadingMonkey
 // @namespace  baofeng.reading
-// @version    4.2
+// @version    4.3
 // @description  文章阅读简化:站长之家,新浪,web开发者,51cto,csdn,博客园,qq,infoq,开源中国,网易,伯乐在线,feedly
 // @match      http://www.chinaz.com/*.shtml
 // @match      http://*.sina.com.cn/*htm*
@@ -43,8 +43,8 @@
 
     simplify('sina.com',
         '#navTop,#hdnav,#blkBreadcrumb,.can_right,.wb_rec,.wc14_qr,.guess-view-list,.blkContainerOther,#J_Comment_Form_B,.side-btns-2wm,\
-.navTop,.blkBreadcrumb,.nsinatopbar,#sinablogHead,#column_1,#sinablogfooter,.SG_connHead,#blk_nav_1,.topbar',
-        '.wrap,.blkContainerSblk,.blkContainer,#column_2,#sinablogbody,.articalContent,.SG_connBody,.blkContainerSblk,.Main');
+.navTop,.blkBreadcrumb,.nsinatopbar,#sinablogHead,#column_1,#sinablogfooter,.SG_connHead,#blk_nav_1,.topbar,.zwsidebar,.headlines_news,#fudong',
+        '.wrap,.blkContainerSblk,.blkContainer,#column_2,#sinablogbody,.articalContent,.SG_connBody,.blkContainerSblk,.Main,.zwcontent,.zwc');
 
     simplify('admin10000.com',
         '#miniNav,#search,#position,.right,.weixin,.tags,.tip,.relation,.share,.texttip,.ad_336x280,.ad_640x90',
@@ -84,7 +84,7 @@
         console.log(siteName + ' begin');
 
         $("<style type='text/css'>\
-body{margin:0;border:0;padding-left:20px;padding-right:20px;background-image:none;width:auto;}\
+body{margin:0;border:0;padding-left:20;padding-right:20;background-image:none;width:auto;}\
 p{font-family:Georgia, \"Times New Roman\", \"Microsoft YaHei\", \"微软雅黑\", STXihei, \"华文细黑\", serif;font-size:large;color:#000000;text-indent:1em;}\
 </style>").appendTo("head");
 
