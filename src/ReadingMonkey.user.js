@@ -1,8 +1,8 @@
 // ==UserScript==
 // @name       ReadingMonkey
 // @namespace  baofeng.reading
-// @version    4.1
-// @description  文章阅读简化:站长之家,新浪,web开发者,51cto,csdn,博客园,qq,infoq,开源中国,网易,伯乐在线
+// @version    4.2
+// @description  文章阅读简化:站长之家,新浪,web开发者,51cto,csdn,博客园,qq,infoq,开源中国,网易,伯乐在线,feedly
 // @match      http://www.chinaz.com/*.shtml
 // @match      http://*.sina.com.cn/*htm*
 // @match      http://www.admin10000.com/document/*.html
@@ -15,6 +15,7 @@
 // @match      http://www.oschina.net/*
 // @match      http://*.163.com/*.html*
 // @match      http://*.jobbole.com/*
+// @match      http://feedly.com/*
 // @copyright  GNU
 // @require     http://code.jquery.com/jquery-2.1.1.min.js
 // @run-at      document-end
@@ -68,25 +69,26 @@
         '#wp_rp_first',
         '.container,.grid-8');
 
+
+    simplify('feedly.com', '', '', function () {
+        setInterval(function () {
+            $('.entryBody,.u100entry').css('max-width', 'none');
+        }, 1000);
+    });
+
+
     function simplify(siteName, removeStr, expandStr, callback) {
 
 
         if (url.indexOf(siteName) == -1) return;
         console.log(siteName + ' begin');
 
-        $('body').css('margin', 0)
-            .css('border', 0)
-            .css('padding-left', 20)
-            .css('padding-right', 20)
-            .css('background-image', 'none')
-            .css('width', 'auto');
-        console.log('body set');
+        $("<style type='text/css'>\
+body{margin:0;border:0;padding-left:20px;padding-right:20px;background-image:none;width:auto;}\
+p{font-family:Georgia, \"Times New Roman\", \"Microsoft YaHei\", \"微软雅黑\", STXihei, \"华文细黑\", serif;font-size:large;color:#000000;text-indent:1em;}\
+</style>").appendTo("head");
 
-        $('p').css('font-family', 'Georgia, "Times New Roman", "Microsoft YaHei", "微软雅黑", STXihei, "华文细黑", serif')
-            .css('font-size', 'large')
-            .css('color', '#000000')
-            .css('text-indent', '1em');
-        console.log('p set');
+        console.log('style append');
 
 
         $('header,nav,footer,iframe,#header,#footer,#sidebar,.sidebar,#breadcrumb,.header,.footer,#nav').remove();
@@ -96,17 +98,20 @@
             $('iframe').remove();
         }, 3000);
 
-
-        $(removeStr).remove();
-        console.log('elements removed');
-
-        $(expandStr).css('width', '100%')
-            .css('padding', 0)
-            .css('border', 0)
-            .css('margin', 0)
-            .css('background-image', 'none')
-            .css('background-color', '#F5FAFF');
-        console.log('elements expanded');
+        if (removeStr) {
+            $(removeStr).remove();
+            console.log('elements removed');
+        }
+        if (expandStr) {
+            $(expandStr).css('width', '100%')
+                .css('padding', 0)
+                .css('border', 0)
+                .css('margin', 0)
+                .css('background-image', 'none')
+                .css('background-color', '#F5FAFF')
+                .css('max-width', 'none');
+            console.log('elements expanded');
+        }
 
         if (callback) {
             callback();
