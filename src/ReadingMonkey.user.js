@@ -1,8 +1,8 @@
 // ==UserScript==
 // @name       ReadingMonkey
 // @namespace  baofeng.reading
-// @version    4.4
-// @description  文章阅读简化:站长之家,新浪,web开发者,51cto,csdn,博客园,qq,infoq,开源中国,网易,伯乐在线,feedly
+// @version    4.6
+// @description  文章阅读简化:站长之家,新浪,web开发者,51cto,csdn,博客园,qq,infoq,开源中国,网易,伯乐在线,feedly,炼数成金
 // @match      http://www.chinaz.com/*.shtml
 // @match      http://*.sina.com.cn/*htm*
 // @match      http://www.admin10000.com/document/*.html
@@ -16,6 +16,7 @@
 // @match      http://*.163.com/*.html*
 // @match      http://*.jobbole.com/*
 // @match      http://feedly.com/*
+// @match      http://www.dataguru.cn/portal.php?mod=view&aid=*
 // @copyright  GNU
 // @require     http://code.jquery.com/jquery-2.1.1.min.js
 // @run-at      document-end
@@ -54,20 +55,28 @@
         '#home_top,.headerBox,.blogLeft,.mainNav,.edu-col-b,.relatedArt,#message,.mb10,.menu,.subweb,.g_13,.tips,.titbg,.reltag,.relart,.cathot,.bor,#ft,.crumb',
         '.blogMain,.blogRight,.g_26,.g_39,.brief ');
 
-    simplify('infoq.com', '#topInfo,.share_this,.article_page_right,.random_links,.bottomContent',
-        '#wrapper,#site,#content,.article_page_left');
+    simplify('infoq.com', '#topInfo,.share_this,.article_page_right,.random_links,.bottomContent,.eBookLeft',
+        '#wrapper,#site,#content,.article_page_left,.ebook,.txt');
 
     simplify('oschina.net',
-        '#OSC_NavTop,#OSC_Banner,#OSC_Footer,.NewsRight,.toolbar,.copyright,.RelatedNews,.RelatedThreads,#upprev_box,.translater',
-        '#OSC_Screen,.NewsBody,.NewsEntity,.TextContent');
+        '#OSC_NavTop,#OSC_Banner,#OSC_Footer,.NewsRight,.toolbar,.copyright,.RelatedNews,.RelatedThreads,#upprev_box,.translater,.ProjectRight',
+        '#OSC_Screen,.NewsBody,.NewsEntity,.TextContent,.ProjectMain');
 
     simplify('163.com',
         '#js_N_nav,.ep-header,.subfoot-wrap,.N-nav-bottom,#epContentRight,.sharecommend-wrap,.ep-keywords,.atleLP,.ep-returnlink,.extra-tag',
         '#js-epContent,#epContentLeft,#endText');
 
+
     simplify('jobbole.com',
         '#wp_rp_first',
         '.container,.grid-8');
+
+
+    simplify('dataguru.cn',
+        '#float_l,#float_r,#friendlink,.sd,#pt,.wrap_top,.wrap_end',
+        '.wrap,.mn,#ct:first-child,.wrap_main,#wp', function () {
+            $('#wp').parent().css('width', '100%');
+        });
 
 
     simplify('feedly.com', '', '', function () {
@@ -91,7 +100,7 @@ p{font-family:Georgia, \"Times New Roman\", \"Microsoft YaHei\", \"微软雅黑\
         console.log('style append');
 
 
-        $('header,nav,footer,iframe,#header,#footer,#sidebar,.sidebar,#breadcrumb,.header,.footer,#nav,iframe,embed').remove();
+        $('header,nav,footer,iframe,#header,#footer,#sidebar,.sidebar,#breadcrumb,.header,.footer,#nav,iframe,embed,.nav').remove();
         console.log('common removed');
 
         setTimeout(function () {
