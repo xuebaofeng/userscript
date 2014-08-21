@@ -7,7 +7,7 @@
 // @include     https://*.us.oracle.com*
 // @include     http://*.oraclecorp.com*
 // @include     https://*.oraclecorp.com*
-// @version     8.8
+// @version     8.9
 // @grant       GM_setValue
 // @grant       GM_getValue
 // @grant       GM_deleteValue
@@ -33,7 +33,7 @@ font-size: 120% !important;\
 
 
     if (currentURL.indexOf('/psp/') > 0 && currentURL.indexOf('us.oracle.com') > 0) {
-        console.log('peoplesoft menue begin');
+        console.log('peoplesoft menu begin');
 
         $("<style type='text/css'> \
 #baofeng_qa{position:fixed; top:0; left:0; z-index:100000;}\
@@ -165,7 +165,7 @@ font-size: 120% !important;\
 
         $('input[name="WHO"]').val(getValue('ssoId'));
         $('input[name="sPassword"]').val(getValue('ssoPass'));
-        $('input.image').click();
+        $('form').submit();
 
 
         console.log('dep end');
@@ -177,8 +177,6 @@ font-size: 120% !important;\
     if (currentURL === "https://login.oracle.com/mysso/signon.jsp") {
 
         console.log('oracle sso begin');
-
-        console.log($('#errormsg').length);
 
         if ($('#errormsg').length > 0) {
             console.log('delete ssoPass');
@@ -202,14 +200,15 @@ font-size: 120% !important;\
 
     if (id$.length > 0 && currentURL.indexOf('us.oracle.com') > 0) {
 
-        var pass$ = $('#pwd');
-        id$.bind('keyup', function () {
-            id$.val($(this).val().toUpperCase());
-            pass$.val(id$.val());
-        });
+        var idArray = ['VP1', 'PS', 'PTDMO'];
+        for (var i = 0; i < idArray.length; i++) {
+            $('<div>' + idArray[i] + '</div>').prependTo($('div.ps_signinentry')).on('click', function () {
 
+                $('#userid,#pwd').val($(this).html());
+                $('#login').submit();
+            });
+        }
 
-        return;
     }
 //peopletools login page end
 
