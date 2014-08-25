@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name       ReadingMonkey
 // @namespace  baofeng.reading
-// @version    4.8
+// @version    4.9
 // @description  文章阅读简化:站长之家,新浪,web开发者,51cto,csdn,博客园,qq,infoq,开源中国,网易,伯乐在线,feedly,炼数成金 dataguru.cn
 // @match      http://www.chinaz.com/*.shtml
 // @match      http://*.sina.com.cn/*htm*
@@ -46,7 +46,7 @@
 
     simplify('sina.com',
         '#hdnav,#blkBreadcrumb,.can_right,.wb_rec,.wc14_qr,.guess-view-list,.blkContainerOther,#J_Comment_Form_B,.side-btns-2wm,\
-.blkBreadcrumb,.nsinatopbar,#sinablogHead,#column_1,#sinablogfooter,.SG_connHead,#blk_nav_1,.topbar,.zwsidebar,.headlines_news,#fudong',
+.blkBreadcrumb,.nsinatopbar,#sinablogHead,#column_1,#sinablogfooter,.SG_connHead,#blk_nav_1,.topbar,.zwsidebar,.headlines_news,#fudong,.blkContentFooter',
         '.blkContainerSblk,.blkContainer,#column_2,#sinablogbody,.articalContent,.SG_connBody,.blkContainerSblk,.Main,.zwcontent,.zwc');
 
     simplify('admin10000.com',
@@ -65,8 +65,8 @@
         '#OSC_Screen,.NewsBody,.NewsEntity,.TextContent,.ProjectMain');
 
     simplify('163.com',
-        '#js_N_nav,.ep-header,.subfoot-wrap,.N-nav-bottom,#epContentRight,.sharecommend-wrap,.ep-keywords,.atleLP,.ep-returnlink,.extra-tag',
-        '#js-epContent,#epContentLeft,#endText');
+        '#js_N_nav,.ep-header,.subfoot-wrap,.N-nav-bottom,#epContentRight,.sharecommend-wrap,.ep-keywords,.atleLP,.ep-returnlink,.extra-tag,.ep-content-side',
+        '#js-epContent,#epContentLeft,#endText,.ep-content-main');
 
 
     simplify('jobbole.com',
@@ -93,7 +93,7 @@
             expandStr += ',.';
         }
 
-        var expandArray = ['main', 'home', 'body', 'container', 'content', 'wrapper', 'left', 'right', 'post', 'wrap'];
+        var expandArray = ['main', 'home', 'body', 'container', 'content', 'wrapper', 'left', 'right', 'post', 'wrap', 'page'];
 
         expandStr += expandArray.join(',.');
         expandStr += ',#' + expandArray.join(',#');
@@ -117,7 +117,7 @@
             removeStr += ',';
         }
 
-        var removeArray = ['header', 'nav', 'footer', 'embed', 'iframe', 'sidebar', 'breadcrumb', 'sideBar', 'navTop'];
+        var removeArray = ['header', 'nav', 'footer', 'embed', 'iframe', 'sidebar', 'breadcrumb', 'sideBar', 'navTop', 'topNav'];
 
         removeStr += removeArray.join(',');
         removeStr += ',#' + removeArray.join(',#');
