@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name       ReadingMonkey
 // @namespace  baofeng.reading
-// @version    4.9
+// @version    5.0
 // @description  文章阅读简化:站长之家,新浪,web开发者,51cto,csdn,博客园,qq,infoq,开源中国,网易,伯乐在线,feedly,炼数成金 dataguru.cn
 // @match      http://www.chinaz.com/*.shtml
 // @match      http://*.sina.com.cn/*htm*
@@ -12,10 +12,11 @@
 // @match      http://news.cnblogs.com/n/*
 // @match      http://*.qq.com/*.htm*
 // @match      http://www.infoq.com/*
-// @match      http://www.oschina.net/*
+// @match      http://*.oschina.net/*
 // @match      http://*.163.com/*.html*
 // @match      http://*.jobbole.com/*
 // @match      http://feedly.com/*
+// @match      https://feedly.com/*
 // @match      http://www.dataguru.cn/*
 // @copyright  GNU
 // @require     http://code.jquery.com/jquery-2.1.1.min.js
@@ -61,8 +62,8 @@
         '#site,.article_page_left,.ebook,.txt');
 
     simplify('oschina.net',
-        '#OSC_NavTop,#OSC_Banner,#OSC_Footer,.NewsRight,.toolbar,.copyright,.RelatedNews,.RelatedThreads,#upprev_box,.translater,.ProjectRight',
-        '#OSC_Screen,.NewsBody,.NewsEntity,.TextContent,.ProjectMain');
+        '#OSC_NavTop,#OSC_Banner,#OSC_Footer,.NewsRight,.toolbar,.copyright,.RelatedNews,.RelatedThreads,#upprev_box,.translater,.ProjectRight,#SpaceLeft,#OSC_Topbar',
+        '#OSC_Screen,.NewsBody,.NewsEntity,.TextContent,.ProjectMain,.SpaceList');
 
     simplify('163.com',
         '#js_N_nav,.ep-header,.subfoot-wrap,.N-nav-bottom,#epContentRight,.sharecommend-wrap,.ep-keywords,.atleLP,.ep-returnlink,.extra-tag,.ep-content-side',
