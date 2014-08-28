@@ -7,7 +7,7 @@
 // @include     https://*.us.oracle.com*
 // @include     http://*.oraclecorp.com*
 // @include     https://*.oraclecorp.com*
-// @version     8.9
+// @version     9.0
 // @grant       GM_setValue
 // @grant       GM_getValue
 // @grant       GM_deleteValue
@@ -31,9 +31,11 @@ font-size: 120% !important;\
 </style>").appendTo("head");
     }
 
+    if ((currentURL.indexOf('/psp/') > 0 || currentURL.indexOf('/psc/') > 0)
+        && currentURL.indexOf('us.oracle.com') > 0
+        && window === top) {
 
-    if (currentURL.indexOf('/psp/') > 0 && currentURL.indexOf('us.oracle.com') > 0) {
-        console.log('peoplesoft menu begin');
+        console.log('peoplesoft menue begin');
 
         $("<style type='text/css'> \
 #baofeng_qa{position:fixed; top:0; left:0; z-index:100000;}\
