@@ -7,7 +7,7 @@
 // @include     https://*.us.oracle.com*
 // @include     http://*.oraclecorp.com*
 // @include     https://*.oraclecorp.com*
-// @version     9.0
+// @version     9.1
 // @grant       GM_setValue
 // @grant       GM_getValue
 // @grant       GM_deleteValue
@@ -51,6 +51,9 @@ font-size: 120% !important;\
             }
             if (prefixIndex == -1) {
                 prefixIndex = currentURL.indexOf('/w/');
+            }
+            if (prefixIndex == -1) {
+                prefixIndex = currentURL.indexOf('/s/');
             }
 
             var prefix = currentURL.substring(0, prefixIndex);
@@ -156,7 +159,7 @@ font-size: 120% !important;\
 //bugsmart end
 
 //dep begin
-    if (currentURL.indexOf("http://dsiweb01.us.oracle.com/dep/login.asp") >= 0) {
+    if (currentURL.indexOf("dsiweb01") >= 0) {
 
         console.log('dep begin');
         if ($('span.loginLabel').html().toLowerCase().indexOf('invalid') >= 0) {
