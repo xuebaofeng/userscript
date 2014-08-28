@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name       ReadingMonkey
 // @namespace  baofeng.reading
-// @version    5.0
+// @version    5.1
 // @description  文章阅读简化:站长之家,新浪,web开发者,51cto,csdn,博客园,qq,infoq,开源中国,网易,伯乐在线,feedly,炼数成金 dataguru.cn
 // @match      http://www.chinaz.com/*.shtml
 // @match      http://*.sina.com.cn/*htm*
@@ -62,7 +62,7 @@
         '#site,.article_page_left,.ebook,.txt');
 
     simplify('oschina.net',
-        '#OSC_NavTop,#OSC_Banner,#OSC_Footer,.NewsRight,.toolbar,.copyright,.RelatedNews,.RelatedThreads,#upprev_box,.translater,.ProjectRight,#SpaceLeft,#OSC_Topbar',
+        '#OSC_NavTop,#OSC_Banner,#OSC_Footer,.NewsRight,.toolbar,.copyright,.RelatedNews,.RelatedThreads,#upprev_box,.translater,.ProjectRight,#SpaceLeft,#OSC_Topbar,.QuestionRelations,#Vote',
         '#OSC_Screen,.NewsBody,.NewsEntity,.TextContent,.ProjectMain,.SpaceList');
 
     simplify('163.com',
@@ -94,7 +94,7 @@
             expandStr += ',.';
         }
 
-        var expandArray = ['main', 'home', 'body', 'container', 'content', 'wrapper', 'left', 'right', 'post', 'wrap', 'page'];
+        var expandArray = ['main', 'home', 'body', 'container', 'content', 'wrapper', 'left', 'right', 'post', 'wrap', 'page', 'Body', 'Content'];
 
         expandStr += expandArray.join(',.');
         expandStr += ',#' + expandArray.join(',#');
