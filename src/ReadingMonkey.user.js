@@ -1,8 +1,9 @@
 // ==UserScript==
 // @name       ReadingMonkey
 // @namespace  baofeng.reading
-// @version    5.1
-// @description  文章阅读简化:站长之家,新浪,web开发者,51cto,csdn,博客园,qq,infoq,开源中国,网易,伯乐在线,feedly,炼数成金 dataguru.cn
+// @version    5.2
+// @description  文章阅读简化:站长之家,新浪,web开发者,51cto,csdn,博客园,qq,infoq,开源中国,网易,伯乐在线,feedly,炼数成金 dataguru.cn,developerworks
+
 // @match      http://www.chinaz.com/*.shtml
 // @match      http://*.sina.com.cn/*htm*
 // @match      http://www.admin10000.com/document/*.html
@@ -18,6 +19,7 @@
 // @match      http://feedly.com/*
 // @match      https://feedly.com/*
 // @match      http://www.dataguru.cn/*
+// @match      http://www.ibm.com/developerworks/*.html
 // @copyright  GNU
 // @require     http://code.jquery.com/jquery-2.1.1.min.js
 // @run-at      document-end
@@ -87,6 +89,11 @@
             $('.entryBody,.u100entry').css('max-width', 'none');
         }, 1000);
     });
+
+    simplify('www.ibm.com',
+        '#ibm-masthead,#ibm-footer-module-dwwrapper',
+        '#ibm-content,#ibm-pcon,#ibm-content-main,.ibm-columns,.ibm-col-1-1'
+    );
 
 
     function expand(expandStr) {
