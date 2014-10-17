@@ -2,12 +2,11 @@
 // @name        OracleMonkey
 // @namespace   oracle
 // @description sso,bugdb,em-entral,dep, bugsmart, ice
-// @include     https://login.oracle.com/mysso/signon.jsp
-// @include     http://*.us.oracle.com*
-// @include     https://*.us.oracle.com*
+// @include     http://*.oracle.com*
+// @include     https://*.oracle.com*
 // @include     http://*.oraclecorp.com*
 // @include     https://*.oraclecorp.com*
-// @version     9.1
+// @version     10.0
 // @grant       GM_setValue
 // @grant       GM_getValue
 // @grant       GM_deleteValue
@@ -30,6 +29,24 @@ font-size: 120% !important;\
           }\
 </style>").appendTo("head");
     }
+
+
+    //peopletools login page begin
+    var id$ = $('#userid');
+
+    if (id$.length > 0 && currentURL.indexOf('us.oracle.com') > 0) {
+
+        var idArray = ['VP1', 'PS', 'PTDMO'];
+        for (var i = 0; i < idArray.length; i++) {
+            $('<div>' + idArray[i] + '</div>').prependTo($('div.ps_signinentry')).on('click', function () {
+
+                $('#userid,#pwd').val($(this).html());
+                $('#login').submit();
+            });
+        }
+
+    }
+//peopletools login page end
 
     if ((currentURL.indexOf('/psp/') > 0 || currentURL.indexOf('/psc/') > 0)
         && currentURL.indexOf('us.oracle.com') > 0
@@ -116,7 +133,7 @@ font-size: 120% !important;\
             }
 
             console.log('ice create end');
-            return;
+
         }
     }
 
@@ -179,7 +196,7 @@ font-size: 120% !important;\
 //dep end
 
 //oracle sso begin
-    if (currentURL === "https://login.oracle.com/mysso/signon.jsp") {
+    if (currentURL.indexOf("/mysso/signon.jsp") >= 0) {
 
         console.log('oracle sso begin');
 
@@ -200,22 +217,6 @@ font-size: 120% !important;\
     }
 //oracle sso end
 
-//peopletools login page begin
-    var id$ = $('#userid');
-
-    if (id$.length > 0 && currentURL.indexOf('us.oracle.com') > 0) {
-
-        var idArray = ['VP1', 'PS', 'PTDMO'];
-        for (var i = 0; i < idArray.length; i++) {
-            $('<div>' + idArray[i] + '</div>').prependTo($('div.ps_signinentry')).on('click', function () {
-
-                $('#userid,#pwd').val($(this).html());
-                $('#login').submit();
-            });
-        }
-
-    }
-//peopletools login page end
 
 //bugdb edit begin
     if (currentURL.indexOf('https://bug.oraclecorp.com/pls/bug/webbug_edit') >= 0 && $('#fixby').length > 0) {
