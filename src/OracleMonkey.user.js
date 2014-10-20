@@ -6,7 +6,7 @@
 // @include     https://*.oracle.com*
 // @include     http://*.oraclecorp.com*
 // @include     https://*.oraclecorp.com*
-// @version     10.0
+// @version     10.1
 // @grant       GM_setValue
 // @grant       GM_getValue
 // @grant       GM_deleteValue
@@ -35,16 +35,16 @@ font-size: 120% !important;\
     var id$ = $('#userid');
 
     if (id$.length > 0 && currentURL.indexOf('us.oracle.com') > 0) {
-
+        console.log('peoplesoft login begin');
         var idArray = ['VP1', 'PS', 'PTDMO'];
         for (var i = 0; i < idArray.length; i++) {
-            $('<div>' + idArray[i] + '</div>').prependTo($('div.ps_signinentry')).on('click', function () {
+            $('<div>' + idArray[i] + '</div>').appendTo($('td.psloginframe,#ps_select_parent')).on('click', function () {
 
                 $('#userid,#pwd').val($(this).html());
                 $('#login').submit();
             });
         }
-
+        console.log('peoplesoft login end');
     }
 //peopletools login page end
 
@@ -213,7 +213,7 @@ font-size: 120% !important;\
         $('form:first').submit();
 
         console.log('oracle sso end');
-        return;
+
     }
 //oracle sso end
 
