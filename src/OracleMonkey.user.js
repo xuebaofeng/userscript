@@ -2,11 +2,10 @@
 // @name        OracleMonkey
 // @namespace   oracle
 // @description sso,bugdb,em-entral,dep, bugsmart, ice
-// @include     http://*.oracle.com*
-// @include     https://*.oracle.com*
-// @include     http://*.oraclecorp.com*
-// @include     https://*.oraclecorp.com*
-// @version     10.1
+// @include     http*://*.oracle.com*
+// @include     http*://*.oraclecorp.com*
+// @include     http*://*.oracledemos.com*
+// @version     10.2
 // @grant       GM_setValue
 // @grant       GM_getValue
 // @grant       GM_deleteValue
@@ -49,7 +48,6 @@ font-size: 120% !important;\
 //peopletools login page end
 
     if ((currentURL.indexOf('/psp/') > 0 || currentURL.indexOf('/psc/') > 0)
-        && currentURL.indexOf('us.oracle.com') > 0
         && window === top) {
 
         console.log('peoplesoft menue begin');
