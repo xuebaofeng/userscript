@@ -5,7 +5,7 @@
 // @include     http*://*.oracle.com*
 // @include     http*://*.oraclecorp.com*
 // @include     http*://*.oracledemos.com*
-// @version     10.2
+// @version     10.3
 // @grant       GM_setValue
 // @grant       GM_getValue
 // @grant       GM_deleteValue
@@ -85,8 +85,9 @@ font-size: 120% !important;\
                 'NUI home': '/c/NUI_FRAMEWORK.PT_LANDINGPAGE.GBL'
             };
             for (var o in urlMap) {
-                $('#baofeng_qa_menu').append('<li><a href="' + prefix + urlMap[o] + '">' + o + '</a></li>');
-
+                var url = prefix + urlMap[o];
+                url = url.replace('/psc/', '/psp/');
+                $('#baofeng_qa_menu').append('<li><a href="' + url + '">' + o + '</a></li>');
             }
 
             $('#baofeng_qa').on('click', function () {
