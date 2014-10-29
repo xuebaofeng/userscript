@@ -5,7 +5,7 @@
 // @include     http*://*.oracle.com*
 // @include     http*://*.oraclecorp.com*
 // @include     http*://*.oracledemos.com*
-// @version     10.3
+// @version     10.4
 // @grant       GM_setValue
 // @grant       GM_getValue
 // @grant       GM_deleteValue
@@ -28,6 +28,15 @@ font-size: 120% !important;\
           }\
 </style>").appendTo("head");
     }
+
+
+//weblogic console login begin
+    if (window.location.href.indexOf('/console/login/LoginForm.jsp') > 0) {
+        $('#j_username').val('system');
+        $('#j_password').val('Passw0rd');
+        $('#loginData div.button-row span.ctrl input.formButton').click();
+    }
+//weblogic console login end
 
 
     //peopletools login page begin
