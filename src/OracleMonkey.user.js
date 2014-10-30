@@ -5,7 +5,7 @@
 // @include     http*://*.oracle.com*
 // @include     http*://*.oraclecorp.com*
 // @include     http*://*.oracledemos.com*
-// @version     10.4
+// @version     10.5
 // @grant       GM_setValue
 // @grant       GM_getValue
 // @grant       GM_deleteValue
@@ -84,14 +84,13 @@ font-size: 120% !important;\
 
             var urlMap = {
                 'classic home': '/h/?tab=DEFAULT',
-                'peopeltools options': '/c/UTILITIES.PSOPTIONS.GBL',
-                'system options': '/c/PTPP_PORTAL_ADMIN.PTPP_OPTIONS.GBL',
+                'fluid home': '/c/NUI_FRAMEWORK.PT_LANDINGPAGE.GBL',
                 'web profile': '/c/WEB_PROFILE.WEB_PROFILE.GBL',
                 'Structure and Content ': '/c/PORTAL_ADMIN.PORTAL_OBJ_LIST.GBL',
-                'branding system option': '/c/PTBR_MENU.PTBRANDINGSYSTEMOP.GBL',
                 'Node Definitions': '/c/PORTAL_ADMIN.IB_NODE.GBL',
                 'Single Signon': '/c/MAINTAIN_SECURITY.SINGLE_SIGNON.GBL',
-                'NUI home': '/c/NUI_FRAMEWORK.PT_LANDINGPAGE.GBL'
+                'gateways': '/c/IB_PROFILE.IB_GATEWAY.GBL',
+                'Server Side Events Test Page': '/c/UTILITIES.PTSVRTESTEVENTS.GBL'
             };
             for (var o in urlMap) {
                 var url = prefix + urlMap[o];
