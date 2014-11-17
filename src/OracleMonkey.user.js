@@ -1,11 +1,11 @@
 // ==UserScript==
 // @name        OracleMonkey
 // @namespace   oracle
-// @description sso,bugdb,em-entral,dep, bugsmart, ice
+// @description sso,bugdb,dep, bugsmart, ice
 // @include     http*://*.oracle.com*
 // @include     http*://*.oraclecorp.com*
 // @include     http*://*.oracledemos.com*
-// @version     10.5
+// @version     10.6
 // @grant       GM_setValue
 // @grant       GM_getValue
 // @grant       GM_deleteValue
@@ -147,24 +147,6 @@ font-size: 120% !important;\
 
 //ice end
 
-//em-central begin
-    if (currentURL.indexOf('em-central.oraclecorp.com/psp/EM-CENTRAL') >= 0 && currentURL.indexOf('log') > 0) {
-        console.log('em-central login');
-
-        $('#userid').val(getValue('peoplesoftId'));
-        $('#pwd').val(getValue('peoplesoftPass'));
-
-        if ($('#login table tbody tr.signInTable td.PSERRORTEXT').html().length == 0) {
-
-            $('#login input.PSLOGINPUSHBUTTON').click();
-        } else if (currentURL.indexOf('cmd=login') >= 0) {
-
-            GM_deleteValue('peoplesoftPass');
-        }
-
-        return;
-    }
-//em-central end
 
 //bugsmart begin
     if (currentURL.indexOf('https://bugsmart.oraclecorp.com/cgi-bin/techpm/bug_smart.pl?') >= 0) {
