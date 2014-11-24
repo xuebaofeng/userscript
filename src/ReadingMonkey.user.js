@@ -2,8 +2,7 @@
 // @name       ReadingMonkey
 // @namespace  baofeng.reading
 // @version    5.2
-// @description  文章阅读简化:站长之家,新浪,web开发者,51cto,csdn,博客园,qq,infoq,开源中国,网易,伯乐在线,feedly,炼数成金 dataguru.cn,developerworks
-
+// @description  文章阅读简化:站长之家,新浪,web开发者,51cto,csdn,博客园,qq,infoq,开源中国,网易,伯乐在线,feedly,炼数成金 dataguru.cn
 // @match      http://www.chinaz.com/*.shtml
 // @match      http://*.sina.com.cn/*htm*
 // @match      http://www.admin10000.com/document/*.html
@@ -36,11 +35,11 @@
         '.body-Article-QQ,#Main-Article-QQ');
 
     simplify('cnblogs.com',
-        '#blog_news_kb,#wrap,#main_header,#sideright,#guide,.blogStats,#leftcontent,#mylinks,#right,#mytopmenu',
+        '#blog_news_kb,#wrap,#main_header,#sideright,#guide,.blogStats,#leftcontent,#mylinks,#right,#mytopmenu,#rightmenu,#leftmenu,#site_nav_under,#under_post_news,#under_post_kb',
         '#main_wrapper,#sideleft,#mainContent,#centercontent,.forFlow');
 
     simplify('csdn.net',
-        '.csdn-toolbar,#navigator,#side,.notice,#res-relatived,.blog-associat-tag,.tag_list,#pub_footerall',
+        '.csdn-toolbar,#navigator,#side,.notice,#res-relatived,.blog-associat-tag,.tag_list,#pub_footerall,#im_popupWindow_miniMsg',
         '.details');
 
     simplify('chinaz.com',
@@ -86,14 +85,13 @@
 
     simplify('feedly.com', '', '', function () {
         setInterval(function () {
-            $('.entryBody,.u100entry').css('max-width', 'none');
+            $('.condensed .entryholder .u100Entryy').css('max-width', 'none');
         }, 1000);
     });
 
     simplify('www.ibm.com',
         '#ibm-masthead,#ibm-footer-module-dwwrapper',
-        '#ibm-content,#ibm-pcon,#ibm-content-main,.ibm-columns,.ibm-col-1-1'
-    );
+        '#ibm-content,#ibm-pcon,#ibm-content-main,.ibm-columns,.ibm-col-1-1');
 
 
     function expand(expandStr) {
@@ -125,7 +123,7 @@
             removeStr += ',';
         }
 
-        var removeArray = ['header', 'nav', 'footer', 'embed', 'iframe', 'sidebar', 'breadcrumb', 'sideBar', 'navTop', 'topNav'];
+        var removeArray = ['header', 'nav', 'footer', 'embed', 'iframe', 'sidebar', 'breadcrumb', 'sideBar', 'navTop', 'topNav', 'top'];
 
         removeStr += removeArray.join(',');
         removeStr += ',#' + removeArray.join(',#');
