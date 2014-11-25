@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name       ReadingMonkey
 // @namespace  baofeng.reading
-// @version    5.2
+// @version    5.3
 // @description  文章阅读简化:站长之家,新浪,web开发者,51cto,csdn,博客园,qq,infoq,开源中国,网易,伯乐在线,feedly,炼数成金 dataguru.cn
 // @match      http://www.chinaz.com/*.shtml
 // @match      http://*.sina.com.cn/*htm*
@@ -85,7 +85,7 @@
 
     simplify('feedly.com', '', '', function () {
         setInterval(function () {
-            $('.condensed .entryholder .u100Entryy').css('max-width', 'none');
+            $('.condensed .entryholder .u100Entry').css('max-width', 'none');
         }, 1000);
     });
 
