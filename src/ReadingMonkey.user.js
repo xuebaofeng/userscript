@@ -59,8 +59,8 @@
         '#home_top,.headerBox,.blogLeft,.mainNav,.edu-col-b,.relatedArt,#message,.mb10,.menu,.subweb,.g_13,.tips,.titbg,.reltag,.relart,.cathot,.bor,#ft,.crumb',
         '.blogMain,.blogRight,.g_26,.g_39,.brief ');
 
-    simplify('infoq.com', '#topInfo,.share_this,.article_page_right,.random_links,.bottomContent,.eBookLeft',
-        '#site,.article_page_left,.ebook,.txt');
+    simplify('infoq.com', '#topInfo,.share_this,.article_page_right,.random_links,.bottomContent,.eBookLeft,.related_sponsors',
+        '#site,.article_page_left,.ebook,.txt,blockquote');
 
     simplify('oschina.net',
         '#OSC_NavTop,#OSC_Banner,#OSC_Footer,.NewsRight,.toolbar,.copyright,.RelatedNews,.RelatedThreads,#upprev_box,.translater,.ProjectRight,#SpaceLeft,#OSC_Topbar,.QuestionRelations,#Vote',
@@ -110,7 +110,6 @@
                 'border': 0,
                 'margin': 0,
                 'background-image': 'none',
-                'background-color': '#F5FAFF',
                 'max-width': 'none'
             }
         );
@@ -135,8 +134,8 @@
 
     function addStyle() {
         $("<style type='text/css'>\
-body{margin:0;border:0;padding-left:20px;padding-right:20px;background-image:none;width:auto;}\
-p{font-family:Georgia, \"Times New Roman\", \"Microsoft YaHei\", \"微软雅黑\", STXihei, \"华文细黑\", serif;font-size:large;color:#000000;text-indent:1em;}\
+body{margin:0;border:0;padding:20px;background-image:none;width:auto;background-color:#F5FAFF}\
+p{font-family:Georgia, \"Times New Roman\", \"Microsoft YaHei\", \"微软雅黑\", STXihei, \"华文细黑\", serif;color:#000000;text-indent:2em}\
 </style>").appendTo("head");
         console.log('style append');
     }
