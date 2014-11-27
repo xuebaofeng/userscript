@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name       ReadingMonkey
 // @namespace  baofeng.reading
-// @version    5.3
+// @version    5.4
 // @description  文章阅读简化:站长之家,新浪,web开发者,51cto,csdn,博客园,qq,infoq,开源中国,网易,伯乐在线,feedly,炼数成金 dataguru.cn
 // @match      http://www.chinaz.com/*.shtml
 // @match      http://*.sina.com.cn/*htm*
@@ -52,12 +52,16 @@
         '.blkContainerSblk,.blkContainer,#column_2,#sinablogbody,.articalContent,.SG_connBody,.blkContainerSblk,.Main,.zwcontent,.zwc');
 
     simplify('admin10000.com',
-        '#miniNav,#search,#position,.right,.weixin,.tags,.tip,.relation,.share,.texttip,.ad_336x280,.ad_640x90',
+        '#miniNav,#search,#position,.right,.weixin,.tags,.tip,.relation,.share,.texttip,.ad_336x280,.ad_640x90，#f_close_box',
         '');
 
     simplify('51cto.com',
-        '#home_top,.headerBox,.blogLeft,.mainNav,.edu-col-b,.relatedArt,#message,.mb10,.menu,.subweb,.g_13,.tips,.titbg,.reltag,.relart,.cathot,.bor,#ft,.crumb',
-        '.blogMain,.blogRight,.g_26,.g_39,.brief ');
+        '#home_top,.headerBox,.blogLeft,.mainNav,.edu-col-b,.relatedArt,#message,.mb10,.menu,.subweb,.g_13,.tips,.titbg,.reltag,.relart,.cathot,.bor,#ft,.crumb,.m_sharebtn clear',
+        '.blogMain,.blogRight,.g_26,.g_39,.brief ', function () {
+            setInterval(function () {
+                $('#f_close_box').remove();
+            }, 1000);
+        });
 
     simplify('infoq.com', '#topInfo,.share_this,.article_page_right,.random_links,.bottomContent,.eBookLeft,.related_sponsors',
         '#site,.article_page_left,.ebook,.txt,blockquote');
