@@ -89,7 +89,7 @@
 
     simplify('feedly.com', '', '', function () {
         setInterval(function () {
-            $('.condensed .entryholder .u100Entry').css('max-width', 'none');
+            $('.condensed .entryholder .u100Entry,.entryBody').css('max-width', 'none');
         }, 1000);
     });
 
