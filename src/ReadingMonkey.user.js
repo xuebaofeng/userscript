@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name       ReadingMonkey
 // @namespace  baofeng.reading
-// @version    5.4
+// @version    5.5
 // @description  文章阅读简化:站长之家,新浪,web开发者,51cto,csdn,博客园,qq,infoq,开源中国,网易,伯乐在线,feedly,炼数成金 dataguru.cn
 // @match      http://www.chinaz.com/*.shtml
 // @match      http://*.sina.com.cn/*htm*
@@ -56,10 +56,10 @@
         '');
 
     simplify('51cto.com',
-        '#home_top,.headerBox,.blogLeft,.mainNav,.edu-col-b,.relatedArt,#message,.mb10,.menu,.subweb,.g_13,.tips,.titbg,.reltag,.relart,.cathot,.bor,#ft,.crumb,.m_sharebtn clear',
+        '#home_top,.headerBox,.blogLeft,.mainNav,.edu-col-b,.relatedArt,#message,.mb10,.menu,.subweb,.g_13,.tips,.titbg,.reltag,.relart,.cathot,.bor,#ft,.crumb,.edu-col-a,.art_tj',
         '.blogMain,.blogRight,.g_26,.g_39,.brief ', function () {
             setInterval(function () {
-                $('#f_close_box').remove();
+                $('#f_close_box,.m_sharebtn').remove();
             }, 1000);
         });
 
@@ -89,7 +89,7 @@
 
     simplify('feedly.com', '', '', function () {
         setInterval(function () {
-            $('.condensed .entryholder .u100Entry').css('max-width', 'none');
+            $('.condensed .entryholder .u100Entry,.entryBody').css('max-width', 'none');
         }, 1000);
     });
 
