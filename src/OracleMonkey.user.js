@@ -248,7 +248,7 @@ font-size: 120% !important;\
             console.log('clear');
             bug_desc$.val('');
         }).on('click', "#askUpate", function () {
-            bug_desc$.val('Any update?');
+            bug_desc$.val('Could you check my update from bugdb? thanks');
         }).on('click', "#wantClose", function () {
             bug_desc$.val('I am going to close this bug if no further response in 3 days.');
         }).on('click', "#closeBug", function () {
