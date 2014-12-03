@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name       ReadingMonkey
 // @namespace  baofeng.reading
-// @version    5.5
+// @version    5.6
 // @description  文章阅读简化:站长之家,新浪,web开发者,51cto,csdn,博客园,qq,infoq,开源中国,网易,伯乐在线,feedly,炼数成金 dataguru.cn
 // @match      http://www.chinaz.com/*.shtml
 // @match      http://*.sina.com.cn/*htm*
@@ -46,11 +46,19 @@
         '#cz-head,.m-crumb-search,.cz-box-300,#cz-footer,.u-postfooter,.m-relate,.m-leftad,.m-picshow,#pinglun,#m-rightshare,.u-post-textad',
         '.czbox,.m-post');
 
+  
     simplify('sina.com',
-        '#hdnav,#blkBreadcrumb,.can_right,.wb_rec,.wc14_qr,.guess-view-list,.blkContainerOther,#J_Comment_Form_B,.side-btns-2wm,\
-.blkBreadcrumb,.nsinatopbar,#sinablogHead,#column_1,#sinablogfooter,.SG_connHead,#blk_nav_1,.topbar,.zwsidebar,.headlines_news,#fudong,.blkContentFooter',
-        '.blkContainerSblk,.blkContainer,#column_2,#sinablogbody,.articalContent,.SG_connBody,.blkContainerSblk,.Main,.zwcontent,.zwc');
-
+        '#hdnav,#blkBreadcrumb,.can_right,.wb_rec,.wc14_qr,.guess-view-list,.blkContainerOther,#J_Comment_Form_B,\
+.side-btns-2wm,.blkBreadcrumb,.nsinatopbar,#sinablogHead,#column_1,#sinablogfooter,.SG_connHead,#blk_nav_1,.topbar,\
+.zwsidebar,.headlines_news,#fudong,.blkContentFooter',
+        '.blkContainerSblk,.blkContainer,#column_2,#sinablogbody,.articalContent,.SG_connBody,.blkContainerSblk,\
+.Main,.zwcontent,.zwc',
+            function(){        
+        setInterval(function () {
+                $('div[id$="_panel"],div[id^="sinaadToolkitBox"],#recommendShangXun').remove();
+            }, 1000);
+    });
+    
     simplify('admin10000.com',
         '#miniNav,#search,#position,.right,.weixin,.tags,.tip,.relation,.share,.texttip,.ad_336x280,.ad_640x90，#f_close_box',
         '');
@@ -158,7 +166,7 @@ p{font-family:Georgia, \"Times New Roman\", \"Microsoft YaHei\", \"微软雅黑\
             callback();
         }
 
-        setTimeout(function () {
+        setInterval(function () {
             $('iframe,embed').remove();
         }, 3000);
 
