@@ -5,7 +5,7 @@
 // @include     http*://*.oracle.com*
 // @include     http*://*.oraclecorp.com*
 // @include     http*://*.oracledemos.com*
-// @version     10.6
+// @version     10.7
 // @grant       GM_setValue
 // @grant       GM_getValue
 // @grant       GM_deleteValue
@@ -86,11 +86,10 @@ font-size: 120% !important;\
                 'classic home': '/h/?tab=DEFAULT',
                 'fluid home': '/c/NUI_FRAMEWORK.PT_LANDINGPAGE.GBL',
                 'web profile': '/c/WEB_PROFILE.WEB_PROFILE.GBL',
-                'Structure and Content ': '/c/PORTAL_ADMIN.PORTAL_OBJ_LIST.GBL',
-                'Node Definitions': '/c/PORTAL_ADMIN.IB_NODE.GBL',
-                'Single Signon': '/c/MAINTAIN_SECURITY.SINGLE_SIGNON.GBL',
                 'gateways': '/c/IB_PROFILE.IB_GATEWAY.GBL',
-                'Server Side Events Test Page': '/c/UTILITIES.PTSVRTESTEVENTS.GBL'
+                'Security folder': '/s/WEBLIB_PTPP_SC.HOMEPAGE.FieldFormula.IScript_AppHP?pt_fname=PT_SECURITY',
+                'Portal folder': '/s/WEBLIB_PTPP_SC.HOMEPAGE.FieldFormula.IScript_AppHP?pt_fname=PT_PORTAL',
+                'Peopletools folder':'/s/WEBLIB_PTPP_SC.HOMEPAGE.FieldFormula.IScript_AppHP?pt_fname=PT_PEOPLETOOLS'
             };
             for (var o in urlMap) {
                 var url = prefix + urlMap[o];
