@@ -275,6 +275,13 @@ PTF test case:\n\
     }
 //bugdb edit end
 
+    if (currentURL.indexOf('https://bug.oraclecorp.com/pls/bug/webbug_reports.simple_query') >= 0) {
+
+        console.log('bugdb simple query begin');
+        $('input[title="Product I D. Separate by Comma if more than one."]').val('5085');
+
+        console.log('bugdb simple query end');
+    }
 
     GM_registerMenuCommand('clear sso', function () {
         GM_deleteValue('ssoPass');
