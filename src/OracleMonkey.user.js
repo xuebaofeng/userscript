@@ -5,7 +5,7 @@
 // @include     http*://*.oracle.com*
 // @include     http*://*.oraclecorp.com*
 // @include     http*://*.oracledemos.com*
-// @version     10.7
+// @version     10.8
 // @grant       GM_setValue
 // @grant       GM_getValue
 // @grant       GM_deleteValue
@@ -44,9 +44,9 @@ font-size: 120% !important;\
 
     if (id$.length > 0 && currentURL.indexOf('us.oracle.com') > 0) {
         console.log('peoplesoft login begin');
-        var idArray = ['VP1', 'PS', 'PTDMO'];
+        var idArray = ['VP1', 'PS', 'PTDMO', 'GUEST'];
         for (var i = 0; i < idArray.length; i++) {
-            $('<div>' + idArray[i] + '</div>').appendTo($('td.psloginframe,#ps_select_parent')).on('click', function () {
+            $('<div>' + idArray[i].toUpperCase() + '</div>').appendTo($('td.psloginframe,#ps_select_parent')).on('click', function () {
 
                 $('#userid,#pwd').val($(this).html());
                 $('#login').submit();
@@ -89,7 +89,7 @@ font-size: 120% !important;\
                 'gateways': '/c/IB_PROFILE.IB_GATEWAY.GBL',
                 'Security folder': '/s/WEBLIB_PTPP_SC.HOMEPAGE.FieldFormula.IScript_AppHP?pt_fname=PT_SECURITY',
                 'Portal folder': '/s/WEBLIB_PTPP_SC.HOMEPAGE.FieldFormula.IScript_AppHP?pt_fname=PT_PORTAL',
-                'Peopletools folder':'/s/WEBLIB_PTPP_SC.HOMEPAGE.FieldFormula.IScript_AppHP?pt_fname=PT_PEOPLETOOLS'
+                'Peopletools folder': '/s/WEBLIB_PTPP_SC.HOMEPAGE.FieldFormula.IScript_AppHP?pt_fname=PT_PEOPLETOOLS'
             };
             for (var o in urlMap) {
                 var url = prefix + urlMap[o];
@@ -213,7 +213,9 @@ font-size: 120% !important;\
 
         var bugNo = $('#rptno').val();
         var bugsmart = 'https://bugsmart.oraclecorp.com/cgi-bin/techpm/bug_smart.pl?eb=' + bugNo;
-        var iceCreate = 'https://iceportal.oraclecorp.com/psp/ICE/EMPLOYEE/ICE/c/ICE_BUG.RQ_BUG_RSLT.GBL?FolderPath=PORTAL_ROOT_OBJECT.ICE_20.WRK_RSLT.RQ_BUG_RSLT_GBL&IsFolder=false&IgnoreParamTempl=FolderPath%2cIsFolder'
+        var iceCreate = 'https://iceportal.oraclecorp.com/psp/ICE/EMPLOYEE/ICE/c/ICE_BUG.RQ_BUG_RSLT.GBL?\
+olderPath=PORTAL_ROOT_OBJECT.ICE_20.WRK_RSLT.RQ_BUG_RSLT_GBL&IsFolder=false&IgnoreParamTempl=FolderPath%2cIsFolder';
+
         iceCreate += '&bugNo=' + bugNo;
         $('#mainframespan form table tbody tr td a:first')
             .append('<a target="_blank" href="' + bugsmart + '">bug smart</a>')
@@ -242,7 +244,8 @@ font-size: 120% !important;\
         var bug_desc$ = $("#bug_desc");
         var textspan$ = $("#textspan");
         textspan$.append('<br><a href="#textClear" id="textClear">Clear</a>&nbsp;<a href="#askUpate" id="askUpate">Ask update</a>&nbsp;\
-<a href="#wantClose" id="wantClose">Want to Close</a>&nbsp;<a href="#closeBug" id="closeBug">Close bug</a>');
+<a href="#wantClose" id="wantClose">Want to Close</a>&nbsp;<a href="#closeBug" id="closeBug">Close bug</a>\
+&nbsp;<a href="#p2" id="p2">p2</a>');
 
         $(document).on('click', "#textClear", function () {
             console.log('clear');
@@ -251,6 +254,8 @@ font-size: 120% !important;\
             bug_desc$.val('Could you check my update from bugdb? thanks');
         }).on('click', "#wantClose", function () {
             bug_desc$.val('I am going to close this bug if no further response in 3 days.');
+        }).on('click', "#p2", function () {
+            bug_desc$.val('This is P2, hope could come back soon since I\'m working on some P1 and escalations.');
         }).on('click', "#closeBug", function () {
             bug_desc$.val('Bug Analysis:\n\
 ******************\n\n\

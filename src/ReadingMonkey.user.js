@@ -2,7 +2,8 @@
 // @name       ReadingMonkey
 // @namespace  baofeng.reading
 // @version    5.6
-// @description  文章阅读简化:站长之家,新浪,web开发者,51cto,csdn,博客园,qq,infoq,开源中国,网易,伯乐在线,feedly,炼数成金 dataguru.cn
+// @description  文章阅读简化:站长之家,新浪,web开发者,51cto,csdn,博客园,qq,infoq,开源中国,网易,伯乐在线,feedly,
+//               炼数成金 dataguru.cn
 // @match      http://www.chinaz.com/*.shtml
 // @match      http://*.sina.com.cn/*htm*
 // @match      http://www.admin10000.com/document/*.html
@@ -31,55 +32,53 @@
 
 
     simplify('qq.com',
-        '.navWrap,.foot-Article-QQ,.crumbs-tool,#about,.ft,#scrollBtn,#invideocon,#sideBars',
+        '.navWrap,.foot-Article-QQ,.crumbs-tool,#about,.ft,#scrollBtn,#invideocon,#sideBars,.mian-ad',
         '.body-Article-QQ,#Main-Article-QQ');
 
     simplify('cnblogs.com',
-        '#blog_news_kb,#wrap,#main_header,#sideright,#guide,.blogStats,#leftcontent,#mylinks,#right,#mytopmenu,#rightmenu,#leftmenu,#site_nav_under,#under_post_news,#under_post_kb',
+        '#blog_news_kb,#wrap,#main_header,#sideright,#guide,.blogStats,#leftcontent,#mylinks,#right,\
+#mytopmenu,#rightmenu,#leftmenu,#site_nav_under,#under_post_news,#under_post_kb',
         '#main_wrapper,#sideleft,#mainContent,#centercontent,.forFlow');
 
     simplify('csdn.net',
-        '.csdn-toolbar,#navigator,#side,.notice,#res-relatived,.blog-associat-tag,.tag_list,#pub_footerall,#im_popupWindow_miniMsg',
+        '.csdn-toolbar,#navigator,#side,.notice,#res-relatived,.blog-associat-tag,.tag_list,#pub_footerall,\
+#im_popupWindow_miniMsg',
         '.details');
 
     simplify('chinaz.com',
-        '#cz-head,.m-crumb-search,.cz-box-300,#cz-footer,.u-postfooter,.m-relate,.m-leftad,.m-picshow,#pinglun,#m-rightshare,.u-post-textad',
+        '#cz-head,.m-crumb-search,.cz-box-300,#cz-footer,.u-postfooter,.m-relate,.m-leftad,.m-picshow,\
+#pinglun,#m-rightshare,.u-post-textad',
         '.czbox,.m-post');
 
-  
     simplify('sina.com',
         '#hdnav,#blkBreadcrumb,.can_right,.wb_rec,.wc14_qr,.guess-view-list,.blkContainerOther,#J_Comment_Form_B,\
 .side-btns-2wm,.blkBreadcrumb,.nsinatopbar,#sinablogHead,#column_1,#sinablogfooter,.SG_connHead,#blk_nav_1,.topbar,\
-.zwsidebar,.headlines_news,#fudong,.blkContentFooter',
+.zwsidebar,.headlines_news,#fudong,.blkContentFooter,div[id$="_panel"],div[id^="sinaadToolkitBox"],#recommendShangXun',
         '.blkContainerSblk,.blkContainer,#column_2,#sinablogbody,.articalContent,.SG_connBody,.blkContainerSblk,\
-.Main,.zwcontent,.zwc',
-            function(){        
-        setInterval(function () {
-                $('div[id$="_panel"],div[id^="sinaadToolkitBox"],#recommendShangXun').remove();
-            }, 1000);
-    });
-    
+.Main,.zwcontent,.zwc');
+
     simplify('admin10000.com',
-        '#miniNav,#search,#position,.right,.weixin,.tags,.tip,.relation,.share,.texttip,.ad_336x280,.ad_640x90，#f_close_box',
+        '#miniNav,#search,#position,.right,.weixin,.tags,.tip,.relation,.share,.texttip,.ad_336x280,\
+.ad_640x90，#f_close_box',
         '');
 
     simplify('51cto.com',
-        '#home_top,.headerBox,.blogLeft,.mainNav,.edu-col-b,.relatedArt,#message,.mb10,.menu,.subweb,.g_13,.tips,.titbg,.reltag,.relart,.cathot,.bor,#ft,.crumb,.edu-col-a,.art_tj',
-        '.blogMain,.blogRight,.g_26,.g_39,.brief ', function () {
-            setInterval(function () {
-                $('#f_close_box,.m_sharebtn').remove();
-            }, 1000);
-        });
+        '#home_top,.headerBox,.blogLeft,.mainNav,.edu-col-b,.relatedArt,#message,.mb10,.menu,.subweb,.g_13,.tips,\
+.titbg,.reltag,.relart,.cathot,.bor,#ft,.crumb,.edu-col-a,.art_tj,#f_close_box,.m_sharebtn',
+        '.blogMain,.blogRight,.g_26,.g_39,.brief');
 
-    simplify('infoq.com', '#topInfo,.share_this,.article_page_right,.random_links,.bottomContent,.eBookLeft,.related_sponsors',
+    simplify('infoq.com', '#topInfo,.share_this,.article_page_right,.random_links,.bottomContent,.eBookLeft,\
+.related_sponsors',
         '#site,.article_page_left,.ebook,.txt,blockquote');
 
     simplify('oschina.net',
-        '#OSC_NavTop,#OSC_Banner,#OSC_Footer,.NewsRight,.toolbar,.copyright,.RelatedNews,.RelatedThreads,#upprev_box,.translater,.ProjectRight,#SpaceLeft,#OSC_Topbar,.QuestionRelations,#Vote',
+        '#OSC_NavTop,#OSC_Banner,#OSC_Footer,.NewsRight,.toolbar,.copyright,.RelatedNews,.RelatedThreads,#upprev_box,\
+.translater,.ProjectRight,#SpaceLeft,#OSC_Topbar,.QuestionRelations,#Vote',
         '#OSC_Screen,.NewsBody,.NewsEntity,.TextContent,.ProjectMain,.SpaceList');
 
     simplify('163.com',
-        '#js_N_nav,.ep-header,.subfoot-wrap,.N-nav-bottom,#epContentRight,.sharecommend-wrap,.ep-keywords,.atleLP,.ep-returnlink,.extra-tag,.ep-content-side',
+        '#js_N_nav,.ep-header,.subfoot-wrap,.N-nav-bottom,#epContentRight,.sharecommend-wrap,.ep-keywords,.atleLP,\
+.ep-returnlink,.extra-tag,.ep-content-side',
         '#js-epContent,#epContentLeft,#endText,.ep-content-main');
 
 
@@ -111,7 +110,8 @@
             expandStr += ',.';
         }
 
-        var expandArray = ['main', 'home', 'body', 'container', 'content', 'wrapper', 'left', 'right', 'post', 'wrap', 'page', 'Body', 'Content'];
+        var expandArray = ['main', 'home', 'body', 'container', 'content', 'wrapper', 'left', 'right', 'post', 'wrap',
+            'page', 'Body', 'Content'];
 
         expandStr += expandArray.join(',.');
         expandStr += ',#' + expandArray.join(',#');
@@ -134,13 +134,18 @@
             removeStr += ',';
         }
 
-        var removeArray = ['header', 'nav', 'footer', 'embed', 'iframe', 'sidebar', 'breadcrumb', 'sideBar', 'navTop', 'topNav', 'top'];
+        var removeArray = ['object', 'header', 'nav', 'footer', 'embed', 'iframe', 'sidebar', 'breadcrumb',
+            'sideBar', 'navTop', 'topNav', 'top'];
 
         removeStr += removeArray.join(',');
         removeStr += ',#' + removeArray.join(',#');
         removeStr += ',.' + removeArray.join(',.');
-        $(removeStr).remove();
-        console.log('elements removed');
+
+        setInterval(function () {
+            $(removeStr).remove();
+            console.log(removeStr + ',removed');
+        }, 1000);
+
     }
 
 
@@ -165,10 +170,6 @@ p{font-family:Georgia, \"Times New Roman\", \"Microsoft YaHei\", \"微软雅黑\
         if (callback) {
             callback();
         }
-
-        setInterval(function () {
-            $('iframe,embed').remove();
-        }, 3000);
 
         console.log(siteName + ' end');
 
