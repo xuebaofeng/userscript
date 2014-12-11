@@ -5,7 +5,7 @@
 // @include     http*://*.oracle.com*
 // @include     http*://*.oraclecorp.com*
 // @include     http*://*.oracledemos.com*
-// @version     10.8
+// @version     10.9
 // @grant       GM_setValue
 // @grant       GM_getValue
 // @grant       GM_deleteValue
@@ -163,25 +163,53 @@ font-size: 120% !important;\
     }
 //bugsmart end
 
-//dep begin
-    if (currentURL.indexOf("dsiweb01") >= 0) {
 
+    if (currentURL.indexOf("dsiweb01") >= 0) {
         console.log('dep begin');
-        if ($('span.loginLabel').html().toLowerCase().indexOf('invalid') >= 0) {
-            console.log('delete ssoPass');
-            GM_deleteValue('ssoPass');
+
+        if ($('#dep').length == 0) {
+
+            console.log('do dep 1st login');
+
+            $.ajax
+            ({
+                type: "GET",
+                url: "/dep/default.asp",
+                dataType: 'json',
+                async: false,
+                headers: {
+                    "Authorization": "Basic " + btoa(getValue('peoplesoftId') + ":" + getValue('peoplesoftPass'))
+                },
+
+                success: function () {
+                    console.log('dep 1st login done');
+                    document.location.href = '/dep/default.asp';
+                }
+            });
 
         }
 
-        $('input[name="WHO"]').val(getValue('ssoId'));
-        $('input[name="sPassword"]').val(getValue('ssoPass'));
-        $('form').submit();
 
+        var login$ = $('input[name="WHO"]');
+        if (login$.length == 1) {
+
+            console.log('do dep 2nd login');
+            if ($('span.loginLabel').html().toLowerCase().indexOf('invalid') >= 0) {
+                console.log('delete ssoPass');
+                GM_deleteValue('ssoPass');
+            }
+
+            login$.val(getValue('ssoId'));
+            $('input[name="sPassword"]').val(getValue('ssoPass'));
+            $('form').submit();
+            console.log('dep 2nd login done');
+
+        }
 
         console.log('dep end');
         return;
     }
-//dep end
+
 
 //oracle sso begin
     if (currentURL.indexOf("/mysso/signon.jsp") >= 0) {
@@ -275,11 +303,13 @@ PTF test case:\n\
     }
 //bugdb edit end
 
+
     if (currentURL.indexOf('https://bug.oraclecorp.com/pls/bug/webbug_reports.simple_query') >= 0) {
 
         console.log('bugdb simple query begin');
-        $('input[title="Product I D. Separate by Comma if more than one."]').val('5085');
 
+        $('input[title="Product I D. Separate by Comma if more than one."]').val('5085');
+        $('#comp_code').val('TECH,PORTAL');
         console.log('bugdb simple query end');
     }
 
@@ -295,7 +325,7 @@ PTF test case:\n\
 
 
     function getValue(key) {
-        console.log('getValue');
+
         var value = GM_getValue(key);
         if (!value || value === '') {
             value = window.prompt('plese enter ' + key);
