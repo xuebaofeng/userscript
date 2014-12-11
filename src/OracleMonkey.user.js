@@ -166,15 +166,16 @@ font-size: 120% !important;\
 
     if (currentURL.indexOf("dsiweb01") >= 0) {
         console.log('dep begin');
+        console.log($('title').html());
 
-        if ($('#dep').length == 0) {
+        if ($('title').html() == 'You are not authorized to view this page') {
 
-            console.log('do dep 1st login');
+            console.log('do base auth');
 
             $.ajax
             ({
                 type: "GET",
-                url: "/dep/default.asp",
+                url: "/dep/",
                 dataType: 'json',
                 async: false,
                 headers: {
@@ -182,8 +183,8 @@ font-size: 120% !important;\
                 },
 
                 success: function () {
-                    console.log('dep 1st login done');
-                    document.location.href = '/dep/default.asp';
+                    console.log('base auth done');
+                    document.location.href = '/dep/';
                 }
             });
 
@@ -193,7 +194,7 @@ font-size: 120% !important;\
         var login$ = $('input[name="WHO"]');
         if (login$.length == 1) {
 
-            console.log('do dep 2nd login');
+            console.log('do dep sso');
             if ($('span.loginLabel').html().toLowerCase().indexOf('invalid') >= 0) {
                 console.log('delete ssoPass');
                 GM_deleteValue('ssoPass');
@@ -202,7 +203,7 @@ font-size: 120% !important;\
             login$.val(getValue('ssoId'));
             $('input[name="sPassword"]').val(getValue('ssoPass'));
             $('form').submit();
-            console.log('dep 2nd login done');
+            console.log('dep sso done');
 
         }
 
