@@ -147,21 +147,16 @@ font-size: 120% !important;\
 //ice end
 
 
-//bugsmart begin
+
     if (currentURL.indexOf('https://bugsmart.oraclecorp.com/cgi-bin/techpm/bug_smart.pl?') >= 0) {
         console.log('bugsmart begin');
         addStyle();
-        var nextButton$ = $('#Next.button');
-        if (nextButton$.length > 0) {
-            nextButton$.click();
-        }
 
         $('select[name="regression_status"],select[name="product_tgs_9"]').css('background-color', 'yellow');
 
         console.log('bugsmart end');
         return;
     }
-//bugsmart end
 
 
     if (currentURL.indexOf("dsiweb01") >= 0) {
