@@ -5,7 +5,7 @@
 // @include     http*://*.oracle.com*
 // @include     http*://*.oraclecorp.com*
 // @include     http*://*.oracledemos.com*
-// @version     10.9
+// @version     11
 // @grant       GM_setValue
 // @grant       GM_getValue
 // @grant       GM_deleteValue
@@ -46,11 +46,13 @@ font-size: 120% !important;\
         console.log('peoplesoft login begin');
         var idArray = ['VP1', 'PS', 'PTDMO', 'GUEST'];
         for (var i = 0; i < idArray.length; i++) {
-            $('<div>' + idArray[i].toUpperCase() + '</div>').appendTo($('td.psloginframe,#ps_select_parent')).on('click', function () {
+            $('<div>' + idArray[i].toUpperCase() + '</div>')
+                .appendTo($('td.psloginframe,#ps_select_parent')).on('click',
+                function () {
 
-                $('#userid,#pwd').val($(this).html());
-                $('#login').submit();
-            });
+                    $('#userid,#pwd').val($(this).html());
+                    $('#login').submit();
+                });
         }
         console.log('peoplesoft login end');
     }
@@ -65,7 +67,10 @@ font-size: 120% !important;\
 #baofeng_qa{position:fixed; top:0; left:0; z-index:100000;}\
 </style>").appendTo("head");
 
-        $('body').prepend('<div id="baofeng_qa">+<ul id="baofeng_qa_menu" style="display: none; background-color:white;"></ul></div>');
+        $('body').prepend('<div id="baofeng_qa">+\
+        <ul id="baofeng_qa_menu" style="display: none; background-color:white;">\
+        <button id="baofeng_qa_copy_menu">copy menu</button></ul>\
+                          </div>');
 
         (function () {
 
@@ -100,6 +105,18 @@ font-size: 120% !important;\
             $('#baofeng_qa').on('click', function () {
                 $('#baofeng_qa_menu').toggle();
             });
+
+            $('#baofeng_qa_copy_menu').on('click', function () {
+                var s =
+                    $('.pthnavbcanchor,.pthnavbarcref>a').map(function () {
+                        return $(this).html();
+                    }).toArray().join('>');
+
+                s = s.replace('Favorites>', '').replace(/>&nbsp;/g, '');
+                $('body').prepend('<p id="baofeng_menu_copied" ' +
+                'onclick="document.getElementById(\'baofeng_menu_copied\').style.display=\'none\';">' + s + '</p>');
+            });
+
         })();
 
 
@@ -115,7 +132,8 @@ font-size: 120% !important;\
 
             console.log('ice login begin');
 
-            if ($('#login table tbody tr.signInTable td.PSERRORTEXT').html().indexOf('Your User ID and/or Password are invalid.') >= 0) {
+            if ($('#login table tbody tr.signInTable td.PSERRORTEXT').html()
+                    .indexOf('Your User ID and/or Password are invalid.') >= 0) {
                 GM_deleteValue('peoplesoftPass');
             }
 
@@ -142,10 +160,6 @@ font-size: 120% !important;\
 
         }
     }
-
-
-//ice end
-
 
 
     if (currentURL.indexOf('https://bugsmart.oraclecorp.com/cgi-bin/techpm/bug_smart.pl?') >= 0) {
@@ -237,8 +251,7 @@ font-size: 120% !important;\
 
         var bugNo = $('#rptno').val();
         var bugsmart = 'https://bugsmart.oraclecorp.com/cgi-bin/techpm/bug_smart.pl?eb=' + bugNo;
-        var iceCreate = 'https://iceportal.oraclecorp.com/psp/ICE/EMPLOYEE/ICE/c/ICE_BUG.RQ_BUG_RSLT.GBL?\
-olderPath=PORTAL_ROOT_OBJECT.ICE_20.WRK_RSLT.RQ_BUG_RSLT_GBL&IsFolder=false&IgnoreParamTempl=FolderPath%2cIsFolder';
+        var iceCreate = 'https://iceportal.oraclecorp.com/psp/ICE/EMPLOYEE/ICE/c/ICE_BUG.RQ_BUG_RSLT.GBL?';
 
         iceCreate += '&bugNo=' + bugNo;
         $('#mainframespan form table tbody tr td a:first')
@@ -267,7 +280,8 @@ olderPath=PORTAL_ROOT_OBJECT.ICE_20.WRK_RSLT.RQ_BUG_RSLT_GBL&IsFolder=false&Igno
         //begin to add radio button for note tempalte
         var bug_desc$ = $("#bug_desc");
         var textspan$ = $("#textspan");
-        textspan$.append('<br><a href="#textClear" id="textClear">Clear</a>&nbsp;<a href="#askUpate" id="askUpate">Ask update</a>&nbsp;\
+        textspan$.append('<br><a href="#textClear" id="textClear">Clear</a>&nbsp;\
+        <a href="#askUpate" id="askUpate">Ask update</a>&nbsp;\
 <a href="#wantClose" id="wantClose">Want to Close</a>&nbsp;<a href="#closeBug" id="closeBug">Close bug</a>\
 &nbsp;<a href="#p2" id="p2">p2</a>');
 
@@ -275,7 +289,7 @@ olderPath=PORTAL_ROOT_OBJECT.ICE_20.WRK_RSLT.RQ_BUG_RSLT_GBL&IsFolder=false&Igno
             console.log('clear');
             bug_desc$.val('');
         }).on('click', "#askUpate", function () {
-            bug_desc$.val('Could you check my update from bugdb? thanks');
+            bug_desc$.val('Any update?\nCould you check my update from bugdb? thanks');
         }).on('click', "#wantClose", function () {
             bug_desc$.val('I am going to close this bug if no further response in 3 days.');
         }).on('click', "#p2", function () {
