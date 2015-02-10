@@ -5,7 +5,7 @@
 // @include     http*://*.oracle.com*
 // @include     http*://*.oraclecorp.com*
 // @include     http*://*.oracledemos.com*
-// @version     11
+// @version     12
 // @grant       GM_setValue
 // @grant       GM_getValue
 // @grant       GM_deleteValue
@@ -59,7 +59,8 @@ font-size: 120% !important;\
 //peopletools login page end
 
     if ((currentURL.indexOf('/psp/') > 0 || currentURL.indexOf('/psc/') > 0)
-        && window === top) {
+        && window === top
+        && currentURL.indexOf('oraclecorp.com') === -1) {
 
         console.log('peoplesoft menue begin');
 
@@ -124,7 +125,6 @@ font-size: 120% !important;\
     }
 
 
-//ice begin
     if (currentURL.indexOf('https://iceportal.oraclecorp.com/') >= 0) {
 
 
@@ -157,6 +157,24 @@ font-size: 120% !important;\
             }
 
             console.log('ice create end');
+
+        }
+
+
+        if ($('td.PSACTIVETAB').html().indexOf('Environment') > 0) {
+            console.log('ice Environment begin');
+
+            $('.PSPUSHBUTTONTBSENDNOTIFY').parent().append('<input type="text" list="userids">\
+            <datalist id="userids">\
+            <option value="Yang Liu"></option>\
+            <option value="Mofeng Ma"></option>\
+            <option value="Deepankar Narayanan"></option>\
+            <option value="Willie Suh"></option>\
+            <option value="Hao Zhang"></option>\
+            <option value="Yonghao Bai"></option>\
+            </datalist>');
+
+            console.log('ice Environment end');
 
         }
     }
