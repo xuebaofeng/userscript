@@ -169,6 +169,7 @@ font-size: 120% !important;\
             <option value="Yang Liu"></option>\
             <option value="Mofeng Ma"></option>\
             <option value="Deepankar Narayanan"></option>\
+            <option value="Eamon Gaffney"></option>\
             <option value="Willie Suh"></option>\
             <option value="Hao Zhang"></option>\
             <option value="Yonghao Bai"></option>\
