@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name        OracleMonkey
 // @namespace   oracle
-// @description sso,bugdb,dep, bugsmart, ice
+// @description sso,bugdb,dep, bugsmart, ice, em-central
 // @include     http*://*.oracle.com*
 // @include     http*://*.oraclecorp.com*
 // @include     http*://*.oracledemos.com*
@@ -333,12 +333,29 @@ PTF test case:\n\
 //bugdb edit end
 
 
+    if (currentURL.indexOf('em-central.oraclecorp.com/psp/EM-CENTRAL') >= 0 && currentURL.indexOf('log') > 0) {
+        console.log('em-central login');
+
+        $('#userid').val(getValue('peoplesoftId'));
+        $('#pwd').val(getValue('peoplesoftPass'));
+
+        if ($('#login table tbody tr.signInTable td.PSERRORTEXT').html().length == 0) {
+
+            $('#login input.PSLOGINPUSHBUTTON').click();
+        } else if (currentURL.indexOf('cmd=login') >= 0) {
+
+            GM_deleteValue('peoplesoftPass');
+        }
+
+        return;
+    }
+
+
     if (currentURL.indexOf('https://bug.oraclecorp.com/pls/bug/webbug_reports.simple_query') >= 0) {
 
         console.log('bugdb simple query begin');
 
         $('input[title="Product I D. Separate by Comma if more than one."]').val('5085');
-        $('#comp_code').val('TECH,PORTAL');
         console.log('bugdb simple query end');
     }
 
