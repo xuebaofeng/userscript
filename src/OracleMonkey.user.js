@@ -5,7 +5,7 @@
 // @include     http*://*.oracle.com*
 // @include     http*://*.oraclecorp.com*
 // @include     http*://*.oracledemos.com*
-// @version     12
+// @version     13
 // @grant       GM_setValue
 // @grant       GM_getValue
 // @grant       GM_deleteValue
@@ -34,16 +34,20 @@ font-size: 120% !important;\
     if (window.location.href.indexOf('/console/login/LoginForm.jsp') > 0) {
         $('#j_username').val('system');
         $('#j_password').val('Passw0rd');
-        $('#loginData div.button-row span.ctrl input.formButton').click();
+        $('#loginData').find('div.button-row span.ctrl input.formButton').click();
     }
 //weblogic console login end
 
 
-    //peopletools login page begin
-    var id$ = $('#userid');
-
-    if (id$.length > 0 && currentURL.indexOf('us.oracle.com') > 0) {
+    if (currentURL.indexOf('us.oracle.com') > 0 && currentURL.indexOf('cmd=login') > 0) {
         console.log('peoplesoft login begin');
+
+        if (currentURL.indexOf('&trace=y') == -1) {
+            location.href = location.href + '&trace=y';
+        }
+
+        $('#pia\\.unminifiedjavascript').prop('checked', true);
+
         var idArray = ['VP1', 'PS', 'PTDMO', 'GUEST'];
         for (var i = 0; i < idArray.length; i++) {
             $('<div>' + idArray[i].toUpperCase() + '</div>')
@@ -54,9 +58,9 @@ font-size: 120% !important;\
                     $('#login').submit();
                 });
         }
+
         console.log('peoplesoft login end');
     }
-//peopletools login page end
 
     if ((currentURL.indexOf('/psp/') > 0 || currentURL.indexOf('/psc/') > 0)
         && window === top
