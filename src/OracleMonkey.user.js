@@ -5,7 +5,7 @@
 // @include     http*://*.oracle.com*
 // @include     http*://*.oraclecorp.com*
 // @include     http*://*.oracledemos.com*
-// @version     13
+// @version     14
 // @grant       GM_setValue
 // @grant       GM_getValue
 // @grant       GM_deleteValue
@@ -28,6 +28,7 @@ font-size: 120% !important;\
           }\
 </style>").appendTo("head");
     }
+
 
 
 //weblogic console login begin
@@ -267,9 +268,8 @@ font-size: 120% !important;\
 //oracle sso end
 
 
-//bugdb edit begin
     if (currentURL.indexOf('https://bug.oraclecorp.com/pls/bug/webbug_edit') >= 0 && $('#fixby').length > 0) {
-
+        console.log('bug edit begin');
         addStyle();
 
         var bugNo = $('#rptno').val();
@@ -331,11 +331,52 @@ Manual Unit test:\n\
 PTF test case:\n\
 ******************\n\n');
         });
-
+        console.log('bug edit end');
         return;
     }
-//bugdb edit end
 
+    if (currentURL.indexOf('https://bug.oraclecorp.com/pls/bug/WEBBUG_REPORTS') >= 0) {
+        console.log('bug list begin');
+
+        var rows$ = $('#data>tr');
+        var header$ = rows$.children(0);
+
+        var trackGroupIndex = 0;
+        var escIndex = 0;
+
+        header$.each(function (index) {
+
+            if ($(this).html().indexOf('Tracking Group') >= 0) {
+                trackGroupIndex = index;
+            }
+
+            if ($(this).html() == 'Esc') {
+                escIndex = index;
+            }
+        });
+
+        console.log('trackGroupIndex', trackGroupIndex);
+        console.log('escIndex', escIndex);
+        console.log(rows$.length);
+
+        rows$.each(function (index) {
+            if (index == 0)return;
+            var oneRow$ = $(this);
+            var trackingCell$ = oneRow$.children('td').eq(trackGroupIndex);
+            var escCell$ = oneRow$.children('td').eq(escIndex);
+
+            if (trackingCell$.html().indexOf("Escalation") >= 0) {
+                trackingCell$.html('Escalation');
+                escCell$.html('Escalation');
+            } else {
+                trackingCell$.html('');
+            }
+
+        });
+
+        console.log('bug list end');
+        return;
+    }
 
     if (currentURL.indexOf('em-central.oraclecorp.com/psp/EM-CENTRAL') >= 0 && currentURL.indexOf('log') > 0) {
         console.log('em-central login');
