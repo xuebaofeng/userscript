@@ -5,7 +5,7 @@
 // @include     http*://*.oracle.com*
 // @include     http*://*.oraclecorp.com*
 // @include     http*://*.oracledemos.com*
-// @version     15
+// @version     16
 // @grant       GM_setValue
 // @grant       GM_getValue
 // @grant       GM_deleteValue
@@ -370,6 +370,10 @@ PTF test case:\n\
                 escCell$.html('Escalation');
             } else {
                 trackingCell$.html('');
+            }
+                        
+            if (escCell$.html()=="C") {
+                escCell$.html('(null)');
             }
 
         });
