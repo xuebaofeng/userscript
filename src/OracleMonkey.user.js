@@ -43,12 +43,23 @@ font-size: 120% !important;\
     if (currentURL.indexOf('us.oracle.com') > 0 && currentURL.indexOf('cmd=log') > 0) {
         console.log('peoplesoft login begin');
 
+        var needRedirect = false;
+        if (currentURL.indexOf('&fmode=1') > 0) {
+            currentURL = currentURL.replace('&fmode=1', '');
+            needRedirect = true;
+        }
         if (currentURL.indexOf('cmd=logout') > 0) {
-            location.href = currentURL.replace('cmd=logout', 'cmd=login');
+            currentURL = currentURL.replace('cmd=logout', 'cmd=login');
+            needRedirect = true;
         }
 
         if (currentURL.indexOf('&trace=y') == -1) {
-            location.href = location.href + '&trace=y';
+            needRedirect = true;
+            currentURL = currentURL + '&trace=y';
+        }
+
+        if (needRedirect) {
+            document.location.href = currentURL
         }
 
         $('#pia\\.unminifiedjavascript').prop('checked', true);
