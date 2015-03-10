@@ -40,8 +40,12 @@ font-size: 120% !important;\
 //weblogic console login end
 
 
-    if (currentURL.indexOf('us.oracle.com') > 0 && currentURL.indexOf('cmd=login') > 0) {
+    if (currentURL.indexOf('us.oracle.com') > 0 && currentURL.indexOf('cmd=log') > 0) {
         console.log('peoplesoft login begin');
+
+        if (currentURL.indexOf('cmd=logout') > 0) {
+            location.href = currentURL.replace('cmd=logout', 'cmd=login');
+        }
 
         if (currentURL.indexOf('&trace=y') == -1) {
             location.href = location.href + '&trace=y';
@@ -97,10 +101,10 @@ font-size: 120% !important;\
                 'classic home': '/h/?tab=DEFAULT',
                 'fluid home': '/c/NUI_FRAMEWORK.PT_LANDINGPAGE.GBL',
                 'web profile': '/c/WEB_PROFILE.WEB_PROFILE.GBL',
-                'gateways': '/c/IB_PROFILE.IB_GATEWAY.GBL',
-                'Security folder': '/s/WEBLIB_PTPP_SC.HOMEPAGE.FieldFormula.IScript_AppHP?pt_fname=PT_SECURITY',
-                'Portal folder': '/s/WEBLIB_PTPP_SC.HOMEPAGE.FieldFormula.IScript_AppHP?pt_fname=PT_PORTAL',
-                'Peopletools folder': '/s/WEBLIB_PTPP_SC.HOMEPAGE.FieldFormula.IScript_AppHP?pt_fname=PT_PEOPLETOOLS'
+                'General Settings(Navigation Type)': '/c/PORTAL_ADMIN.PORTAL_REG_ADM.GBL',
+                'Branding System Options': '/c/PTBR_MENU.PTBRANDINGSYSTEMOP.GBL',
+                'Structure and Content': '/c/PORTAL_ADMIN.PORTAL_OBJ_LIST.GBL',
+                'User Profiles': 'c/MAINTAIN_SECURITY.USERMAINT.GBL'
             };
             for (var o in urlMap) {
                 var url = prefix + urlMap[o];
@@ -199,29 +203,6 @@ font-size: 120% !important;\
 
     if (currentURL.indexOf("dsiweb01") >= 0) {
         console.log('dep begin');
-        console.log($('title').html());
-
-        if ($('title').html() == 'You are not authorized to view this page') {
-
-            console.log('do base auth');
-
-            $.ajax
-            ({
-                type: "GET",
-                url: "/dep/",
-                dataType: 'json',
-                async: false,
-                headers: {
-                    "Authorization": "Basic " + btoa(getValue('peoplesoftId') + ":" + getValue('peoplesoftPass'))
-                },
-
-                success: function () {
-                    console.log('base auth done');
-                    document.location.href = '/dep/';
-                }
-            });
-
-        }
 
 
         var login$ = $('input[name="WHO"]');
@@ -266,6 +247,7 @@ font-size: 120% !important;\
 
     }
 //oracle sso end
+
 
 
     if (currentURL.indexOf('https://bug.oraclecorp.com/pls/bug/webbug_edit') >= 0 && $('#fixby').length > 0) {
@@ -370,6 +352,10 @@ PTF test case:\n\
                 escCell$.html('Escalation');
             } else {
                 trackingCell$.html('');
+            }
+
+            if (escCell$.html() == "C") {
+                escCell$.html('(null)');
             }
 
         });
