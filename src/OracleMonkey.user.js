@@ -5,7 +5,7 @@
 // @include     http*://*.oracle.com*
 // @include     http*://*.oraclecorp.com*
 // @include     http*://*.oracledemos.com*
-// @version     16
+// @version     17
 // @grant       GM_setValue
 // @grant       GM_getValue
 // @grant       GM_deleteValue
