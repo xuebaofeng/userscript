@@ -5,7 +5,7 @@
 // @include     http*://*.oracle.com*
 // @include     http*://*.oraclecorp.com*
 // @include     http*://*.oracledemos.com*
-// @version     17
+// @version     18
 // @grant       GM_setValue
 // @grant       GM_getValue
 // @grant       GM_deleteValue
@@ -53,9 +53,9 @@ font-size: 120% !important;\
             needRedirect = true;
         }
 
-        if (currentURL.indexOf('&trace=y') == -1) {
+        if (currentURL.indexOf('&trace=y') == -1 && currentURL.indexOf('&languageCd=') == -1) {
             needRedirect = true;
-            currentURL = currentURL + '&trace=y';
+            currentURL += '&trace=y';
         }
 
         if (needRedirect) {
