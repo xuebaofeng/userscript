@@ -1,8 +1,8 @@
 // ==UserScript==
 // @name       ReadingMonkey
 // @namespace  baofeng.reading
-// @version    7
-// @description  文章阅读简化:站长之家,新浪,web开发者,51cto,csdn,博客园,qq,infoq,开源中国,网易,伯乐在线,feedly,炼数成金, dataguru.cn, linuxeden
+// @version    8
+// @description  文章阅读简化:站长之家,新浪,web开发者,51cto,csdn,博客园,qq,infoq,开源中国,网易,伯乐在线,feedly,炼数成金, dataguru.cn, linuxeden,managershare
 // @match      http://www.chinaz.com/*.shtml
 // @match      http://*.sina.com.cn/*htm*
 // @match      http://www.admin10000.com/document/*.html
@@ -20,6 +20,7 @@
 // @match      http://www.dataguru.cn/*
 // @match      http://www.ibm.com/developerworks/*.html
 // @match      http://www.linuxeden.com/html/*
+// @match      http://www.managershare.com/post/*
 // @copyright  GNU
 // @require     http://code.jquery.com/jquery-2.1.1.min.js
 // @run-at      document-end
@@ -104,9 +105,14 @@
         '#ibm-masthead,#ibm-footer-module-dwwrapper',
         '#ibm-content,#ibm-pcon,#ibm-content-main,.ibm-columns,.ibm-col-1-1');
 
-    simplify('http://www.linuxeden.com/html/',
+    simplify('www.linuxeden.com',
         '#newhead,.pright,.place',
         '.w960,.pleft,.viewbox,.TextContent');
+    
+    simplify('www.managershare.com',
+        '.bottom_layer,.post_relate,.post_nav',
+        '.main_left');
+
 
     function expand(expandStr) {
         if (expandStr && expandStr !== '') {
@@ -138,7 +144,7 @@
         }
 
         var removeArray = ['object', 'header', 'nav', 'footer', 'embed', 'iframe', 'sidebar', 'breadcrumb',
-            'sideBar', 'navTop', 'topNav', 'top'];
+            'sideBar', 'navTop', 'topNav', 'top', 'aside'];
 
         removeStr += removeArray.join(',');
         removeStr += ',#' + removeArray.join(',#');
