@@ -5,7 +5,7 @@
 // @include     http*://*.oracle.com*
 // @include     http*://*.oraclecorp.com*
 // @include     http*://*.oracledemos.com*
-// @version     17
+// @version     19
 // @grant       GM_setValue
 // @grant       GM_getValue
 // @grant       GM_deleteValue
@@ -30,7 +30,6 @@ font-size: 120% !important;\
     }
 
 
-
 //weblogic console login begin
     if (window.location.href.indexOf('/console/login/LoginForm.jsp') > 0) {
         $('#j_username').val('system');
@@ -53,9 +52,9 @@ font-size: 120% !important;\
             needRedirect = true;
         }
 
-        if (currentURL.indexOf('&trace=y') == -1) {
+        if (currentURL.indexOf('&trace=y') == -1 && currentURL.indexOf('&languageCd=') == -1) {
             needRedirect = true;
-            currentURL = currentURL + '&trace=y';
+            currentURL += '&trace=y';
         }
 
         if (needRedirect) {
@@ -115,6 +114,7 @@ font-size: 120% !important;\
                 'General Settings(Navigation Type)': '/c/PORTAL_ADMIN.PORTAL_REG_ADM.GBL',
                 'Branding System Options': '/c/PTBR_MENU.PTBRANDINGSYSTEMOP.GBL',
                 'Structure and Content': '/c/PORTAL_ADMIN.PORTAL_OBJ_LIST.GBL',
+                'grouplet wizard': '/c/NUI_FRAMEWORK.PTGPLT_WIZARD_NUI.GBL',
                 'User Profiles': 'c/MAINTAIN_SECURITY.USERMAINT.GBL'
             };
             for (var o in urlMap) {
@@ -146,7 +146,7 @@ font-size: 120% !important;\
 
 
     if (currentURL.indexOf('https://iceportal.oraclecorp.com/') >= 0) {
-
+        console.log('ice begin');
 
         if ($('#userid').length > 0) {
 
@@ -168,36 +168,13 @@ font-size: 120% !important;\
 
         if (currentURL.indexOf('psc/ICE/EMPLOYEE/ICE/c/ICE_BUG.RQ_BUG_RSLT.GBL?') >= 0) {
             console.log('ice create begin');
-
             if ($('#RQ_BUG_WRK_RQ_BUG_RPTNO_ADD').length > 0) {
-
                 var bugNo = getURLParameter('bugNo');
-
                 $('#RQ_BUG_WRK_RQ_BUG_RPTNO_ADD').val(bugNo);
             }
-
             console.log('ice create end');
-
         }
-
-
-        if ($('td.PSACTIVETAB').html().indexOf('Environment') > 0) {
-            console.log('ice Environment begin');
-
-            $('.PSPUSHBUTTONTBSENDNOTIFY').parent().append('<input type="text" list="userids">\
-            <datalist id="userids">\
-            <option value="Yang Liu"></option>\
-            <option value="Mofeng Ma"></option>\
-            <option value="Deepankar Narayanan"></option>\
-            <option value="Eamon Gaffney"></option>\
-            <option value="Willie Suh"></option>\
-            <option value="Hao Zhang"></option>\
-            <option value="Yonghao Bai"></option>\
-            </datalist>');
-
-            console.log('ice Environment end');
-
-        }
+        console.log('ice end');
     }
 
 
@@ -258,7 +235,6 @@ font-size: 120% !important;\
 
     }
 //oracle sso end
-
 
 
     if (currentURL.indexOf('https://bug.oraclecorp.com/pls/bug/webbug_edit') >= 0 && $('#fixby').length > 0) {
