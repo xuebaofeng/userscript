@@ -237,6 +237,7 @@ font-size: 120% !important;\
 //oracle sso end
 
 
+
     if (currentURL.indexOf('https://bug.oraclecorp.com/pls/bug/webbug_edit') >= 0 && $('#fixby').length > 0) {
         console.log('bug edit begin');
         addStyle();
