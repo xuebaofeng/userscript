@@ -213,7 +213,7 @@ font-size: 120% !important;\
 
             console.log("dep status begin");
 
-            $('.DEP_TABLE').attr("width", "100%");
+            $('.DEP_TABLE,form>table').attr("width", "100%");
             $('.DEP_TABLE td:nth-child(1)').each(function () {
 
                 if ($(this).find('font').attr('color') == 'maroon') {
