@@ -5,7 +5,7 @@
 // @include     http*://*.oracle.com*
 // @include     http*://*.oraclecorp.com*
 // @include     http*://*.oracledemos.com*
-// @version     19
+// @version     20
 // @grant       GM_setValue
 // @grant       GM_getValue
 // @grant       GM_deleteValue
@@ -209,6 +209,33 @@ font-size: 120% !important;\
 
         }
 
+        if (currentURL = "http://dsiweb01.us.oracle.com/dep/ovmStatus.asp") {
+
+            console.log("dep status begin");
+
+            $('.DEP_TABLE').attr("width", "100%");
+            $('.DEP_TABLE td:nth-child(1)').each(function () {
+
+                if ($(this).find('font').attr('color') == 'maroon') {
+
+                    var id = $(this).find('b').html();
+                    var test = $('<button/>', {
+                        text: '+7',
+                        click: function () {
+                            $.post('/dep/DBExpiry_Extend_save.asp?ExtnAllowed=70&ihours=7&sdbname=' + id);
+                            return false;
+                        }
+                    });
+
+                    $(this).append(test);
+                }
+
+            });
+
+            console.log("dep status end");
+        }
+
+
         console.log('dep end');
         return;
     }
@@ -235,7 +262,6 @@ font-size: 120% !important;\
 
     }
 //oracle sso end
-
 
 
     if (currentURL.indexOf('https://bug.oraclecorp.com/pls/bug/webbug_edit') >= 0 && $('#fixby').length > 0) {
