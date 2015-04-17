@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name       ReadingMonkey
 // @namespace  baofeng.reading
-// @version    10s
+// @version    10
 // @description  文章阅读简化:站长之家,新浪,web开发者,51cto,csdn,博客园,qq,infoq,开源中国,网易,伯乐在线,feedly,炼数成金, dataguru.cn, linuxeden,managershare
 // @match      http://www.chinaz.com/*.shtml
 // @match      http://sports.sina.com.cn/*htm*
