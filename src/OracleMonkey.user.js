@@ -26,19 +26,37 @@ body{\
 font-family: 'Microsoft YaHei', sans-serif !important;\
 font-size: 120% !important;\
           }\
-.button {\
-	box-shadow:inset 0px 1px 0px 0px #ffffff;\
-	background:linear-gradient(to bottom, #ffffff 5%, #f6f6f6 100%);\
-	background-color:#ffffff;\
-	border-radius:6px;\
-	border:1px solid #dcdcdc;\
+.myButton {\
+	-moz-box-shadow:inset 0px 1px 0px 0px #bbdaf7;\
+	-webkit-box-shadow:inset 0px 1px 0px 0px #bbdaf7;\
+	box-shadow:inset 0px 1px 0px 0px #bbdaf7;\
+	background:linear-gradient(to bottom, #79bbff 5%, #378de5 100%);\
+	background-color:#79bbff;\
+	border-radius:4px;\
+	border:1px solid #84bbf3;\
 	display:inline-block;\
 	cursor:pointer;\
-	color:#666666;\
-	font-family:Arial;\
+	color:#ffffff;\
+	font-weight:bold;\
 	text-decoration:none;\
-	text-shadow:0px 1px 0px #ffffff;\
+padding:4px;\
+	text-shadow:0px 1px 0px #528ecc;\
 }\
+.myButton:hover {\
+	background:-webkit-gradient(linear, left top, left bottom, color-stop(0.05, #378de5), color-stop(1, #79bbff));\
+	background:-moz-linear-gradient(top, #378de5 5%, #79bbff 100%);\
+	background:-webkit-linear-gradient(top, #378de5 5%, #79bbff 100%);\
+	background:-o-linear-gradient(top, #378de5 5%, #79bbff 100%);\
+	background:-ms-linear-gradient(top, #378de5 5%, #79bbff 100%);\
+	background:linear-gradient(to bottom, #378de5 5%, #79bbff 100%);\
+	filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#378de5', endColorstr='#79bbff',GradientType=0);\
+	background-color:#378de5;\
+}\
+.myButton:active {\
+	position:relative;\
+	top:1px;\
+}\
+\
 </style>").appendTo("head");
     }
 
@@ -102,7 +120,7 @@ font-size: 120% !important;\
 
         $('body').prepend('<div id="baofeng_qa">+\
         <ul id="baofeng_qa_menu" style="display: none; background-color:white;">\
-        <button id="baofeng_qa_copy_menu">copy menu</button></ul>\
+        <button class="myButton" id="baofeng_qa_copy_menu">copy menu</button></ul>\
                           </div>');
 
         (function () {
@@ -232,7 +250,7 @@ font-size: 120% !important;\
                 if ($(this).find('font').attr('color') == 'maroon') {
 
                     var id = $(this).find('b').html();
-                    var test = $('<button/>', {
+                    var test = $('<button class="myButton"/>', {
                         text: '+7',
                         click: function () {
                             $.post('/dep/DBExpiry_Extend_save.asp?ExtnAllowed=70&ihours=7&sdbname=' + id);
@@ -287,8 +305,8 @@ font-size: 120% !important;\
 
         iceCreate += '&bugNo=' + bugNo;
         $('#mainframespan form table tbody tr td a:first')
-            .append('<a class="button" target="_blank" href="' + bugsmart + '">Bug smart</a>')
-            .append('<a class="button" target="_blank" href="' + iceCreate + '">Create ice</a>');
+            .append('<a class="myButton" target="_blank" href="' + bugsmart + '">Bug smart</a>')
+            .append('<a class="myButton" target="_blank" href="' + iceCreate + '">Create ice</a>');
 
 
         var wikiString = '('
@@ -312,10 +330,11 @@ font-size: 120% !important;\
         //begin to add radio button for note tempalte
         var bug_desc$ = $("#bug_desc");
         var textspan$ = $("#textspan");
-        textspan$.append('<br><a class="button" href="#textClear" id="textClear">Clear</a>&nbsp;\
-        <a class="button" href="#askUpate" id="askUpate">Ask update</a>&nbsp;\
-<a class="button" href="#wantClose" id="wantClose">Want to Close</a>&nbsp;<a class="button" href="#closeBug" id="closeBug">Close bug</a>\
-&nbsp;<a class="button" href="#p2" id="p2">p2</a>');
+        textspan$.append('<br><a class="myButton" href="#textClear" id="textClear">Clear</a>&nbsp;\
+        <a class="myButton" href="#askUpate" id="askUpate">Ask update</a>&nbsp;\
+<a class="myButton" href="#wantClose" id="wantClose">Want to Close</a>&nbsp;\
+<a class="myButton" href="#closeBug" id="closeBug">Close bug</a>\
+&nbsp;<a class="myButton" href="#p2" id="p2">p2</a>');
 
         $(document).on('click', "#textClear", function () {
             console.log('clear');
