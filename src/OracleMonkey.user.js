@@ -5,7 +5,7 @@
 // @include     http*://*.oracle.com*
 // @include     http*://*.oraclecorp.com*
 // @include     http*://*.oracledemos.com*
-// @version     20
+// @version     21
 // @grant       GM_setValue
 // @grant       GM_getValue
 // @grant       GM_deleteValue
@@ -26,6 +26,19 @@ body{\
 font-family: 'Microsoft YaHei', sans-serif !important;\
 font-size: 120% !important;\
           }\
+.button {\
+	box-shadow:inset 0px 1px 0px 0px #ffffff;\
+	background:linear-gradient(to bottom, #ffffff 5%, #f6f6f6 100%);\
+	background-color:#ffffff;\
+	border-radius:6px;\
+	border:1px solid #dcdcdc;\
+	display:inline-block;\
+	cursor:pointer;\
+	color:#666666;\
+	font-family:Arial;\
+	text-decoration:none;\
+	text-shadow:0px 1px 0px #ffffff;\
+}\
 </style>").appendTo("head");
     }
 
@@ -274,8 +287,8 @@ font-size: 120% !important;\
 
         iceCreate += '&bugNo=' + bugNo;
         $('#mainframespan form table tbody tr td a:first')
-            .append('<a target="_blank" href="' + bugsmart + '">bug smart</a>')
-            .append('&nbsp;|&nbsp;<a target="_blank" href="' + iceCreate + '">create ice</a>');
+            .append('<a class="button" target="_blank" href="' + bugsmart + '">Bug smart</a>')
+            .append('<a class="button" target="_blank" href="' + iceCreate + '">Create ice</a>');
 
 
         var wikiString = '('
@@ -299,10 +312,10 @@ font-size: 120% !important;\
         //begin to add radio button for note tempalte
         var bug_desc$ = $("#bug_desc");
         var textspan$ = $("#textspan");
-        textspan$.append('<br><a href="#textClear" id="textClear">Clear</a>&nbsp;\
-        <a href="#askUpate" id="askUpate">Ask update</a>&nbsp;\
-<a href="#wantClose" id="wantClose">Want to Close</a>&nbsp;<a href="#closeBug" id="closeBug">Close bug</a>\
-&nbsp;<a href="#p2" id="p2">p2</a>');
+        textspan$.append('<br><a class="button" href="#textClear" id="textClear">Clear</a>&nbsp;\
+        <a class="button" href="#askUpate" id="askUpate">Ask update</a>&nbsp;\
+<a class="button" href="#wantClose" id="wantClose">Want to Close</a>&nbsp;<a class="button" href="#closeBug" id="closeBug">Close bug</a>\
+&nbsp;<a class="button" href="#p2" id="p2">p2</a>');
 
         $(document).on('click', "#textClear", function () {
             console.log('clear');
