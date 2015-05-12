@@ -5,7 +5,7 @@
 // @include     http*://*.oracle.com*
 // @include     http*://*.oraclecorp.com*
 // @include     http*://*.oracledemos.com*
-// @version     21
+// @version     22
 // @grant       GM_setValue
 // @grant       GM_getValue
 // @grant       GM_deleteValue
@@ -250,19 +250,14 @@ padding:4px;\
                 if ($(this).find('font').attr('color') == 'maroon') {
 
                     var id = $(this).find('b').html();
-                    var test = $('<button class="myButton"/>', {
-                        text: '+7',
-                        click: function () {
-                            $.post('/dep/DBExpiry_Extend_save.asp?ExtnAllowed=70&ihours=7&sdbname=' + id);
-                            return false;
-                        }
-                    });
-
+                    var test = $('<button id="' + id + '">+7</>');
                     $(this).append(test);
+                    $('#' + id).on('click', function () {
+                        $.post('/dep/DBExpiry_Extend_save.asp?ExtnAllowed=70&ihours=7&sdbname=' + id);
+                        return false;
+                    });
                 }
-
             });
-
             console.log("dep status end");
         }
 
