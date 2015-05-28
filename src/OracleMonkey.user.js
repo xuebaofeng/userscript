@@ -5,7 +5,7 @@
 // @include     http*://*.oracle.com*
 // @include     http*://*.oraclecorp.com*
 // @include     http*://*.oracledemos.com*
-// @version     22
+// @version     23
 // @grant       GM_setValue
 // @grant       GM_getValue
 // @grant       GM_deleteValue
@@ -143,7 +143,7 @@ padding:4px;\
                 'fluid home': '/c/NUI_FRAMEWORK.PT_LANDINGPAGE.GBL',
                 'web profile': '/c/WEB_PROFILE.WEB_PROFILE.GBL',
                 'General Settings(Navigation Type)': '/c/PORTAL_ADMIN.PORTAL_REG_ADM.GBL',
-                'Branding System Options': '/c/PTBR_MENU.PTBRANDINGSYSTEMOP.GBL',
+                'Branding': '/s/WEBLIB_PTPP_SC.HOMEPAGE.FieldFormula.IScript_AppHP?pt_fname=PT_BRANDING',
                 'Structure and Content': '/c/PORTAL_ADMIN.PORTAL_OBJ_LIST.GBL',
                 'grouplet wizard': '/c/NUI_FRAMEWORK.PTGPLT_WIZARD_NUI.GBL',
                 'User Profiles': 'c/MAINTAIN_SECURITY.USERMAINT.GBL'
@@ -165,6 +165,8 @@ padding:4px;\
                     }).toArray().join('>');
 
                 s = s.replace('Favorites>', '').replace(/>&nbsp;/g, '');
+                var componentUrl = 'c/' + location.href.split('://')[1].split('/')[6].split('\?')[0];
+                s += '<br>' + componentUrl;
                 $('body').prepend('<p id="baofeng_menu_copied" ' +
                 'onclick="document.getElementById(\'baofeng_menu_copied\').style.display=\'none\';">' + s + '</p>');
             });
@@ -341,17 +343,11 @@ padding:4px;\
         }).on('click', "#p2", function () {
             bug_desc$.val('This is P2, hope could come back soon since I\'m working on some P1 and escalations.');
         }).on('click', "#closeBug", function () {
-            bug_desc$.val('Bug Analysis:\n\
-******************\n\n\
-Problem:\n\
+            bug_desc$.val('Problem:\n\
 ******************\n\n\
 Analysis:\n\
 ******************\n\n\
-Code Change:\n\
-******************\n\n\
 Manual Unit test:\n\
-******************\n\n\
-PTF test case:\n\
 ******************\n\n');
         });
         console.log('bug edit end');
@@ -405,22 +401,6 @@ PTF test case:\n\
         return;
     }
 
-    if (currentURL.indexOf('em-central.oraclecorp.com/psp/EM-CENTRAL') >= 0 && currentURL.indexOf('log') > 0) {
-        console.log('em-central login');
-
-        $('#userid').val(getValue('peoplesoftId'));
-        $('#pwd').val(getValue('peoplesoftPass'));
-
-        if ($('#login table tbody tr.signInTable td.PSERRORTEXT').html().length == 0) {
-
-            $('#login input.PSLOGINPUSHBUTTON').click();
-        } else if (currentURL.indexOf('cmd=login') >= 0) {
-
-            GM_deleteValue('peoplesoftPass');
-        }
-
-        return;
-    }
 
 
     if (currentURL.indexOf('https://bug.oraclecorp.com/pls/bug/webbug_reports.simple_query') >= 0) {
