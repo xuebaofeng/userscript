@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name       ReadingMonkey
 // @namespace  baofeng.reading
-// @version    11
+// @version    12
 // @description  文章阅读简化:站长之家,新浪,web开发者,51cto,csdn,博客园,qq,infoq,开源中国,网易,
 //伯乐在线,feedly,炼数成金, dataguru.cn, linuxeden,managershare,meijutt
 // @match      http://www.chinaz.com/*.shtml
@@ -157,7 +157,7 @@
             removeStr += ',';
         }
 
-        var removeArray = ['object', 'header', 'nav', 'footer', 'embed', 'iframe', 'sidebar', 'breadcrumb',
+        var removeArray = ['object', 'header', 'nav', 'footer', 'embed', 'sidebar', 'breadcrumb',
             'sideBar', 'navTop', 'topNav', 'aside'];
 
         removeStr += removeArray.join(',');
