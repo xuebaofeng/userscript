@@ -1,9 +1,9 @@
 // ==UserScript==
 // @name       ReadingMonkey
 // @namespace  baofeng.reading
-// @version    12
+// @version    14
 // @description  文章阅读简化:站长之家,新浪,web开发者,51cto,csdn,博客园,qq,infoq,开源中国,网易,
-//伯乐在线,feedly,炼数成金, dataguru.cn, linuxeden,managershare,meijutt
+//伯乐在线,feedly,炼数成金, dataguru.cn, linuxeden,managershare,meijutt,kanmeiju.net
 // @match      http://www.chinaz.com/*.shtml
 // @match      http://sports.sina.com.cn/*htm*
 // @match      http://www.admin10000.com/document/*.html
@@ -23,6 +23,7 @@
 // @match      http://www.linuxeden.com/html/*
 // @match      http://www.managershare.com/post/*
 // @match      http://www.meijutt.com/content/meiju*.html*
+// @match      http://kanmeiju.net/detail/*.html
 // @copyright  GNU
 // @require     http://code.jquery.com/jquery-2.1.1.min.js
 // @run-at      document-end
@@ -33,17 +34,32 @@
 (function () {
     var url = window.location.href;
 
-    $('.ckall p a').attr('onclick', '').on('click', function () {
-        var downloadLins = '<br><br>';
+    if (url.indexOf('meijutt') > 0) {
+        $('.ckall p a').attr('onclick', '').on('click', function () {
+            var downloadLins = '<br><br>';
 
-        $('.downurl li div.adds input:checked').each(function () {
-            downloadLins += $(this).attr('value') + '<br>';
+            $('.downurl li div.adds input:checked').each(function () {
+                downloadLins += $(this).attr('value') + '<br>';
+            });
+
+            downloadLins += '<br><br>';
+
+            $(this).parent().append(downloadLins);
+        });
+    }
+
+    if (url.indexOf('kanmeiju.net') > 0) {
+
+        var downloadLins = '';
+
+        $('div.vpl ul a').each(function () {
+            var link = $(this).attr('href');
+            if (link.indexOf('ed2k') >= 0)
+                downloadLins += decodeURIComponent(link) + '<br>';
         });
 
-        downloadLins += '<br><br>';
-
-        $(this).parent().append(downloadLins);
-    });
+        $('body').prepend(downloadLins)
+    }
 
 
     simplify('qq.com',
