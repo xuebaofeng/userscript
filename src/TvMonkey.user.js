@@ -11,8 +11,8 @@
 // @require     http://code.jquery.com/jquery-2.1.1.min.js
 // @run-at      document-end
 // @grant       GM_log
-// @downloadURL https://github.com/xuebaofeng/userscript/raw/master/src/ReadingMonkey.user.js
-// @updateURL https://github.com/xuebaofeng/userscript/raw/master/src/ReadingMonkey.user.js
+// @downloadURL https://github.com/xuebaofeng/userscript/raw/master/src/TvMonkey.user.js
+// @updateURL https://github.com/xuebaofeng/userscript/raw/master/src/TvMonkey.user.js
 // ==/UserScript==
 (function () {
     var url = window.location.href;
