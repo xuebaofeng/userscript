@@ -1,9 +1,9 @@
 // ==UserScript==
 // @name       ReadingMonkey
 // @namespace  baofeng.reading
-// @version    15
+// @version    16
 // @description  文章阅读简化:站长之家,新浪,web开发者,51cto,csdn,博客园,qq,infoq,开源中国,网易,
-//伯乐在线,feedly,炼数成金, dataguru.cn, linuxeden,managershare,meijutt,kanmeiju,btmeiju
+//伯乐在线,feedly,炼数成金, dataguru.cn, linuxeden,managershare
 // @match      http://www.chinaz.com/*.shtml
 // @match      http://sports.sina.com.cn/*htm*
 // @match      http://www.admin10000.com/document/*.html
@@ -22,9 +22,6 @@
 // @match      http://www.ibm.com/developerworks/*.html
 // @match      http://www.linuxeden.com/html/*
 // @match      http://www.managershare.com/post/*
-// @match      http://www.meijutt.com/content/meiju*.html*
-// @match      http://kanmeiju.net/detail/*.html
-// @match      http://www.btmeiju.com/ustv/*.html
 // @copyright  GNU
 // @require     http://code.jquery.com/jquery-2.1.1.min.js
 // @run-at      document-end
@@ -34,49 +31,6 @@
 // ==/UserScript==
 (function () {
     var url = window.location.href;
-
-    if (url.indexOf('meijutt') > 0) {
-        $('.ckall p a').attr('onclick', '').on('click', function () {
-            var downloadLins = '<br><br>';
-
-            $('.downurl li div.adds input:checked').each(function () {
-                downloadLins += $(this).attr('value') + '<br>';
-            });
-
-            downloadLins += '<br><br>';
-
-            $(this).parent().append(downloadLins);
-        });
-    }
-
-    if (url.indexOf('kanmeiju.net') > 0) {
-
-        var downloadLins = '';
-
-        $('div.vpl ul a').each(function () {
-            var link = $(this).attr('href');
-            if (link.indexOf('ed2k') >= 0)
-                downloadLins += decodeURIComponent(link) + '<br>';
-        });
-
-        $('body').prepend(downloadLins)
-    }
-
-    if (url.indexOf('http://www.btmeiju.com') >= 0) {
-
-        var downloadLins = '';
-        var downloadLins1 = '';
-        $('a.ml3').each(function () {
-            var link = $(this).attr('href');
-            if (link.indexOf('ed2k') >= 0)
-                downloadLins += decodeURIComponent(link) + '<br>';
-            if (link.indexOf('thunder') >= 0)
-                downloadLins1 += link + '<br>';
-        });
-
-        $('body').prepend(downloadLins + downloadLins1)
-    }
-
 
     simplify('qq.com',
         '.navWrap,.foot-Article-QQ,.crumbs-tool,#about,.ft,#scrollBtn,#invideocon,#sideBars,.mian-ad',
