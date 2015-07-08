@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name       TvMonkey
 // @namespace  baofeng.reading
-// @version    1
+// @version    2
 // @description  美剧下载 meijutt,kanmeiju,btmeiju,cn163
 // @match      http://www.meijutt.com/content/meiju*.html*
 // @match      http://kanmeiju.net/detail/*.html
@@ -16,6 +16,7 @@
 // ==/UserScript==
 (function () {
     var url = window.location.href;
+    var downloadLins = '';
 
     if (url.indexOf('meijutt.com') > 0) {
         $('.ckall p a').attr('onclick', '').on('click', function () {
@@ -33,7 +34,6 @@
 
     if (url.indexOf('kanmeiju.net') > 0) {
 
-        var downloadLins = '';
 
         $('div.vpl ul a').each(function () {
             var link = $(this).attr('href');
@@ -46,7 +46,6 @@
 
     if (url.indexOf('btmeiju.com') >= 0) {
 
-        var downloadLins = '';
         var downloadLins1 = '';
         $('a.ml3').each(function () {
             var link = $(this).attr('href');
@@ -60,18 +59,16 @@
     }
 
     if (url.indexOf('cn163.net') >= 0) {
-
-        var downloadLins = '';
-        var downloadLins1 = '';
-        $('#entry ol li a').each(function () {
+        console.log('cn163.net begin');
+        $('#entry a').each(function () {
             var link = $(this).attr('href');
-            if (link.indexOf('ed2k') >= 0)
+            console.log(link);
+            if (link.indexOf('ed2k') >= 0 || link.indexOf('thunder') >= 0 || link.indexOf('magnet') >= 0)
                 downloadLins += decodeURIComponent(link) + '<br>';
-            if (link.indexOf('thunder') >= 0)
-                downloadLins1 += link + '<br>';
+
         });
 
-        $('body').prepend(downloadLins + downloadLins1)
+        $('body').prepend(downloadLins)
     }
 
 })();
