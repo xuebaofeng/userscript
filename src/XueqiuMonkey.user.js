@@ -1,9 +1,9 @@
 // ==UserScript==
 // @name        XueqiuMonkey
 // @namespace   bf
-// @description 雪球股票详情页，增加i财富，牛叉诊股，千股千评链接
+// @description 雪球股票详情页，一键打开相关页面： i财富，牛叉诊股，千股千评，股吧
 // @include     http://xueqiu.com/S/*
-// @version     1
+// @version     2
 // @grant       none
 // @copyright  GNU
 // @run-at      document-end
@@ -37,9 +37,16 @@
     var stock = buildStock()
     var ele = document.querySelector('div.stockTitle')
 
-    addLink(ele, 'i财富', 'http://www.icaifu.com/stock/doctora/' + stock + '.shtml')
-    addLink(ele, '牛叉诊股', 'http://doctor.10jqka.com.cn/' + stock.substring(2) + '/')
-    addLink(ele, '千股千评', 'http://qgqp.shdjt.com/gpdm.asp?gpdm=' + stock.substring(2))
+    var a = document.createElement('a')
+    var t = document.createTextNode('油猴数据')
+    a.appendChild(t)
+    a.onclick = function () {
+        window.open('http://www.icaifu.com/stock/doctora/' + stock + '.shtml')
+        window.open('http://qgqp.shdjt.com/gpdm.asp?gpdm=' + stock.substring(2))
+        window.open('http://guba.eastmoney.com/list,' + stock.substring(2) + '.html')
+    }
+    ele.appendChild(a)
+
 
     console.log('xueqiu end')
 })()
