@@ -3,7 +3,7 @@
 // @namespace   bf
 // @description 雪球股票详情页，一键打开相关页面： i财富，牛叉诊股，千股千评，股吧
 // @include     http://xueqiu.com/S/*
-// @version     2
+// @version     4
 // @grant       none
 // @copyright  GNU
 // @run-at      document-end
@@ -15,18 +15,6 @@
 
     console.log('xueqiu begin')
 
-    function addLink(ele, name, href) {
-
-        var a = document.createElement("a")
-        var t = document.createTextNode(name)
-        a.appendChild(t)
-        a.href = href
-        console.log(a)
-        ele.appendChild(a)
-        ele.appendChild(document.createElement("br"))
-    }
-
-
     function buildStock() {
         var url = document.location.href
         var ua = url.split('/')
@@ -37,16 +25,22 @@
     var stock = buildStock()
     var ele = document.querySelector('div.stockTitle')
 
-    var a = document.createElement('a')
-    var t = document.createTextNode('油猴数据')
-    a.appendChild(t)
-    a.onclick = function () {
-        window.open('http://www.icaifu.com/stock/doctora/' + stock + '.shtml')
-        window.open('http://qgqp.shdjt.com/gpdm.asp?gpdm=' + stock.substring(2))
-        window.open('http://guba.eastmoney.com/list,' + stock.substring(2) + '.html')
-    }
-    ele.appendChild(a)
 
+    var urls = [
+        {name: 'i财富', url: 'http://www.icaifu.com/stock/doctora/' + stock + '.shtml'},
+        {name: '千股千评', url: 'http://qgqp.shdjt.com/gpdm.asp?gpdm=' + stock.substring(2)},
+        {name: '牛叉诊股', url: 'http://doctor.10jqka.com.cn/' + stock.substring(2) + '/'},
+        {name: '股吧', url: 'http://guba.eastmoney.com/list,' + stock.substring(2) + '.html'}
+    ]
+
+    for (var i = 0; i < urls.length; i++) {
+
+        var a = document.createElement('a')
+        a.appendChild(document.createTextNode(urls[i].name))
+        a.href = urls[i].url
+        ele.appendChild(a)
+        ele.appendChild(document.createTextNode(' '))
+    }
 
     console.log('xueqiu end')
 })()
