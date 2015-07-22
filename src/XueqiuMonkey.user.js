@@ -27,9 +27,9 @@
 
 
     var urls = [
+        {name: '牛叉诊股', url: 'http://doctor.10jqka.com.cn/' + stock.substring(2) + '/'},
         {name: 'i财富', url: 'http://www.icaifu.com/stock/doctora/' + stock + '.shtml'},
         {name: '千股千评', url: 'http://qgqp.shdjt.com/gpdm.asp?gpdm=' + stock.substring(2)},
-        {name: '牛叉诊股', url: 'http://doctor.10jqka.com.cn/' + stock.substring(2) + '/'},
         {name: '股吧', url: 'http://guba.eastmoney.com/list,' + stock.substring(2) + '.html'}
     ]
 
