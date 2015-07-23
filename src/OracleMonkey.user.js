@@ -5,7 +5,7 @@
 // @include     http*://*.oracle.com*
 // @include     http*://*.oraclecorp.com*
 // @include     http*://*.oracledemos.com*
-// @version     24
+// @version     25
 // @grant       GM_setValue
 // @grant       GM_getValue
 // @grant       GM_deleteValue
@@ -227,7 +227,20 @@ padding:4px;\
         console.log('bugsmart begin');
         addStyle();
 
-        $('select[name="regression_status"],select[name="product_tgs_9"]').css('background-color', 'yellow');
+        $('select[name="regression_status"],select[name="product_tgs_9"],select[name="database"],\
+input[name="fix_by"],input[name="fixed_ver"]').css('background-color', 'yellow');
+
+
+        $('#Back').parent().next().append('<a id="bf_close" class="myButton" style="float:right">fix</a>');
+        $('#bf_close').on('click', function () {
+            $('input.entry_item_override[name="auto_assign"]')
+                .removeAttr('checked').removeAttr('value').parent().prev().find('span').css('color', 'green');
+            $('input[name="assignee"]').val('MINGZHAO').css('background-color', 'green');
+            $('select[name="status"]').val('80').css('background-color', 'green');
+            $('select[name="product_tgs_9"]').val('Design-Insuff Tech Design').css('background-color', 'green');
+        });
+
+
 
         console.log('bugsmart end');
         return;
