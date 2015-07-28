@@ -5,7 +5,7 @@
 // @include     http*://*.oracle.com*
 // @include     http*://*.oraclecorp.com*
 // @include     http*://*.oracledemos.com*
-// @version     25
+// @version     26
 // @grant       GM_setValue
 // @grant       GM_getValue
 // @grant       GM_deleteValue
@@ -139,17 +139,17 @@ padding:4px;\
             var prefix = currentURL.substring(0, prefixIndex);
 
             var urlMap = {
-                'classic home': '/h/?tab=DEFAULT',
-                'fluid home': '/c/NUI_FRAMEWORK.PT_LANDINGPAGE.GBL',
-                'web profile': '/c/WEB_PROFILE.WEB_PROFILE.GBL',
+                'classic home': 'h/?tab=DEFAULT',
+                'fluid home': 'c/NUI_FRAMEWORK.PT_LANDINGPAGE.GBL',
+                'web profile': 'c/WEB_PROFILE.WEB_PROFILE.GBL',
                 'General Settings(Navigation Type)': '/c/PORTAL_ADMIN.PORTAL_REG_ADM.GBL',
-                'Branding': '/s/WEBLIB_PTPP_SC.HOMEPAGE.FieldFormula.IScript_AppHP?pt_fname=PT_BRANDING',
-                'Structure and Content': '/c/PORTAL_ADMIN.PORTAL_OBJ_LIST.GBL',
-                'grouplet wizard': '/c/NUI_FRAMEWORK.PTGPLT_WIZARD_NUI.GBL',
+                'Branding': 's/WEBLIB_PTPP_SC.HOMEPAGE.FieldFormula.IScript_AppHP?pt_fname=PT_BRANDING',
+                'Structure and Content': 'c/PORTAL_ADMIN.PORTAL_OBJ_LIST.GBL',
+                'grouplet wizard': 'c/NUI_FRAMEWORK.PTGPLT_WIZARD_NUI.GBL',
                 'User Profiles': 'c/MAINTAIN_SECURITY.USERMAINT.GBL'
             };
             for (var o in urlMap) {
-                var url = prefix + urlMap[o];
+                var url = prefix + '/' + urlMap[o];
                 url = url.replace('/psc/', '/psp/');
                 $('#baofeng_qa_menu').append('<li><a href="' + url + '">' + o + '</a></li>');
             }
