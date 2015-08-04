@@ -1,11 +1,11 @@
 // ==UserScript==
 // @name        OracleMonkey
 // @namespace   oracle
-// @description sso,bugdb,dep, bugsmart, ice, em-central
+// @description sso,bugdb,dep, bugsmart, ice
 // @include     http*://*.oracle.com*
 // @include     http*://*.oraclecorp.com*
 // @include     http*://*.oracledemos.com*
-// @version     26
+// @version     27
 // @grant       GM_setValue
 // @grant       GM_getValue
 // @grant       GM_deleteValue
@@ -61,13 +61,6 @@ padding:4px;\
     }
 
 
-//weblogic console login begin
-    if (window.location.href.indexOf('/console/login/LoginForm.jsp') > 0) {
-        $('#j_username').val('system');
-        $('#j_password').val('Passw0rd');
-        $('#loginData').find('div.button-row span.ctrl input.formButton').click();
-    }
-//weblogic console login end
 
 
     if (currentURL.indexOf('us.oracle.com') > 0 && currentURL.indexOf('cmd=log') > 0) {
@@ -139,9 +132,9 @@ padding:4px;\
             var prefix = currentURL.substring(0, prefixIndex);
 
             var urlMap = {
-                'Classic Home': 'h/?tab=DEFAULT',
-                'Fluid Home': 'c/NUI_FRAMEWORK.PT_LANDINGPAGE.GBL',
-                'Web Profile': 'c/WEB_PROFILE.WEB_PROFILE.GBL',
+                'Classic home': 'h/?tab=DEFAULT',
+                'Fluid home': 'c/NUI_FRAMEWORK.PT_LANDINGPAGE.GBL',
+                'Web profile': 'c/WEB_PROFILE.WEB_PROFILE.GBL',
                 'General Settings(Navigation Type)': '/c/PORTAL_ADMIN.PORTAL_REG_ADM.GBL',
                 'Branding': 's/WEBLIB_PTPP_SC.HOMEPAGE.FieldFormula.IScript_AppHP?pt_fname=PT_BRANDING',
                 'Structure and Content': 'c/PORTAL_ADMIN.PORTAL_OBJ_LIST.GBL',
@@ -193,24 +186,6 @@ padding:4px;\
 
     if (currentURL.indexOf('https://iceportal.oraclecorp.com/') >= 0) {
         console.log('ice begin');
-
-        if ($('#userid').length > 0) {
-
-            console.log('ice login begin');
-
-            if ($('#login table tbody tr.signInTable td.PSERRORTEXT').html()
-                    .indexOf('Your User ID and/or Password are invalid.') >= 0) {
-                GM_deleteValue('peoplesoftPass');
-            }
-
-            $('#userid').val(getValue('peoplesoftId'));
-            $('#pwd').val(getValue('peoplesoftPass'));
-            $('input[type="submit"]').click();
-
-
-            console.log('ice login end');
-            return;
-        }
 
         if (currentURL.indexOf('psc/ICE/EMPLOYEE/ICE/c/ICE_BUG.RQ_BUG_RSLT.GBL?') >= 0) {
             console.log('ice create begin');
