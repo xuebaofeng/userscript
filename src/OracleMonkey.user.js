@@ -1,11 +1,11 @@
 // ==UserScript==
 // @name        OracleMonkey
 // @namespace   oracle
-// @description sso,bugdb,dep, bugsmart, ice, em-central
+// @description sso,bugdb,dep, bugsmart, ice
 // @include     http*://*.oracle.com*
 // @include     http*://*.oraclecorp.com*
 // @include     http*://*.oracledemos.com*
-// @version     24
+// @version     27
 // @grant       GM_setValue
 // @grant       GM_getValue
 // @grant       GM_deleteValue
@@ -61,13 +61,6 @@ padding:4px;\
     }
 
 
-//weblogic console login begin
-    if (window.location.href.indexOf('/console/login/LoginForm.jsp') > 0) {
-        $('#j_username').val('system');
-        $('#j_password').val('Passw0rd');
-        $('#loginData').find('div.button-row span.ctrl input.formButton').click();
-    }
-//weblogic console login end
 
 
     if (currentURL.indexOf('us.oracle.com') > 0 && currentURL.indexOf('cmd=log') > 0) {
@@ -139,17 +132,18 @@ padding:4px;\
             var prefix = currentURL.substring(0, prefixIndex);
 
             var urlMap = {
-                'classic home': '/h/?tab=DEFAULT',
-                'fluid home': '/c/NUI_FRAMEWORK.PT_LANDINGPAGE.GBL',
-                'web profile': '/c/WEB_PROFILE.WEB_PROFILE.GBL',
+                'Classic home': 'h/?tab=DEFAULT',
+                'Fluid home': 'c/NUI_FRAMEWORK.PT_LANDINGPAGE.GBL',
+                'Web profile': 'c/WEB_PROFILE.WEB_PROFILE.GBL',
                 'General Settings(Navigation Type)': '/c/PORTAL_ADMIN.PORTAL_REG_ADM.GBL',
-                'Branding': '/s/WEBLIB_PTPP_SC.HOMEPAGE.FieldFormula.IScript_AppHP?pt_fname=PT_BRANDING',
-                'Structure and Content': '/c/PORTAL_ADMIN.PORTAL_OBJ_LIST.GBL',
-                'grouplet wizard': '/c/NUI_FRAMEWORK.PTGPLT_WIZARD_NUI.GBL',
-                'User Profiles': 'c/MAINTAIN_SECURITY.USERMAINT.GBL'
+                'Branding': 's/WEBLIB_PTPP_SC.HOMEPAGE.FieldFormula.IScript_AppHP?pt_fname=PT_BRANDING',
+                'Structure and Content': 'c/PORTAL_ADMIN.PORTAL_OBJ_LIST.GBL',
+                'User Profiles': 'c/MAINTAIN_SECURITY.USERMAINT.GBL',
+                'Nodes':'c/PORTAL_ADMIN.IB_NODE.GBL',
+                'Single Signon':'c/MAINTAIN_SECURITY.SINGLE_SIGNON.GBL'
             };
             for (var o in urlMap) {
-                var url = prefix + urlMap[o];
+                var url = prefix + '/' + urlMap[o];
                 url = url.replace('/psc/', '/psp/');
                 $('#baofeng_qa_menu').append('<li><a href="' + url + '">' + o + '</a></li>');
             }
@@ -193,24 +187,6 @@ padding:4px;\
     if (currentURL.indexOf('https://iceportal.oraclecorp.com/') >= 0) {
         console.log('ice begin');
 
-        if ($('#userid').length > 0) {
-
-            console.log('ice login begin');
-
-            if ($('#login table tbody tr.signInTable td.PSERRORTEXT').html()
-                    .indexOf('Your User ID and/or Password are invalid.') >= 0) {
-                GM_deleteValue('peoplesoftPass');
-            }
-
-            $('#userid').val(getValue('peoplesoftId'));
-            $('#pwd').val(getValue('peoplesoftPass'));
-            $('input[type="submit"]').click();
-
-
-            console.log('ice login end');
-            return;
-        }
-
         if (currentURL.indexOf('psc/ICE/EMPLOYEE/ICE/c/ICE_BUG.RQ_BUG_RSLT.GBL?') >= 0) {
             console.log('ice create begin');
             if ($('#RQ_BUG_WRK_RQ_BUG_RPTNO_ADD').length > 0) {
@@ -227,7 +203,20 @@ padding:4px;\
         console.log('bugsmart begin');
         addStyle();
 
-        $('select[name="regression_status"],select[name="product_tgs_9"]').css('background-color', 'yellow');
+        $('select[name="regression_status"],select[name="product_tgs_9"],select[name="database"],\
+input[name="fix_by"],input[name="fixed_ver"]').css('background-color', 'yellow');
+
+
+        $('#Back').parent().next().append('<a id="bf_close" class="myButton" style="float:right">fix</a>');
+        $('#bf_close').on('click', function () {
+            $('input.entry_item_override[name="auto_assign"]')
+                .removeAttr('checked').removeAttr('value').parent().prev().find('span').css('color', 'green');
+            $('input[name="assignee"]').val('MINGZHAO').css('background-color', 'green');
+            $('select[name="status"]').val('80').css('background-color', 'green');
+            $('select[name="product_tgs_9"]').val('Design-Insuff Tech Design').css('background-color', 'green');
+        });
+
+
 
         console.log('bugsmart end');
         return;
