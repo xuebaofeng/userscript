@@ -14,11 +14,11 @@
     console.log('LeetcodeMoney begin')
 
     document.addEventListener('DOMContentLoaded', function (event) {
-        hideLocked();
+        hideLocked()
     });
 
-
     function hideLocked() {
+
         var x = document.querySelectorAll('#problemList i.fa.fa-lock')
         for (i = 0; i < x.length; i++) {
             x[i].parentNode.parentNode.classList.add('hide');
