@@ -3,8 +3,9 @@
 // @namespace   bf
 // @include     https://jira.tlcinternal.com/secure/ConfigureReport*
 // @downloadURL https://github.com/xuebaofeng/userscript/raw/master/src/LendindclubMoney.user.js
-// @version     1
-// @grant       none
+// @version     2
+// @grant       GM_setValue
+// @grant       GM_getValue
 // ==/UserScript==
 (function () {
     var url = window.location.href
@@ -44,8 +45,18 @@
         document.querySelector('#date_endDate').value = formatDate(new Date())
         var sDate = Date.now() + -7 * 24 * 3600 * 1000;
         document.querySelector('#date_startDate').value = formatDate(new Date(sDate))
-        document.querySelector('#targetUser').value = 'bxue'
+        document.querySelector('#targetUser').value = getValue('UserId')
         var e = document.querySelectorAll('#configure-report.aui fieldset fieldset div.field-group fieldset.group select')
         setSelectBoxByText(e[3], 'None')
+    }
+
+    function getValue(key) {
+
+        var value = GM_getValue(key);
+        if (!value || value === '') {
+            value = window.prompt('plese enter ' + key);
+            GM_setValue(key, value);
+        }
+        return value;
     }
 })()
