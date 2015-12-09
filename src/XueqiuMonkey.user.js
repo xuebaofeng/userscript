@@ -3,7 +3,7 @@
 // @namespace   bf
 // @description 雪球股票详情页，一键打开相关页面： i财富，牛叉诊股，千股千评，股吧
 // @include     http*://xueqiu.com/S/*
-// @version     4
+// @version     5
 // @grant       none
 // @copyright  GNU
 // @run-at      document-end
