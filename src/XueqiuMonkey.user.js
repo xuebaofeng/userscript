@@ -38,6 +38,7 @@
         var a = document.createElement('a')
         a.appendChild(document.createTextNode(urls[i].name))
         a.href = urls[i].url
+        a.target='_blank'
         ele.appendChild(a)
         ele.appendChild(document.createTextNode(' '))
     }
