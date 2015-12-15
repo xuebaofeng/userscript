@@ -5,7 +5,7 @@
 // @include     https://leetcode.com/problemset/algorithms/
 // @version     1
 // @grant       none
-// @downloadURL https://github.com/xuebaofeng/userscript/raw/master/src/TvMonkey.user.js
+// @downloadURL https://github.com/xuebaofeng/userscript/raw/master/src/LeetcodeMoney.user.js
 // ==/UserScript==
 
 
