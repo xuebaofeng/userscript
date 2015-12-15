@@ -7,7 +7,7 @@
 // @match     http://www.icaifu.com/stock/*
 // @match     http://qgqp.shdjt.com/*
 // @match     http://guba.eastmoney.com/list,*.html
-// @version     2
+// @version     3
 // @grant       none
 // @copyright  GNU
 // @downloadURL https://github.com/xuebaofeng/userscript/raw/master/src/StockMonkey.user.js
@@ -16,6 +16,16 @@
 
 
 console.log('stock monkey begin')
+
+var stock = buildStock()
+
+var shortStock = stock
+if (stock.length == 8)shortStock = stock.substring(2)
+else if (stock.length == 6) stock = createLongStock(stock)
+else console.error(stock);
+
+console.log('long:', stock)
+console.log('short:', shortStock)
 
 
 var urls = [
@@ -31,17 +41,6 @@ addStyle();
 var eleUl = document.createElement('ul')
 eleUl.id = "stock_links"
 document.querySelector('body').appendChild(eleUl)
-
-
-var stock = buildStock()
-
-var shortStock = stock
-if (stock.length == 8)shortStock = stock.substring(2)
-else if (stock.length == 6) stock = createLongStock(stock)
-else console.error(stock);
-
-console.log('long:', stock)
-console.log('short:', shortStock)
 
 
 for (var i = 0; i < urls.length; i++) {
