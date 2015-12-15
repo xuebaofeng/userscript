@@ -7,7 +7,7 @@
 // @match     http://www.icaifu.com/stock/*
 // @match     http://qgqp.shdjt.com/*
 // @match     http://guba.eastmoney.com/list,*.html
-// @version     1
+// @version     2
 // @grant       none
 // @copyright  GNU
 // @downloadURL https://github.com/xuebaofeng/userscript/raw/master/src/StockMonkey.user.js
