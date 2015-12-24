@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name        StockMonkey
 // @namespace   bf
-// @description ¸ø¸÷¸ö¹ÉÆ±ÍøÕ¾Ôö¼ÓÁ´½Ó´ò¿ªÌø×ªÒ³Ãæ£º i²Æ¸»£¬Å£²æÕï¹É£¬Ç§¹ÉÇ§ÆÀ£¬¹É°É£¬Ñ©Çò
+// @description ç»™å„ä¸ªè‚¡ç¥¨ç½‘ç«™å¢åŠ é“¾æ¥æ‰“å¼€è·³è½¬é¡µé¢ï¼š iè´¢å¯Œï¼Œç‰›å‰è¯Šè‚¡ï¼Œåƒè‚¡åƒè¯„ï¼Œè‚¡å§ï¼Œé›ªçƒ
 // @match     http://xueqiu.com/S/*
 // @match     http://doctor.10jqka.com.cn/*
 // @match     http://www.icaifu.com/stock/*
@@ -30,11 +30,11 @@ console.log('short:', shortStock)
 
 
 var urls = [
-    {name: 'Å£²æÕï¹É', url: 'http://doctor.10jqka.com.cn/' + shortStock + '/#nav_basic'},
-    {name: 'i²Æ¸»', url: 'http://www.icaifu.com/stock/doctora/' + stock + '.shtml'},
-    {name: 'Ç§¹ÉÇ§ÆÀ', url: 'http://qgqp.shdjt.com/gpdm.asp?gpdm=' + shortStock},
-    {name: '¹É°É', url: 'http://guba.eastmoney.com/list,' + shortStock + '.html'},
-    {name: 'Ñ©Çò', url: 'http://xueqiu.com/S/' + stock}
+    {name: 'ç‰›å‰è¯Šè‚¡', url: 'http://doctor.10jqka.com.cn/' + shortStock + '/#nav_basic'},
+    {name: 'iè´¢å¯Œ', url: 'http://www.icaifu.com/stock/doctora/' + stock + '.shtml'},
+    {name: 'åƒè‚¡åƒè¯„', url: 'http://qgqp.shdjt.com/gpdm.asp?gpdm=' + shortStock},
+    {name: 'è‚¡å§', url: 'http://guba.eastmoney.com/list,' + shortStock + '.html'},
+    {name: 'é›ªçƒ', url: 'http://xueqiu.com/S/' + stock}
 ]
 
 addStyle();
