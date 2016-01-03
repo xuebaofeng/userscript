@@ -1,13 +1,12 @@
 // ==UserScript==
 // @name        StockMonkey
 // @namespace   bf
-// @description 给各个股票网站增加链接打开跳转页面： i财富，牛叉诊股，千股千评，股吧，雪球
+// @description 给各个股票网站增加链接打开跳转页面： i财富，牛叉诊股，爱股说，雪球
 // @match     http://xueqiu.com/S/*
 // @match     http://doctor.10jqka.com.cn/*
 // @match     http://www.icaifu.com/stock/*
-// @match     http://qgqp.shdjt.com/*
-// @match     http://guba.eastmoney.com/list,*.html
-// @version     3
+// @match     http://www.igushuo.com/company_main.html?companycode=*
+// @version     4
 // @grant       none
 // @copyright  GNU
 // @downloadURL https://github.com/xuebaofeng/userscript/raw/master/src/StockMonkey.user.js
@@ -31,9 +30,8 @@ console.log('short:', shortStock)
 var urls = [
     {name: '牛叉诊股', url: 'http://doctor.10jqka.com.cn/' + shortStock + '/#nav_basic'},
     {name: 'i财富', url: 'http://www.icaifu.com/stock/doctora/' + stock + '.shtml'},
-    {name: '千股千评', url: 'http://qgqp.shdjt.com/gpdm.asp?gpdm=' + shortStock},
-    {name: '股吧', url: 'http://guba.eastmoney.com/list,' + shortStock + '.html'},
-    {name: '雪球', url: 'http://xueqiu.com/S/' + stock}
+    {name: '雪球', url: 'http://xueqiu.com/S/' + stock},
+    {name: '爱股说', url: 'http://www.igushuo.com/company_main.html?companycode=' + createIgushuoStock(shortStock)}
 ]
 
 addStyle();
@@ -67,17 +65,18 @@ function buildStock() {
     if (url.indexOf('10jqka') >= 0)
         return ua[3]
 
-    if (url.indexOf('shdjt') >= 0)
-        return ua[3].split('=')[1]
-
-
-    if (url.indexOf('guba') >= 0)
-        return ua[3].split(',')[1].split('.')[0]
+    if (url.indexOf('igushuo') >= 0)
+        return ua[3].split('=')[1].split('.')[0]
 }
 
 function createLongStock(stock) {
     if (stock.charAt(0) == '6') return 'sh' + stock
     return 'sz' + stock
+}
+
+function createIgushuoStock(stock) {
+    if (stock.charAt(0) == '6') return stock + '.sh'
+    return stock + '.sz';
 }
 
 function addStyle() {
