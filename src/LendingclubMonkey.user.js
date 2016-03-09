@@ -3,14 +3,14 @@
 // @namespace   bf
 // @include     https://jira.tlcinternal.com/secure/ConfigureReport*
 // @downloadURL https://github.com/xuebaofeng/userscript/raw/master/src/LendingclubMonkey.user.js
-// @version     1
+// @version     2
 // @grant       GM_setValue
 // @grant       GM_getValue
 // ==/UserScript==
 (function () {
     var url = window.location.href
     if (url.indexOf('https://jira.tlcinternal.com/secure/ConfigureReport') == 0) {
-        function formatDate(date) {
+        function formatDate(date, begin) {
             var monthNames = [
                 'January',
                 'February',
@@ -26,6 +26,7 @@
                 'December'
             ];
             var day = date.getDate();
+            if(begin)day=begin
             var monthIndex = date.getMonth();
             var year = date.getYear();
             year += ''
@@ -42,9 +43,9 @@
             }
         }
 
-        document.querySelector('#date_endDate').value = formatDate(new Date())
-        var sDate = Date.now() + -7 * 24 * 3600 * 1000;
-        document.querySelector('#date_startDate').value = formatDate(new Date(sDate))
+        var today=new Date()
+        document.querySelector('#date_endDate').value = formatDate(today)
+        document.querySelector('#date_startDate').value = formatDate(today,1)
         var ssoId=getValue('ssoId')
         document.querySelector('#targetUser').value = ssoId
         var e = document.querySelectorAll('#configure-report.aui fieldset fieldset div.field-group fieldset.group select')
