@@ -14,7 +14,10 @@
   } //
 
   if (url.indexOf('http://192.168.163.128:8080') == 0) {
-    setInterval(function () {
+    var iv = setInterval(function () {
+      count--
+      console.log(count)
+      if (count == 0) clearInterval(iv)
       var c = document.querySelector('input[placeholder="Enter Company ID"]')
       console.log(c)
       if (c) {
@@ -30,3 +33,4 @@
     }, 1000);
   }
 }) ()
+var count = 100;
