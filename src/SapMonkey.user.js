@@ -22,15 +22,15 @@
       console.log(c)
       if (c) {
         c.value = 'salesdemo'
-        document.href = 'http://192.168.163.128:8080/login?company=salesdemo#/login'
+        document.href = 'http://192.168.163.128:8080/login?company=BizXTest#/login'
       }
       c = document.querySelector('input[placeholder="Username"]')
       console.log(c)
       if (c) {
-        c.value = 'bx'
-        document.querySelector('input[placeholder="Enter Password"]').value = 'pwd1'
+        c.value = 'admin'
+        document.querySelector('input[placeholder="Enter Password"]').value = 'demo101'
       }
     }, 1000);
   }
 }) ()
-var count = 100;
+var count = 10;
