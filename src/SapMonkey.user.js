@@ -2,16 +2,23 @@
 // @name        SapMonkey
 // @namespace   bf.sap
 // @include     https://confluence.successfactors.com/*
-// @include     http://192.168.*:8080/*
+// @include     https://jira.successfactors.com/browse/*
+// @include     http://192.168.161.161:8080/*
 // @downloadURL https://github.com/xuebaofeng/userscript/raw/master/src/SapMonkey.user.js
+// @require     http://code.jquery.com/jquery-3.2.1.min.js
 // @run-at      document-end
-// @version     5
+// @version     6
 // ==/UserScript==
 (function () {
     var url = window.location.href
+    console.log('sap monkey', url)
     if (url.indexOf('https://confluence.successfactors.com') == 0) {
         document.querySelector('#header-precursor').style.display = 'none'
-    } //
+    }
+
+    if (url.indexOf('https://jira.successfactors.com') == 0) {
+        $( "#stalker div.toolbar-split.toolbar-split-left" ).after( "<p>Test</p>" );
+    }
 
     if (isVm(url) && url.indexOf('/login') > 0) {
         document.querySelector('#__input1-inner').value = 'admin'
@@ -32,5 +39,5 @@
 }) ()
 
 function isVm(url){
-    return url.indexOf('http://192.168.')==0 && url.indexOf(':8080') > 0 ;
+    return url.indexOf('http://192.168.161.161')==0 && url.indexOf(':8080') > 0 ;
 }
