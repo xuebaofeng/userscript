@@ -7,7 +7,8 @@
 // @downloadURL https://github.com/xuebaofeng/userscript/raw/master/src/SapMonkey.user.js
 // @require     http://code.jquery.com/jquery-3.2.1.min.js
 // @run-at      document-end
-// @version     6
+// @grant       GM_addStyle
+// @version     7
 // ==/UserScript==
 (function () {
     var url = window.location.href
@@ -17,7 +18,7 @@
     }
 
     if (url.indexOf('https://jira.successfactors.com') == 0) {
-        $( "#stalker div.toolbar-split.toolbar-split-left" ).after( "<p>Test</p>" );
+        GM_addStyle('.user-content-block{font-family: monospace;}');
     }
 
     if (isVm(url) && url.indexOf('/login') > 0) {
