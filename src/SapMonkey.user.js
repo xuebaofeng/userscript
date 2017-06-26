@@ -9,7 +9,7 @@
 // @require     http://code.jquery.com/jquery-3.2.1.min.js
 // @run-at      document-end
 // @grant       GM_addStyle
-// @version     8
+// @version     9
 // ==/UserScript==
 (function () {
     var url = window.location.href
@@ -27,11 +27,10 @@
         setTimeout(function() {
             var v = $('body > div > h2').text().trim();
             console.log(v);
-            //PLT#-123467970:getTargetPopulation (by Role)-ONB-External Role-Group: 1 role 1 rule
-            v = v.replace(/[#|\-|:|\(|\)| |\/]/g, '_').replace(/_+/g, '_')
+            v = toJava(v)
             console.log(v);
             $('body > div > h2').append('<br>').append(v);
-        }, 1000)
+        }, 100)
     }
 
     if (isVm(url) && url.indexOf('/login') > 0) {
@@ -55,3 +54,12 @@
 function isVm(url){
     return url.indexOf('http://192.168.161.161')==0 && url.indexOf(':8080') > 0 ;
 }
+
+const toJava = (phrase) => {
+    //PLT#-123467970:getTargetPopulation (by Role)-ONB-External Role-Group: 1 role 1 rule
+    phrase = phrase.replace(/[#|\-|:|\(|\)| |\/]/g, '_').replace(/_+/g, '_')
+  return phrase
+    .split('_')
+    .map(word => word.charAt(0).toUpperCase() + word.slice(1))
+    .join('');
+};
