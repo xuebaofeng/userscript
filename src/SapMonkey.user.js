@@ -10,7 +10,7 @@
 // @require     http://code.jquery.com/jquery-3.2.1.min.js
 // @run-at      document-end
 // @grant       GM_addStyle
-// @version     10
+// @version     11
 // ==/UserScript==
 (function () {
     var url = window.location.href
@@ -86,7 +86,7 @@ function isVm(url){
 
 const toJava = (phrase) => {
     //PLT#-123467970:getTargetPopulation (by Role)-ONB-External Role-Group: 1 role 1 rule
-    phrase = phrase.replace(/[#|\-|:|\(|\)| |\/]/g, '_').replace(/_+/g, '_')
+    phrase = phrase.replace(/[#|\-|:|\(|\)| |\/]|&/g, '_').replace(/_+/g, '_')
   return phrase
     .split('_')
     .map(word => word.charAt(0).toUpperCase() + word.slice(1))
