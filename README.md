@@ -22,6 +22,7 @@ https://chrome.google.com/webstore/detail/tampermonkey/dhdgffkkebhmkfjojejmpbldm
 2.在浏览器内打开地址  
 https://github.com/xuebaofeng/userscript/raw/master/src/OracleMonkey.user.js  
 https://github.com/xuebaofeng/userscript/raw/master/src/ReadingMonkey.user.js  
+https://github.com/xuebaofeng/userscript/raw/master/src/SapMonkey.user.js  
 按照提示安装脚本
 
 enjoy！
