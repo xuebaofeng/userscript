@@ -9,11 +9,38 @@
 // @require     http://code.jquery.com/jquery-3.2.1.min.js
 // @run-at      document-end
 // @grant       GM_addStyle
-// @version     9
+// @version     10
 // ==/UserScript==
 (function () {
     var url = window.location.href
     console.log('sap monkey', url)
+    
+        
+    if(url.indexOf('/sf/home?')>0 || url.indexOf('/acme?')>0|| url.indexOf('/sf/admin?')>0){
+       console.log('bizx')
+       $("<style type='text/css'> \
+#baofeng_qa{position:fixed; top:0; left:0; z-index:100000;}\
+</style>").appendTo("head");
+
+        $('body').prepend('<div id="baofeng_qa">+\
+        <ul id="baofeng_qa_menu" style="display: none; background-color:white;"></ul></div>');
+
+//http://192.168.161.161:8080/sf/home?bplte_company=BizXTest&_s.crb=%2b2DLJdoshBNTo6m%2bPFvfkcuvt4M%3d
+              var sufix = '&_s.crb=' + url.split('&_s.crb=')[1]
+            var urlMap = {
+                'group': '/acme?fbacme_o=admin&pess_old_admin=true&ap_param_action=ap_manage_rbp_group',
+                'role': '/acme?fbacme_o=admin&pess_old_admin=true&ap_param_action=ap_manage_rbp_role'
+            };
+            for (var o in urlMap) {
+                var url = urlMap[o];
+                $('#baofeng_qa_menu').append('<li><a href="' + url + sufix + '">' + o + '</a></li>');
+            }
+
+            $('#baofeng_qa').on('click', function () {
+                $('#baofeng_qa_menu').toggle();
+            });
+    }
+    
     if (url.indexOf('https://confluence.successfactors.com') == 0) {
         document.querySelector('#header-precursor').style.display = 'none'
     }
@@ -49,6 +76,7 @@
             c.value = 'sfv4'
         }
     }
+
 }) ()
 
 function isVm(url){
