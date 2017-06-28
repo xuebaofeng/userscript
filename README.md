@@ -2,7 +2,7 @@ userscript
 ==========
 
 
-支持浏览器firefox
+支持浏览器firefox/chrome
 
 
 Oracle Money:  
@@ -13,9 +13,11 @@ Reading Money:
 
 使用方法  
 
-1.firefox
-安装插件  
+1.安装插件  
+firefox  
 https://addons.mozilla.org/en-US/firefox/addon/greasemonkey/
+chrome  
+https://chrome.google.com/webstore/detail/tampermonkey/dhdgffkkebhmkfjojejmpbldmpobfkfo
 
 2.在浏览器内打开地址  
 https://github.com/xuebaofeng/userscript/raw/master/src/OracleMonkey.user.js  
