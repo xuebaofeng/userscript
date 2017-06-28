@@ -15,7 +15,7 @@ Reading Money:
 
 1.安装插件  
 firefox  
-https://addons.mozilla.org/en-US/firefox/addon/greasemonkey/
+https://addons.mozilla.org/en-US/firefox/addon/greasemonkey/  
 chrome  
 https://chrome.google.com/webstore/detail/tampermonkey/dhdgffkkebhmkfjojejmpbldmpobfkfo
 
