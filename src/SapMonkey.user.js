@@ -4,6 +4,7 @@
 // @include     https://confluence.successfactors.com/*
 // @include     https://jira.successfactors.com/browse/*
 // @include     http://192.168.161.161:8080/*
+// @include     https://qacand.sflab.ondemand.com/*
 // @include     http://testlink.successfactors.com/testlink/lib/testcases/archiveData.php?*
 // @downloadURL https://github.com/xuebaofeng/userscript/raw/master/src/SapMonkey.user.js
 // @require     http://code.jquery.com/jquery-3.2.1.min.js
@@ -26,7 +27,7 @@
         <ul id="baofeng_qa_menu" style="display: none; background-color:white;"></ul></div>');
 
 //http://192.168.161.161:8080/sf/home?bplte_company=BizXTest&_s.crb=%2b2DLJdoshBNTo6m%2bPFvfkcuvt4M%3d
-              var sufix = '&_s.crb=' + url.split('&_s.crb=')[1]
+              var sufix = '&_s.crb=' + url.split('_s.crb=')[1]
             var urlMap = {
                 'group': '/acme?fbacme_o=admin&pess_old_admin=true&ap_param_action=ap_manage_rbp_group',
                 'role': '/acme?fbacme_o=admin&pess_old_admin=true&ap_param_action=ap_manage_rbp_role'
