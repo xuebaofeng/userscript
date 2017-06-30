@@ -4,13 +4,13 @@
 // @include     https://confluence.successfactors.com/*
 // @include     https://jira.successfactors.com/browse/*
 // @include     http://192.168.161.161:8080/*
-// @include     https://qacand.sflab.ondemand.com/*
+// @include     https://*.ondemand.com/*
 // @include     http://testlink.successfactors.com/testlink/lib/testcases/archiveData.php?*
 // @downloadURL https://github.com/xuebaofeng/userscript/raw/master/src/SapMonkey.user.js
 // @require     http://code.jquery.com/jquery-3.2.1.min.js
 // @run-at      document-end
 // @grant       GM_addStyle
-// @version     11
+// @version     12
 // ==/UserScript==
 (function () {
     var url = window.location.href
