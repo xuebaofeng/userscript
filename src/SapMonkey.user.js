@@ -10,7 +10,7 @@
 // @require     http://code.jquery.com/jquery-3.2.1.min.js
 // @run-at      document-end
 // @grant       GM_addStyle
-// @version     14
+// @version     15
 // ==/UserScript==
 (function () {
     var url = window.location.href
@@ -48,6 +48,7 @@
 
     if (url.indexOf('https://jira.successfactors.com') == 0) {
         GM_addStyle('.user-content-block{font-family: monospace;}');
+        document.querySelector('#announcement-banner').style.display = 'none'        
     }
 
     if (url.indexOf('http://testlink.successfactors.com/testlink/lib/testcases/archiveData.php?') == 0) {
