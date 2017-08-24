@@ -2,7 +2,7 @@
 // @name        SapMonkey
 // @namespace   bf.sap
 // @include     https://confluence.successfactors.com/*
-// @include     https://jira.successfactors.com/browse/*
+// @include     https://jira.successfactors.com/*
 // @include     http://192.168.*:8080/*
 // @include     https://*.ondemand.com/*
 // @include     http://testlink.successfactors.com/testlink/lib/testcases/archiveData.php?*
