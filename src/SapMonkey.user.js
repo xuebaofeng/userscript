@@ -6,11 +6,14 @@
 // @include     http://192.168.*:8080/*
 // @include     https://*.ondemand.com/*
 // @include     http://testlink.successfactors.com/testlink/lib/testcases/archiveData.php?*
+// @include     https://github.wdf.sap.corp/*/pull/*/files
+// @include     https://github.wdf.sap.corp/*/commit/*
+// @exclude     https://git*?w=1
 // @downloadURL https://github.com/xuebaofeng/userscript/raw/master/src/SapMonkey.user.js
 // @require     http://code.jquery.com/jquery-3.2.1.min.js
 // @run-at      document-end
 // @grant       GM_addStyle
-// @version     16
+// @version     17
 // ==/UserScript==
 (function () {
     var url = window.location.href
@@ -42,6 +45,15 @@
             });
     }
     
+    if (url.indexOf('https://github.wdf.sap.corp/') == 0) {
+        // Wipe out the head and body contents so that we don't wait for them to load before doing the redirect.
+        document.head.innerHTML='';
+        document.body.innerHTML='';
+
+        // Redirect to the URL we are at, with the special modifier attached that signals to ignore whitespace in the diffs.
+        window.location.href=window.location.href + '?w=1';
+    }
+
     if (url.indexOf('https://confluence.successfactors.com') == 0) {
         document.querySelector('#header-precursor').style.display = 'none'
     }
