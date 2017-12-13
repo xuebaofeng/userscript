@@ -6,21 +6,17 @@
 // @include     http://192.168.*:8080/*
 // @include     https://*.ondemand.com/*
 // @include     http://testlink.successfactors.com/testlink/lib/testcases/archiveData.php?*
-// @include     https://github.wdf.sap.corp/*/pull/*/files
-// @include     https://github.wdf.sap.corp/*/commit/*
-// @exclude     https://git*?w=1
 // @downloadURL https://github.com/xuebaofeng/userscript/raw/master/src/SapMonkey.user.js
 // @require     http://code.jquery.com/jquery-3.2.1.min.js
 // @run-at      document-end
 // @grant       GM_addStyle
-// @version     17
+// @version     18
 // ==/UserScript==
 (function () {
     var url = window.location.href
     console.log('sap monkey', url)
-    
-        
-    if(url.indexOf('/sf/home?')>0 || url.indexOf('/acme?')>0|| url.indexOf('/sf/admin?')>0){
+
+    if(url.indexOf('/sf/home?')>0 ||url.indexOf('/sf/start?')>0 || url.indexOf('/acme?')>0|| url.indexOf('/sf/admin?')>0){
        console.log('bizx')
        $("<style type='text/css'> \
 #baofeng_qa{position:fixed; top:0; left:0; z-index:100000;}\
@@ -44,15 +40,6 @@
                 $('#baofeng_qa_menu').toggle();
             });
     }
-    
-    if (url.indexOf('https://github.wdf.sap.corp/') == 0) {
-        // Wipe out the head and body contents so that we don't wait for them to load before doing the redirect.
-        document.head.innerHTML='';
-        document.body.innerHTML='';
-
-        // Redirect to the URL we are at, with the special modifier attached that signals to ignore whitespace in the diffs.
-        window.location.href=window.location.href + '?w=1';
-    }
 
     if (url.indexOf('https://confluence.successfactors.com') == 0) {
         document.querySelector('#header-precursor').style.display = 'none'
@@ -60,7 +47,7 @@
 
     if (url.indexOf('https://jira.successfactors.com') == 0) {
         GM_addStyle('.user-content-block{font-family: monospace;}');
-        document.querySelector('#announcement-banner').style.display = 'none'        
+        document.querySelector('#announcement-banner').style.display = 'none'
     }
 
     if (url.indexOf('http://testlink.successfactors.com/testlink/lib/testcases/archiveData.php?') == 0) {
