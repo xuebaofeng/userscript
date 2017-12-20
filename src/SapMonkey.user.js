@@ -5,12 +5,13 @@
 // @include     https://jira.successfactors.com/*
 // @include     http://192.168.*:8080/*
 // @include     https://*.ondemand.com/*
+// @include     https://*.cloud.sap/*
 // @include     http://testlink.successfactors.com/testlink/lib/testcases/archiveData.php?*
 // @downloadURL https://github.com/xuebaofeng/userscript/raw/master/src/SapMonkey.user.js
 // @require     http://code.jquery.com/jquery-3.2.1.min.js
 // @run-at      document-end
 // @grant       GM_addStyle
-// @version     18
+// @version     19
 // ==/UserScript==
 (function () {
     var url = window.location.href
