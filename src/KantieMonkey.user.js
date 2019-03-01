@@ -2,8 +2,8 @@
 // @name        KantieMonkey
 // @namespace   bf.Kantie
 // @downloadURL https://github.com/xuebaofeng/userscript/raw/master/src/KantieMonkey.user.js
-// @version     2
-// @match        https://kantie.org/topics/today
+// @version     3
+// @match        https://kantie.org/topics/today*
 // ==/UserScript==
 
 
@@ -27,12 +27,17 @@ function removeHupu() {
 }
 
 function removeDuplicate() {
+    console.log('removeDuplicate begin')
     var titles = new Set();
-    var list = document.querySelectorAll('a.content > div.title')
+    var list = document.querySelectorAll('.title')
     for (var i = 0; i < list.length; i++) {
         var title = list[i].innerText
-        if(titles.has(title)) list[i].parentNode.parentNode.parentNode.remove();
+        if(
+            titles.has(title)
+            || title.toLowerCase().includes('gucci')
+            || title.includes('痛经')
+            || title.includes('神仙水')
+          ) list[i].parentNode.parentNode.remove();
         titles.add(title);
     }
-    console.log(titles);
 }
